@@ -21,24 +21,24 @@
 **src/** - Arquivos de códigos da aplicação.\
 **src/common/** - Arquivos comuns da aplicação. Inclui componentes e utilitários.\
 **src/common/styles/** - Arquivos de estilo da aplicação.\
-**src/screens/** - Telas.\
-**src/screens/exemploDeScreen/** - Arquivos de uma tela.\
-**src/screens/exemploDeScreen/components/** - Componentes utilizados na tela.\
-**src/screens/exemploDeScreen/components/ExemploX.jsx** - Componente de apresentação utilizado na tela.\
-**src/screens/exemploDeScreen/index.js** - Exporta o tela como default.\
-**src/screens/exemploDeScreen/types.js** - Contém constantes para serem utilizadas nos types das actions creators e reducers.\
+**src/views/** - Telas.\
+**src/views/exemploDeView/** - Arquivos de uma tela.\
+**src/views/exemploDeView/components/** - Componentes utilizados na tela.\
+**src/views/exemploDeView/components/ExemploX.jsx** - Componente de apresentação utilizado na tela.\
+**src/views/exemploDeView/index.js** - Exporta o tela como default.\
+**src/views/exemploDeView/types.js** - Contém constantes para serem utilizadas nos types das actions creators e reducers.\
 **src/Navigation.jsx** - Configura a navegação de todas as telas.\
 **.gitignore** - Configura arquivos a serem ignorados pelo git.\
 **App.js** - Arquivo inicial. Arquivo chamado pelo Expo.\
 **package.json** - Arquivo de dependências e detalhes do projeto.\
 **README.md** - Leia-me com instruções.\
 **yarn.lock** - Mapa de dependencias gerenciado pelo yarn| Caso algúem use o Yarn.
+**package-lock** - Mapa de dependencias gerenciado pelo NPM| Caso algúem use o NPM.
 
 ### Estrutura dos arquivos do FrontEnd da Aplicação -> Mobile
 **assets/** - Arquivos estáticos: fontes, imagens, etc.\
 **src/** - Arquivos de códigos da aplicação.\
 **src/common/** - Arquivos comuns da aplicação. Inclui componentes e utilitários.\
-**src/common/styles/** - Arquivos de estilo da aplicação.\
 **src/screens/** - Telas.\
 **src/screens/exemploDeScreen/** - Arquivos de uma tela.\
 **src/screens/exemploDeScreen/components/** - Componentes utilizados na tela.\
@@ -46,13 +46,13 @@
 **src/screens/exemploDeScreen/index.dart** - Exporta o tela como default.\
 **src/screens/exemploDeScreen/types.dart** - Contém constantes para serem utilizadas nos types das actions creators e reducers.\
 **.gitignore** - Configura arquivos a serem ignorados pelo git.\
-**App.dart** - Arquivo inicial. Arquivo chamado pelo Expo.\
+**App.dart** - Arquivo inicial.\
 **README.md** - Leia-me com instruções.\
 
 ### Nomeação dos arquivos e componentes
   - Os componentes são nomeados com o padrão PascalCase independente de ser componente de classe ou funcional.
   - Os components e containers tem seus arquivos com o mesmo nome. Caso o component ou container esteja fora do diretório components ou containers respectivamente, o nome do arquivo deve serguir com o identificador Component ou Container.
-  - As screens também são considerados componentes e devem ter seus arquivos ScreenComponent.jsx e ScreenContainer.js.
+  - As views também são considerados componentes e devem ter seus arquivos ViewComponent.jsx e ViewContainer.js.
   - Os arquivos que não são componentes devem ser nomeados no formato camelCase.js.
   - Os arquivos que contém código JSX devem ser nomeados com a extensão .jsx.
 
