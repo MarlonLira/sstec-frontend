@@ -12,6 +12,11 @@
 - [VS Code](https://code.visualstudio.com/ "Visual Studio Code").
 - [Node LTS](https://nodejs.org/en/ "Node Js") Aplicação Web|Mobile - BackEnd
 - [Cmder](https://cmder.net/ "Cmder")
+- [React Js](https://pt-br.reactjs.org/) 
+
+### Dependencias
+- [Axios](https://malcoded.com/posts/react-http-requests-axios/) - Envia requisições HTTP
+- [Json](https://www.techiediaries.com/react-json-fetch-rest-api-bootstrap/) [(Mais)](https://pusher.com/tutorials/consume-restful-api-react) - Não é uma dependencia mas vai dar um caminho
 
 ### Instalação
 - Via Executavel.
