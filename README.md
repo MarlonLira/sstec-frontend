@@ -5,7 +5,7 @@
 **Empresa:** Simple System Tecnologia SSTEC\
 **Nome do app:** Simple Parking\
 **Site:** simpleparking.com\
-**Tecnologias de desenvolvimento:** Flutter | React Js | Node js | [Typescript](https://alligator.io/react/typescript-with-react/) 
+**Tecnologias de desenvolvimento:** Flutter | React Js | Node js | [Typescript](https://alligator.io/react/typescript-with-react/) [Mais](https://www.youtube.com/watch?v=OXxul6AvXNs) 
 
 ### Requisitos
 - [Android Studio](https://developer.android.com/studio/ "Android Studio") Aplicação Mobile - Flutter.
