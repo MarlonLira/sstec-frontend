@@ -5,14 +5,13 @@
 **Empresa:** Simple System Tecnologia SSTEC\
 **Nome do app:** Simple Parking\
 **Site:** simpleparking.com\
-**Tecnologias de desenvolvimento:** Flutter | React Js | Node js | [Typescript](https://alligator.io/react/typescript-with-react/) - ([Mais](https://www.youtube.com/watch?v=OXxul6AvXNs)) - [Git](https://github.com/Rocketseat/youtube-typescript-reactjs) 
+**Tecnologias de desenvolvimento:** [Flutter](https://flutter.dev/docs) | [React Js](https://pt-br.reactjs.org/) | [Typescript](https://alligator.io/react/typescript-with-react/) - ([Mais](https://www.youtube.com/watch?v=OXxul6AvXNs)) - [Git](https://github.com/Rocketseat/youtube-typescript-reactjs) 
 
 ### Requisitos
 - [Android Studio](https://developer.android.com/studio/ "Android Studio") Aplicação Mobile - Flutter.
 - [VS Code](https://code.visualstudio.com/ "Visual Studio Code").
 - [Node LTS](https://nodejs.org/en/ "Node Js") Aplicação Web|Mobile - BackEnd
 - [Cmder](https://cmder.net/ "Cmder")
-- [React Js](https://pt-br.reactjs.org/) 
 
 ### Dependencias
 - [Axios](https://malcoded.com/posts/react-http-requests-axios/) - Envia requisições HTTP
