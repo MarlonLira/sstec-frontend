@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectTab } from './tabActions';
-import If from '../operator/if';
+import { selectTab } from '../../../action/tabActions';
+import If from '../../operator/if';
 
 class TabHeader extends Component {
   render() {
