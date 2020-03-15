@@ -111,3 +111,7 @@ Exemplos: init, runner, watcher, config, web-server, proxy, etc.
 **\<corpo\>:** Deve conter descrições mais precisas do que está contido no commit, mostrando as razões ou consequências geradas pela alteração, assim como instruções futuras.
 
 **\<rodapé\>:** È dedicado para notas e avisos importantes, como fechamento de issue e se existem mudanças radicais que quebrem funcionalidades. No caso de mudanças de quebras (BREAKING CHANGE) deve ser indicado “BREAKING CHANGE:” seguido com a explicação que leva a inclusão dessa marcação.
+
+**Correção de Erros:**
+```
+npm install -g win-node-env
