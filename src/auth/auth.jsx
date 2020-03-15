@@ -13,7 +13,7 @@ class Auth extends Component {
       <div className='hold-transition login-page'>
         <div className='login-box'>
           <div className="login-logo">
-            <a href="#"><b>My</b>Warden</a>
+            <a href="#"><b>Simple</b>Parking</a>
           </div>
           <div className="card">
             <div className="card-body login-card-body">
