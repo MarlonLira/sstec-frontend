@@ -15,8 +15,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
     alias: {
       modules: __dirname + '/node_modules',
-      jquery: 'modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
-      bootstrap: 'modules/admin-lte/bootstrap/js/bootstrap.js'
+      jquery: 'modules/admin-lte/plugins/jquery/jquery.min.js',
+      bootstrap: 'modules/admin-lte/plugins/bootstrap/js/bootstrap.js'
     }
   },
   plugins: [
@@ -27,9 +27,13 @@ module.exports = {
     }),
     new ExtractTextPlugin('app.css'),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ],
   module: {
     loaders: [{
