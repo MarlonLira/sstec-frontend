@@ -7,7 +7,6 @@ import { login, signup } from './authActions';
 import Messages from '../common/msg/messages';
 import AuthForm from './authForm';
 
-
 class Auth extends Component {
   render() {
     return (
