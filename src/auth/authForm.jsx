@@ -20,16 +20,16 @@ class AuthForm extends Component {
     this.setState({ loginMode: 2 });
   };
 
-  registerMode(){
+  registerMode() {
     this.setState({ loginMode: 3 });
   }
 
-  homeMode(){
-    this.setState({ loginMode: 1 }); 
+  homeMode() {
+    this.setState({ loginMode: 1 });
   }
 
-  replaceCode(code){
-    code = code.replace(/[^\d]+/g,'');
+  replaceCode(code) {
+    code = code.replace(/[^\d]+/g, '');
     return code;
   }
 
@@ -37,25 +37,25 @@ class AuthForm extends Component {
     let _values;
     const { loginMode } = this.state;
 
-    if(loginMode != 1){
-        _values = {
-          "employee": {
-            name: values.name,
-            email: values.email,
-            registryCode: this.replaceCode(values.registryCode),
-            phone: this.replaceCode(values.phone),
-            password: values.password,
-            confirmPassword: values.confirmPassword 
-          },
-          "company" : {
-            name: values.nameCompany,
-            registryCode: this.replaceCode(values.registryCodeCompany),
-            phone: this.replaceCode(values.phoneCompany)
-          }
-      }
-    }else{
+    if (loginMode != 1) {
       _values = {
-        "employee" : values 
+        "employee": {
+          name: values.name,
+          email: values.email,
+          registryCode: this.replaceCode(values.registryCode),
+          phone: this.replaceCode(values.phone),
+          password: values.password,
+          confirmPassword: values.confirmPassword
+        },
+        "company": {
+          name: values.nameCompany,
+          registryCode: this.replaceCode(values.registryCodeCompany),
+          phone: this.replaceCode(values.phoneCompany)
+        }
+      }
+    } else {
+      _values = {
+        "employee": values
       }
     };
 
@@ -71,146 +71,146 @@ class AuthForm extends Component {
 
     return (
       <form role='form' onSubmit={handleSubmit(v => this.onSubmit(v))} >
-        { loginMode == 1 ?
+        {loginMode == 1 ?
           <div>
             <p className="login-paragraph">Login:</p>
           </div>
-        :null
+          : null
         }
-        { loginMode == 2 ?
+        {loginMode == 2 ?
           <div>
             <p className="login-paragraph">Crie sua conta</p>
           </div>
-        :null
+          : null
         }
-        { loginMode == 3 ?
+        {loginMode == 3 ?
           <div>
             <p className="login-paragraph">Dados da sua Empresa</p>
           </div>
-        :null
+          : null
         }
         <div className='row'>
-          { loginMode == 2 ?
-            <Field 
-              name='name' 
-              component={labelAndInput} 
+          {loginMode == 2 ?
+            <Field
+              name='name'
+              component={labelAndInput}
               required='true'
-              cols='12 12' 
+              cols='12 12'
               maxLength='30'
-              placeholder='Nome completo' 
+              placeholder='Nome completo'
               type='input'
             />
-          :null
+            : null
           }
-          { loginMode == 2 ?
-            <Field 
-              name='registryCode' 
-              component={inputMask} 
-              required='true' 
-              cols='12 12' 
-              //maxLength=''
-              placeholder='CPF' 
-              type='input'
-              mask={[/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'-',/\d/,/\d/,]}
-            />
-          :null
-          }
-          { loginMode != 3 ?
-            <Field 
-              name='email' 
-              component={labelAndInput} 
+          {loginMode == 2 ?
+            <Field
+              name='registryCode'
+              component={inputMask}
               required='true'
-              cols='12 12' 
+              cols='12 12'
+              //maxLength=''
+              placeholder='CPF'
+              type='input'
+              mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,]}
+            />
+            : null
+          }
+          {loginMode != 3 ?
+            <Field
+              name='email'
+              component={labelAndInput}
+              required='true'
+              cols='12 12'
               maxLength='30'
               placeholder='E-mail'
               type='email'
             />
-          :null
+            : null
           }
-          { loginMode == 2 ? 
-            <Field 
-              name='phone' 
-              component={inputMask} 
-              required='true'
-              cols='12 12' 
-              maxLength='30'
-              placeholder='Telefone' 
-              type='tel'
-              mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/,/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-            />
-          :null
-          }
-          { loginMode != 3 ? 
+          {loginMode == 2 ?
             <Field
-              name='password' 
-              component={labelAndInput} 
-              cols='12 12' 
+              name='phone'
+              component={inputMask}
               required='true'
-              placeholder='Senha' 
-              type='password'
+              cols='12 12'
+              maxLength='30'
+              placeholder='Telefone'
+              type='tel'
+              mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
             />
-          :null
+            : null
           }
-          { loginMode == 2 ? 
-            <Field 
-              name='confirmPassword' 
+          {loginMode != 3 ?
+            <Field
+              name='password'
               component={labelAndInput}
-              cols='12 12' 
+              cols='12 12'
               required='true'
-              placeholder='Confirme sua senha' 
+              placeholder='Senha'
               type='password'
             />
-          :null
+            : null
+          }
+          {loginMode == 2 ?
+            <Field
+              name='confirmPassword'
+              component={labelAndInput}
+              cols='12 12'
+              required='true'
+              placeholder='Confirme sua senha'
+              type='password'
+            />
+            : null
           }
 
-          { loginMode == 3 ?
-            <Field 
-              name='nameCompany' 
-              component={labelAndInput} 
+          {loginMode == 3 ?
+            <Field
+              name='nameCompany'
+              component={labelAndInput}
               required='true'
-              cols='12 12' 
-              maxLength='30' 
-              placeholder='Razão social' 
-              type='input'
-            />
-          : null
-          }
-          { loginMode == 3 ?
-            <Field 
-              name='registryCodeCompany' 
-              component={inputMask} 
-              required='true' 
-              cols='12 12' 
-              maxLength=''
-              placeholder='CNPJ' 
-              type='input'
-              mask={[/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/]}
-            />
-          : null
-          }
-          { loginMode == 3 ?
-            <Field 
-              name='phoneCompany' 
-              component={inputMask} 
-              required='true'
-              cols='12 12' 
+              cols='12 12'
               maxLength='30'
-              placeholder='Telefone' 
-              type='tel'
-              mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/,/\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+              placeholder='Razão social'
+              type='input'
             />
-          : null
+            : null
+          }
+          {loginMode == 3 ?
+            <Field
+              name='registryCodeCompany'
+              component={inputMask}
+              required='true'
+              cols='12 12'
+              maxLength=''
+              placeholder='CNPJ'
+              type='input'
+              mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+            />
+            : null
+          }
+          {loginMode == 3 ?
+            <Field
+              name='phoneCompany'
+              component={inputMask}
+              required='true'
+              cols='12 12'
+              maxLength='30'
+              placeholder='Telefone'
+              type='tel'
+              mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            />
+            : null
           }
         </div>
-        { loginMode == 1 ?
+        {loginMode == 1 ?
           <div className='row'>
             <div className="col-7 remember">
               <div className="icheck-primary">
                 <input type="checkbox" id="remember" />
                 <label htmlFor="remember">
-                 Lembrar Senha
-                </label> 
-                
+                  Lembrar Senha
+                </label>
+
               </div>
             </div>
             <div className="col-5 forgot-paragraph">
@@ -219,75 +219,75 @@ class AuthForm extends Component {
               </p>
             </div>
           </div>
-        : null
+          : null
         }
 
-        { loginMode != 1 ?
+        {loginMode != 1 ?
           <div className='row'>
             <div className="col-12 remember">
               <div className="icheck-primary">
                 <input type="checkbox" id="remember" />
                 <label htmlFor="contract">
                   Eu li e aceito os termos do contrato
-                </label> 
+                </label>
               </div>
             </div>
           </div>
-        : null
-        }
-        
-        { loginMode == 1 ?
-          <div className="row" id="btn">
-              <button type='submit' className='btn button-login'>
-                Entrar
-              </button>
-          </div>
-         : null
+          : null
         }
 
-        { loginMode == 3 ?
+        {loginMode == 1 ?
           <div className="row" id="btn">
-              <button type='submit' className='btn button-login'>
-                Registrar
+            <button type='submit' className='btn button-login'>
+              Entrar
               </button>
           </div>
-         : null
+          : null
         }
 
-        { loginMode == 2 ?
+        {loginMode == 3 ?
           <div className="row" id="btn">
-            <a href='#' className="btn button-login"  onClick={() => this.registerMode()}>
+            <button type='submit' className='btn button-login'>
+              Registrar
+              </button>
+          </div>
+          : null
+        }
+
+        {loginMode == 2 ?
+          <div className="row" id="btn">
+            <a href='#' className="btn button-login" onClick={() => this.registerMode()}>
               Continuar
-            </a>
-          </div>
-        : null
-        }
-
-        <div>
-          <p className="login-paragraph">{loginMode == 1 ? 'Sua empresa ainda não está cadastrada?' : ''} </p>
-        </div>
-        
-        { loginMode == 1 ?
-          <div className="row" id="btn">
-            <a href='#' className="btn button-login"  onClick={() => this.changeMode()}>
-             Cadastrar
             </a>
           </div>
           : null
         }
 
-        { loginMode == 2 ?
+        <div>
+          <p className="login-paragraph">{loginMode == 1 ? 'Sua empresa ainda não está cadastrada?' : ''} </p>
+        </div>
+
+        {loginMode == 1 ?
           <div className="row" id="btn">
-            <a href='#' className="btn button-login"  onClick={() => this.homeMode()}>
+            <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
+              Cadastrar
+            </a>
+          </div>
+          : null
+        }
+
+        {loginMode == 2 ?
+          <div className="row" id="btn">
+            <a href='#' className="btn button-login" onClick={() => this.homeMode()}>
               Voltar
             </a>
           </div>
           : null
         }
 
-        { loginMode == 3 ?
+        {loginMode == 3 ?
           <div className="row" id="btn">
-            <a href='#' className="btn button-login"  onClick={() => this.changeMode()}>
+            <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
               Voltar
             </a>
           </div>

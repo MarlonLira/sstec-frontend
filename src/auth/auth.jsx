@@ -13,16 +13,16 @@ class Auth extends Component {
     return (
       <div className='login-form'>
         <div className="logo-image">
-          <img src="logo.png"  width="100" height="100"/>
+          <img src="logo.png" width="100" height="100" />
         </div>
-          <div className="login-title">
-            <h2>Simple Parking</h2>
-          </div>
+        <div className="login-title">
+          <h2>Simple Parking</h2>
+        </div>
+        <div>
           <div>
-            <div>
-              <AuthForm />
-            </div>
+            <AuthForm />
           </div>
+        </div>
         <Messages />
       </div>
     );
