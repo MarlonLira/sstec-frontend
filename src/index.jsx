@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import WebFont from 'webfontloader';
 
 import promise from 'redux-promise';
 import multi from 'redux-multi';
@@ -17,3 +18,9 @@ ReactDOM.render(
     <Routes />
   </Provider>,
   document.getElementById('app'));
+
+  WebFont.load({
+    google: {
+      families: ['Titillium Web:300,400,700', 'sans-serif']
+    }
+  });
