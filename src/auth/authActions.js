@@ -2,27 +2,37 @@ import { toastr } from 'react-redux-toastr';
 import axios from 'axios';
 import consts from '../consts';
 
-function submit(values, url) {
+const type = {
+  signin: 0,
+  signup: 1
+};
+
+function submit(values, url, type) {
   return new Promise((resolve, reject) => {
     axios.post(url, values)
       .then(resp => {
-        //toastr.info(resp.data.message);
+        let _type = 'USER_FETCHED';
         toastr.message('Info', resp.data.message);
+        
+        if (type == 1){
+          _type = 'USER_SIGNUP'
+        }
+        
         resolve([
           {
-            type: 'USER_FETCHED',
+            type: _type,
             payload: resp.data.result
           }
         ])
       })
       .catch(error => {
-        toastr.error('Error',error.response.data.message);
+        toastr.error('Error', error.response.data.message);
       })
   })
 }
 
-export const signin = values => submit(values, `${consts.OAPI_URL}/signin`);
-export const signup = values => submit(values, `${consts.OAPI_URL}/signup`);
+export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin);
+export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
 export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
 
 export const validateToken = token => {
@@ -30,6 +40,7 @@ export const validateToken = token => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })
         .then(resp => {
+          console.log(resp);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
@@ -38,6 +49,7 @@ export const validateToken = token => {
           ]);
         })
         .catch(e => {
+          console.log(e);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
@@ -55,3 +67,7 @@ export const validateToken = token => {
     }
   })
 };
+
+function replaceCPF(cpf) {
+
+}

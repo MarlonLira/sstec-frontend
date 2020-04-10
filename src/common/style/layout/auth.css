@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    
+}
+body{
+    background-image: linear-gradient(120deg, #43425D, #43425D);
+    -webkit-font-smoothing: antialiased !important;
+}
+
+html, input, button{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+}
+.login-form{
+    width: 380px;
+    background: #f1f1f1;
+    min-height: 50%;
+    padding: 20px 25px 50px;
+    border-radius: 60px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 20px 20px 5px rgba(0,0,0,0.5);
+}
+.login-paragraph{
+   text-align: center;
+   color: #43425D;
+   padding-top: 10px;
+}
+.forgot-paragraph{
+    text-align: right;
+}
+.forgot-paragraph a {
+    color: #43425D;
+}
+.remember label {
+    color: #43425D;
+}
+.login-title h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #43425D;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+.container{
+    border-bottom: 1px solid #43425D; 
+    position: relative;
+    margin: 5px 0;
+    color: #43425D;
+}
+.content{
+    font-size: 15px;
+    color: #43425D;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
+}
+.button-login{
+    display: block;
+    width: 100%;
+    right: 50%;
+    border: none;
+    background-image: linear-gradient(120deg, #43425D, #43425D);
+    background-size: 200%;
+    color: #ffff;
+    outline: none;
+    cursor: pointer;
+}
+.button-login:hover{
+    color: #2699FB;
+}
+.logo-image{
+   text-align: center; 
+}
