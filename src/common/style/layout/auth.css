@@ -8,7 +8,6 @@
     
 }
 body{
-    margin-left: 100vh;
     background-image: linear-gradient(120deg, #43425D, #43425D);
     -webkit-font-smoothing: antialiased !important;
 }
