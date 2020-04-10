@@ -10,16 +10,16 @@ import AuthForm from './authForm';
 class Auth extends Component {
   render() {
     return (
-      <div className='hold-transition login-page'>
-        <div className='login-box'>
-          <div className="login-logo">
-            <a href="#"><b>Simple</b>Parking</a>
-          </div>
-          <div className="card">
-            <div className="card-body login-card-body">
-              <p className="login-box-msg">Faça o login para iniciar sua sessão.</p>
-              <AuthForm />
-            </div>
+      <div className='login-form'>
+        <div className="logo-image">
+          <img src="logo.png" width="100" height="100" />
+        </div>
+        <div className="login-title">
+          <h2>Simple Parking</h2>
+        </div>
+        <div>
+          <div>
+            <AuthForm />
           </div>
         </div>
         <Messages />
