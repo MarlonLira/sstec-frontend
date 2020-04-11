@@ -3,7 +3,7 @@ import axios from 'axios';
 import consts from '../consts';
 
 function submit(values, url) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios.post(url, values)
       .then(resp => {
         //toastr.info(resp.data.message);
@@ -16,17 +16,17 @@ function submit(values, url) {
         ])
       })
       .catch(error => {
-        toastr.error('Error',error.response.data.message);
+        toastr.error('Error', error.response.data.message);
       })
   })
 }
 
-export const signin = values => submit(values, `${consts.OAPI_URL}/signin`);
-export const signup = values => submit(values, `${consts.OAPI_URL}/signup`);
+export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`);
+export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`);
 export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
 
 export const validateToken = token => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })
         .then(resp => {

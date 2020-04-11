@@ -13,7 +13,6 @@ class ClientList extends Component {
 
   renderRows() {
     const list = this.props.list.result || [];
-    console.log(list.result);
     return list.map(client => (
       <tr key={client.id}>
         <td>{`${client.firstName} ${client.lastName}`}</td>
