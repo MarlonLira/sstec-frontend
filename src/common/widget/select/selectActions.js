@@ -16,7 +16,7 @@ export function getList(list) {
     }
   ];
   result = list == undefined || list == null ? '' : list;
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({
       type: 'SELECT_FETCHED',
       payload: result

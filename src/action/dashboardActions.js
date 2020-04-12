@@ -8,7 +8,7 @@ const BASE_URL = Consts.API_URL;
 //const BASE_URL = 'http://localhost:4001';
 
 export function getSummary() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios.get(`${BASE_URL}/billingCycle/0`)
       .then(request => {
         resolve({

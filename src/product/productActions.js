@@ -10,7 +10,7 @@ const CURRENT_DATE = GetDateNow().FullDate;
 const INITIAL_VALUES = { "date": CURRENT_DATE };
 
 export function getList() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios.get(`${BASE_URL}/products`)
       .then(request => {
         showCreate();
@@ -35,7 +35,7 @@ export function destroy(values) {
 }
 
 function submit(values, method) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/product/${id}`, values)
       .then(request => {
@@ -52,7 +52,7 @@ function submit(values, method) {
 }
 
 export function showUpdate(product) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabUpdate'),
       selectTab('tabUpdate'),
@@ -61,7 +61,7 @@ export function showUpdate(product) {
   })
 }
 export function showDelete(product) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabDelete'),
       selectTab('tabDelete'),
@@ -71,7 +71,7 @@ export function showDelete(product) {
 }
 
 export function showCreate() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       initialize('productForm', INITIAL_VALUES)
     ]);
@@ -79,7 +79,7 @@ export function showCreate() {
 }
 
 export function init() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),

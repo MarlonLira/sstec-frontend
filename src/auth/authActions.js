@@ -43,7 +43,7 @@ export function signup(values){
 export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
 
 export const validateToken = token => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })
         .then(resp => {
