@@ -25,7 +25,6 @@ class AuthOrApp extends Component {
     } else {
       return false;
     }
-
   }
 }
 
