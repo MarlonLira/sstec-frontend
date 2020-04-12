@@ -13,11 +13,9 @@ function submit(values, url, type) {
       .then(resp => {
         let _type = 'USER_FETCHED';
         toastr.message('Info', resp.data.message);
-        
         if (type == 1){
           _type = 'USER_SIGNUP'
         }
-        
         resolve([
           {
             type: _type,
@@ -32,7 +30,16 @@ function submit(values, url, type) {
 }
 
 export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin);
-export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
+//export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
+
+export function signup(values){
+  return new Promise((resolve) => {
+    submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup).then(resp => {
+      resolve(resp);  
+    });
+  })
+}
+
 export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
 
 export const validateToken = token => {
@@ -67,7 +74,3 @@ export const validateToken = token => {
     }
   })
 };
-
-function replaceCPF(cpf) {
-
-}

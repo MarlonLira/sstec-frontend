@@ -18,6 +18,7 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.setItem(userKey, JSON.stringify(action.payload));
       return { ...state, user: action.payload, validToken: true }
     }
+    
     default: {
       return state;
     }

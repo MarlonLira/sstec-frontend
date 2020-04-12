@@ -5,13 +5,11 @@
     padding: 0;
     outline: 0;
     text-decoration: none;
-    
 }
 body{
     background-image: linear-gradient(120deg, #43425D, #43425D);
     -webkit-font-smoothing: antialiased !important;
 }
-
 html, input, button{
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
@@ -69,6 +67,7 @@ html, input, button{
     display: block;
     width: 100%;
     right: 50%;
+    margin: 0 auto;
     border: none;
     background-image: linear-gradient(120deg, #43425D, #43425D);
     background-size: 200%;
