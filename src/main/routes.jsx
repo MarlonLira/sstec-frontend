@@ -6,6 +6,7 @@ import Product from '../product/product';
 import Employee from '../employee/employee';
 import Components from '../component/components';
 import AuthOrApp from '../auth/authOrApp';
+import Company from '../company/company'
 
 export default props => (
   <Router history={hashHistory}>
@@ -15,6 +16,7 @@ export default props => (
       <Route path='/products' component={Product} />
       <Route path='/employee' component={Employee} />
       <Route path='/components' component={Components} />
+      <Route path='/company' component={Company} />
     </Route>
     <Redirect from="*" to="/" />
   </Router>

@@ -37,7 +37,7 @@ export default props => (
       </MenuTree>
       
       <MenuTree label='Configurações' icon='cogs' >
-        
+        <MenuItem  label='Acessar' icon='circle' path='company' />
       </MenuTree>
 
       <MenuTree label='Componentes' icon='archive'>
