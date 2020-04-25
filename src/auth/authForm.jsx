@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, Fields } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signin, signup } from './authActions';
+import { signin, signup, validateToken } from './authActions';
 import { toastr } from 'react-redux-toastr';
 
 import '../common/style/layout/auth.css'
 import labelAndInput from '../common/form/labelAndInputLogin';
 import inputMask from '../common/form/inputMask';
 import Mensseger from './menssegerRegistrer';
-
+import logo from '../../public/logo.png'
 
 class AuthForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loginMode: 1, check: false };
+    this.state = {
+      loginMode: 1,
+      checkContract: false
+    };
+
+    this.checkContractChange = this.checkContractChange.bind(this);
   }
 
   changeMode() {
@@ -34,6 +39,13 @@ class AuthForm extends Component {
     this.setState({ loginMode: 1 });
   }
 
+  checkContractChange(event) {
+    const check = event.target.checked;
+    const value = event.target.name;
+
+    this.setState({ [value]: check });
+  }
+
   replaceCode(code) {
     code = code.replace(/[^\d]+/g, '');
     return code;
@@ -41,114 +53,158 @@ class AuthForm extends Component {
 
   onSubmit(values) {
     let _values;
-    const { loginMode } = this.state;
+    let cpfEmployee;
+    let cnpjCompany;
+    let phoneEmployee;
+    let phoneCompany;
+    let password;
+    let valueArray;
+    const { loginMode, checkContract } = this.state;
     const { signin, signup } = this.props;
 
-    if(loginMode != 1){
-     if (loginMode == 3){
-      if (values.name) {
-        if (values.email){
-          if (values.registryCode){
-            if (values.phone){
-              if (values.password){
-                if (values.confirmPassword){
-                  if (values.password == values.confirmPassword){
-                    if (values.nameCompany){
-                      if(values.registryCodeCompany){
-                        if(values.phoneCompany){
-                          _values = {
-                            "employee": {
-                              name: values.name,
-                              email: values.email,
-                              registryCode: this.replaceCode(values.registryCode),
-                              phone: this.replaceCode(values.phone),
-                              password: values.password,
-                              confirmPassword: values.confirmPassword
-                            },
-                            "company": {
-                              name: values.nameCompany,
-                              registryCode: this.replaceCode(values.registryCodeCompany),
-                              phone: this.replaceCode(values.phoneCompany)
+    if (loginMode != 1) {
+      if (loginMode == 3) {
+        if (values.name) {
+          if (values.registryCode) {
+            if (values.email) {
+              if (values.phone) {
+                if (values.password) {
+                  if (values.confirmPassword) {
+                    if (values.password == values.confirmPassword) {
+                      if (values.nameCompany) {
+                        if (values.registryCodeCompany) {
+                          if (values.phoneCompany) {
+                            // employee 
+                            values.registryCode = this.replaceCode(values.registryCode);
+                            values.phone = this.replaceCode(values.phone);
+                            cpfEmployee = values.registryCode;
+                            phoneEmployee = values.phone;
+                            password = values.password;
+
+                            // company
+                            values.registryCodeCompany = this.replaceCode(values.registryCodeCompany);
+                            values.phoneCompany = this.replaceCode(values.phoneCompany);
+                            cnpjCompany = values.registryCodeCompany;
+                            phoneCompany = values.phoneCompany;
+
+                            if (checkContract) {
+                              if (cpfEmployee.length < 11) {
+                                toastr.error('Erro', 'O CPF deve conter 11 digitos.');
+                                this.changeMode();
+                              } else if (phoneEmployee.length < 11) {
+                                toastr.error('Erro', 'O Telefone deve conter 11 digitos: (xx) x xxxx-xxxx.');
+                                this.changeMode();
+                              } else if (cnpjCompany.length < 14) {
+                                toastr.error('Erro', 'O CNPJ deve conter 14 digitos.');
+                              } else if (phoneCompany.length < 11) {
+                                toastr.error('Erro', 'O Telefone deve conter 11 digitos: (xx) x xxxx-xxxx.');
+                              } else if (password.length < 6) {
+                                toastr.error('Erro', 'A senha deve conter, no mínimo, 6 dígitos.');
+                                this.changeMode();
+                              } else {
+                                _values = {
+                                  "employee": {
+                                    name: values.name,
+                                    email: values.email,
+                                    registryCode: values.registryCode,
+                                    phone: values.phone,
+                                    password: values.password,
+                                    confirmPassword: values.confirmPassword
+                                  },
+                                  "company": {
+                                    name: values.nameCompany,
+                                    registryCode: values.registryCodeCompany,
+                                    phone: values.phoneCompany
+                                  }
+                                }
+                                
+                                signup(_values)
+                                  .then(resp => {
+                                    if (resp[0].payload.companyId && resp[0].payload.employeeId && resp[0].type == "USER_SIGNUP") {
+                                      this.menssegerMode();
+                                    }
+                                  });
+                              }
+                            } else {
+                              toastr.message('', 'Aceite os termos de contrato, para finalização do cadastro.');
                             }
+                          } else {
+                            toastr.error('Erro', 'O Telefone deve está preenchido.');
                           }
-                          signup(_values).then(resp => {
-                            if (resp[0].payload.companyId && resp[0].payload.employeeId && resp[0].type == "USER_SIGNUP"){
-                              this.menssegerMode();
-                            }
-                          }); 
-                        }else{
-                          toastr.error('Erro', 'O Telefone deve está preenchido.');
+                        } else {
+                          toastr.error('Erro', 'O CNPJ deve está preenchido.');
                         }
-                      }else{
-                        toastr.error('Erro', 'O CNPJ deve está preenchido.');
+                      } else {
+                        toastr.error('Erro', 'A Razão Social deve está preenchida.');
                       }
-                    }else{
-                      toastr.error('Erro', 'A Razão Social deve está preenchida.');
+                    } else {
+                      toastr.error('Erro', 'As senhas não coincidem.');
+                      this.changeMode();
                     }
-                  }else{
-                    toastr.error('Erro', 'As senhas não coincidem.');
+                  } else {
+                    toastr.error('Erro', 'A confirmação de senha deve está preenchida.');
                     this.changeMode();
                   }
-                }else{
-                  toastr.error('Erro', 'A confirmação de senha deve está preenchida.');
+                } else {
+                  toastr.error('Erro', 'A Senha deve está preenchida.');
                   this.changeMode();
                 }
-              }else{
-                toastr.error('Erro', 'A Senha deve está preenchida.');
+              } else {
+                toastr.error('Erro', 'O Telefone deve está preenchido.');
                 this.changeMode();
               }
-            }else{
-              toastr.error('Erro', 'O Telefone deve está preenchido.');
+            } else {
+              toastr.error('Erro', 'O E-mail deve está preenchido.');
               this.changeMode();
             }
-          }else{
+          } else {
             toastr.error('Erro', 'O CPF deve está preenchido.');
             this.changeMode();
           }
-        }else{
-          toastr.error('Erro', 'O E-mail deve está preenchido.');
+        } else {
+          toastr.error('Erro', 'O nome completo deve está preenchido.');
           this.changeMode();
         }
-      }else{
-        toastr.error('Erro', 'O nome completo deve está preenchido.');
-        this.changeMode();
       }
-     }
-    }else{
-      _values = {
-        "employee": values
+    } else {
+      if (values.email) {
+        if (values.password) {
+          _values = {
+            "employee": values
+          }
+          signin(_values);
+        } else {
+          toastr.error('Erro', 'Informe a Senha  para efetuar o login.');
+        }
+      } else {
+        toastr.error('Erro', 'Informe o E-mail para efetuar o login.');
       }
-      signin(_values);
     }
     //this.state.loginMode == 1 ? signin(_values) : validation = signup(_values, locale);
   };
 
   render() {
-    const { loginMode } = this.state;
+    const { loginMode, checkContract } = this.state;
     const { handleSubmit } = this.props;
 
     return (
-      <div>
-        {loginMode != 4 ?
-          <form role='form' onSubmit={handleSubmit(v => this.onSubmit(v))} >
+        <form role='form' className='login-form' onSubmit={handleSubmit(v => this.onSubmit(v))} >
+          <div className="logo-image">
+            <img src={logo} width="100" height="100" />
+          </div>
+          <div className="login-title">
+            <h2>Simple Parking</h2>
             {loginMode == 1 ?
-              <div>
-                <p className="login-paragraph">Login:</p>
-              </div>
-              : null
-            }
-            {loginMode == 2 ?
-              <div>
-                <p className="login-paragraph">Crie sua conta</p>
-              </div>
+              <p className="login-paragraph">Login:</p>
               : null
             }
             {loginMode == 3 ?
-              <div>
-                <p className="login-paragraph">Dados da sua Empresa</p>
-              </div>
+              <p className="login-paragraph">Dados da sua Empresa:</p>
               : null
             }
+          </div>
+
+          {loginMode != 4 ?
             <div className='row'>
               {loginMode == 2 ?
                 <Field
@@ -156,7 +212,7 @@ class AuthForm extends Component {
                   component={labelAndInput}
                   cols='12 12'
                   maxLength='30'
-                  placeholder='Nome completo'
+                  placeholder='Nome completo *'
                   type='input'
                 />
                 : null
@@ -166,7 +222,7 @@ class AuthForm extends Component {
                   name='registryCode'
                   component={inputMask}
                   cols='12 12'
-                  placeholder='CPF'
+                  placeholder='CPF *'
                   type='input'
                   mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,]}
                 />
@@ -178,7 +234,7 @@ class AuthForm extends Component {
                   component={labelAndInput}
                   cols='12 12'
                   maxLength='30'
-                  placeholder='E-mail'
+                  placeholder='E-mail *'
                   type='email'
                 />
                 : null
@@ -189,7 +245,7 @@ class AuthForm extends Component {
                   component={inputMask}
                   cols='12 12'
                   maxLength='30'
-                  placeholder='Telefone'
+                  placeholder='Telefone *'
                   type='tel'
                   mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 />
@@ -200,7 +256,7 @@ class AuthForm extends Component {
                   name='password'
                   component={labelAndInput}
                   cols='12 12'
-                  placeholder='Senha'
+                  placeholder='Senha *'
                   type='password'
                 />
                 : null
@@ -210,7 +266,7 @@ class AuthForm extends Component {
                   name='confirmPassword'
                   component={labelAndInput}
                   cols='12 12'
-                  placeholder='Confirme sua senha'
+                  placeholder='Confirme sua senha *'
                   type='password'
                 />
                 : null
@@ -220,10 +276,10 @@ class AuthForm extends Component {
                 <Field
                   name='nameCompany'
                   component={labelAndInput}
-                  
+
                   cols='12 12'
                   maxLength='30'
-                  placeholder='Razão social'
+                  placeholder='Razão social *'
                   type='input'
                 />
                 : null
@@ -234,7 +290,7 @@ class AuthForm extends Component {
                   component={inputMask}
                   cols='12 12'
                   maxLength=''
-                  placeholder='CNPJ'
+                  placeholder='CNPJ *'
                   type='input'
                   mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
                 />
@@ -246,95 +302,95 @@ class AuthForm extends Component {
                   component={inputMask}
                   cols='12 12'
                   maxLength='30'
-                  placeholder='Telefone'
+                  placeholder='Telefone *'
                   type='tel'
                   mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 />
                 : null
               }
             </div>
-            {loginMode == 1 ?
-              <div className='row'>
-                <div className="col-7 remember">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label htmlFor="remember">
-                      Lembrar Senha
+            : null
+          }
+          {loginMode == 1 ?
+            <div className='row'>
+              <div className="col-6 remember">
+                <div className="icheck-primary">
+                  <input type="checkbox" id="remember" />
+                  <label htmlFor="remember">
+                    Lembrar Senha
                     </label>
-                  </div>
-                </div>
-                <div className="col-5 forgot-paragraph">
-                  <p className="mb-1">
-                    <a href="forgot-password.html">Esqueceu sua senha?</a>
-                  </p>
                 </div>
               </div>
-              : null
-            }
-            {loginMode == 3 ?
-              <div className='row'>
-                <div className="col-12 remember">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label htmlFor="contract">
-                      Eu li e aceito os termos do contrato
-                    </label>
-                  </div>
-                </div>
+              <div className="col-6 forgot-paragraph">
+                <p className="mb-1">
+                  <a href="forgot-password.html">Esqueceu sua senha?</a>
+                </p>
               </div>
-              : null
-            }
-            {loginMode == 1 ?
-                <button type='submit' className='btn button-login'>
-                  Entrar
-                </button>
-              : null
-            }
-            {loginMode == 3 ?
-                <button type='submit' className='btn button-login'>
-                  Registrar
-                </button>
-              : null
-            }
-            {loginMode == 2 ?
-              <a href='#' className="btn button-login" onClick={() => this.registerMode()}>
-                Continuar
-              </a>
-              : null
-            }
-            <div>
-              <p className="login-paragraph">{loginMode == 1 ? 'Sua empresa ainda não está cadastrada?' : ''} </p>
             </div>
-            {loginMode == 1 ?
-              <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
-                Cadastrar
+            : null
+          }
+          {loginMode == 3 ?
+            <div className='row'>
+              <div className="col-12 remember">
+                <div className="icheck-primary">
+                  <input type="checkbox" name="checkContract" checked={checkContract} id="remember" onChange={this.checkContractChange} />
+                  <label htmlFor="contract">
+                    Eu li e aceito os termos do contrato *
+                    </label>
+                </div>
+              </div>
+            </div>
+            : null
+          }
+          {loginMode == 1 ?
+            <button type='submit' className='btn button-login'>
+              Entrar
+              </button>
+            : null
+          }
+          {loginMode == 3 ?
+            <button type='submit' className='btn button-login'>
+              Registrar
+                </button>
+            : null
+          }
+          {loginMode == 2 ?
+            <a href='#' className="btn button-login" onClick={() => this.registerMode()}>
+              Continuar
               </a>
-              : null
-            }
-            {loginMode == 2 ?
-              <a href='#' className="btn button-login" onClick={() => this.homeMode()}>
-                Voltar
-              </a>
-              : null
-            }
-            {loginMode == 3 ?
-              <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
-                Voltar
-              </a>
-              : null
-            }
-          </form>
-          : null}
+            : null
+          }
 
-        {loginMode == 4 ? <Mensseger /> : null}
-        
-        {loginMode == 4 ?
-          <a href='#' className="btn button-login" onClick={() => window.location.reload(true)}>
-            Voltar
+          <p className="login-paragraph">{loginMode == 1 ? 'Sua empresa ainda não está cadastrada?' : ''} </p>
+
+          {loginMode == 1 ?
+            <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
+              Cadastrar
+              </a>
+            : null
+          }
+          {loginMode == 2 ?
+            <a href='#' className="btn button-login" onClick={() => this.homeMode()}>
+              Voltar
+              </a>
+            : null
+          }
+          {loginMode == 3 ?
+            <a href='#' className="btn button-login" onClick={() => this.changeMode()}>
+              Voltar
+              </a>
+            : null
+          }
+
+          {loginMode == 4 ? <Mensseger /> : null}
+
+          {loginMode == 4 ?
+            <a href='#' className="btn button-login" onClick={() => window.location.reload(true)}>
+              Voltar
           </a>
-          : null
-        }
-      </div>
+            : null
+          }
+        </form>
     )
   }
 }

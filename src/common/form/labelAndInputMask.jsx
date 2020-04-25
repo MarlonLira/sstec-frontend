@@ -1,13 +1,14 @@
 import React from 'react';
 import Grid from '../layout/grid';
 import If from '../operator/if';
+import MaskedInput from 'react-text-mask'
 
 export default props => (
     <If test={!props.hide}>
         <Grid cols={props.cols}>
             <div className='form-group'>
                 <label htmlFor={props.name}>{props.label}</label>
-                <input {...props.input}
+                <MaskedInput {...props.input}
                     className='form-control'
                     placeholder={props.placeholder}
                     readOnly={props.readOnly}
@@ -15,6 +16,7 @@ export default props => (
                     maxLength={props.maxLength}
                     required={props.required}
                     pattern={props.pattern}
+                    mask={props.mask}
                 />
             </div>
         </Grid>

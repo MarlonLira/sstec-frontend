@@ -13,7 +13,7 @@ function submit(values, url, type) {
       .then(resp => {
         let _type = 'USER_FETCHED';
         toastr.message('Info', resp.data.message);
-        if (type == 1){
+        if (type == 1) {
           _type = 'USER_SIGNUP'
         }
         resolve([
@@ -32,11 +32,12 @@ function submit(values, url, type) {
 export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin);
 //export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
 
-export function signup(values){
+export function signup(values) {
   return new Promise((resolve) => {
-    submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup).then(resp => {
-      resolve(resp);  
-    });
+    submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup)
+      .then(resp => {
+        resolve(resp);
+      });
   })
 }
 
@@ -47,7 +48,6 @@ export const validateToken = token => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })
         .then(resp => {
-          console.log(resp);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
@@ -56,7 +56,6 @@ export const validateToken = token => {
           ]);
         })
         .catch(e => {
-          console.log(e);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
