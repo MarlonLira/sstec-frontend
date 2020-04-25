@@ -8,9 +8,7 @@ export default props => (
     <If test={!props.hide}>
         <Grid cols={props.cols}>
             <div className='container form-group'>
-                <label htmlFor={props.name}>{props.label}</label>
                 <MaskedInput {...props.input}
-                    className='content'
                     placeholder={props.placeholder}
                     readOnly={props.readOnly}
                     type={props.type}

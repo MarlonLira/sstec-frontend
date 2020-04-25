@@ -10,12 +10,12 @@ import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
-import { create, update, destroy, init } from './clientActions';
+import { create, update, destroy, init } from './employeeActions';
 
-import List from './clientList';
-import Form from './clientForm';
+import List from './employeeList';
+import Form from './employeeForm';
 
-class Client extends Component {
+class Employee extends Component {
   componentWillMount() {
     this.props.selectTab('tabList');
     this.props.showTabs('tabList', 'tabCreate');
@@ -23,7 +23,7 @@ class Client extends Component {
   render() {
     return (
       <div>
-        <ContentHeader title='Clientes' small='Cadastro' />
+        <ContentHeader title='Funcionários'/>
         <Content>
           <Tabs>
             <TabsHeader>
@@ -38,15 +38,15 @@ class Client extends Component {
               </TabContent>
               <TabContent id='tabCreate'>
                 <Form onSubmit={this.props.create}
-                  submitLabel='Incluir' submitClass='primary' />
+                  submitLabel='Incluir' submitClass='primary' cadMode='true' />
               </TabContent>
               <TabContent id='tabUpdate'>
                 <Form onSubmit={this.props.update}
-                  submitLabel='Atualizar' submitClass='warning' />
+                  submitLabel='Atualizar' submitClass='warning'/>
               </TabContent>
               <TabContent id='tabDelete'>
                 <Form onSubmit={this.props.destroy}
-                  submitLabel='Excluir' submitClass='danger' readOnly='true' />
+                  submitLabel='Excluir' submitClass='danger' readOnly='true' hide='true'/>
               </TabContent>
             </TabsContent>
           </Tabs>
@@ -57,4 +57,4 @@ class Client extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create, update, destroy }, dispatch);
-export default connect(null, mapDispatchToProps)(Client);
+export default connect(null, mapDispatchToProps)(Employee);

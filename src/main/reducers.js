@@ -6,7 +6,7 @@ import DashboardReducer from '../dashboard/dashboardReducer';
 import TabReducer from '../common/tab/tabReducer';
 import BillingCycleReducer from '../billingCycle/billingCycleReducer';
 import ProductReducer from '../product/productReducer';
-import ClientReducer from '../client/clientReducer';
+import EmployeeReducer from '../employee/employeeReducer';
 import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   tab: TabReducer,
   billingCycle: BillingCycleReducer,
   product: ProductReducer,
-  client: ClientReducer,
+  employee: EmployeeReducer,
   form: formReducer,
   toastr: toastrReducer,
   select: SelectReducer,
