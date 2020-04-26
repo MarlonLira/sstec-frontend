@@ -1,8 +1,8 @@
-import DefaultLogo from '../images/default-150x150.png';
+import DefaultLogo from '../../images/default-150x150.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../auth/authActions';
+import { logout } from '../../../auth/authActions';
 
 class UserPanel extends Component {
     constructor(props) {
