@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { signin, signup, validateToken } from './authActions';
 import { toastr } from 'react-redux-toastr';
 
-import '../common/style/layout/auth.css'
 import labelAndInput from '../common/form/labelAndInputLogin';
 import inputMask from '../common/form/inputMask';
 import Mensseger from './menssegerRegistrer';

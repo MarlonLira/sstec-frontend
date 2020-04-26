@@ -1,11 +1,11 @@
-import '../common/template/dependencies';
+import '../common/template/dependencies/dependencies';
 import React from 'react';
 
 import Navbar from '../common/template/navbar/navbar';
 import NavbarItem from '../common/template/navbar/navItem';
 import NavbarItems from '../common/template/navbar/navItems';
 import NavbarSearch from '../common/template/navbar/navSearch';
-import SideBar from '../common/template/sideBar';
+import SideBar from '../common/template/sideBar/sideBar';
 import Footer from '../common/template/footer';
 import Messages from '../common/msg/messages';
 

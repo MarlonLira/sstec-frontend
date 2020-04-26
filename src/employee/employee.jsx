@@ -38,7 +38,7 @@ class Employee extends Component {
               </TabContent>
               <TabContent id='tabCreate'>
                 <Form onSubmit={this.props.create}
-                  submitLabel='Incluir' submitClass='primary' cadMode='true' />
+                  submitLabel='Incluir' submitClass='primary p-custom' cadMode='true' />
               </TabContent>
               <TabContent id='tabUpdate'>
                 <Form onSubmit={this.props.update}

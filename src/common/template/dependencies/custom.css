@@ -1,3 +1,60 @@
+.table-actions{
+  width: 150px;
+}
+
+#SideLog{
+  padding-top: 8px;
+}
+
+#SideLogBody{
+  padding-left: 10px;
+}
+
+/* Others */
+
+.color-purple{
+  color:#7774b5 !important;
+}
+
+/* Button */
+
+button{
+  margin-left: 5px;
+}
+
+.p-custom{
+  background-color: #7774b5 !important;
+  border-color: #7774b5 !important;
+}
+
+.p-custom:hover {
+  color: #fff !important;
+  background-color: #43425d !important;
+  border-color: #43425d !important;
+}
+
+/* Body */
+
+/* Nav Bar*/
+
+.navbar-custom{
+  background-color: #43425d;
+}
+
+.navbar-item-custom{
+  color: white !important;
+}
+
+/* Logout Icon */
+
+#logoutIcon{
+  position: relative;
+  top: 6px;
+  right: auto;
+}
+
+/* Login */
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
 
 *{
@@ -9,7 +66,7 @@
 }
 body{
     min-height: 100vh;
-    background-image: linear-gradient(120deg, #43425D, #43425D);
+    background-image: linear-gradient(120deg,#43425d,#7774b5);
     -webkit-font-smoothing: antialiased !important;
 }
 html, input, button{
