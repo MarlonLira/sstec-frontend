@@ -9,7 +9,6 @@ import ValueBox from '../common/widget/valueBox';
 import InfoBox from '../common/widget/infoBox';
 import Panel from '../common/widget/panel';
 
-import Select from '../common/widget/select/select';
 import Row from '../common/layout/row';
 import { ReturnIfValid } from '../common/functions/properties';
 
@@ -80,9 +79,6 @@ class Dashboard extends Component {
             </Row>
             
           </Panel>
-          <Select title='testando'>
-            
-          </Select>
         </Content>
       </div>
     );
