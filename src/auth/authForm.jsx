@@ -8,7 +8,7 @@ import { toastr } from 'react-redux-toastr';
 import labelAndInput from '../common/form/labelAndInputLogin';
 import inputMask from '../common/form/inputMask';
 import Mensseger from './menssegerRegistrer';
-import logo from '../../public/logo.png'
+import logo from '../common/images/logo2.png';
 
 class AuthForm extends Component {
 
