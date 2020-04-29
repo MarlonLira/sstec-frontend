@@ -1,3 +1,10 @@
+/* Sidebar */
+
+.sidebar-custom{
+  background-color: #f4f6f9 !important;
+}
+
+/* Tables */
 .table-actions{
   width: 150px;
 }
@@ -14,6 +21,25 @@
 
 .color-purple{
   color:#7774b5 !important;
+}
+
+.bg-purple{
+  background-color: #7774b5 !important;
+  border-color: #7774b5 !important;
+}
+
+.cardCustom{
+  max-width: 800px;
+  min-width: 800px;
+  padding: 5px 10px 10px 10px;
+  position: relative;
+  left: 7px;
+}
+
+.valuebox-custom{
+  max-width: 1600px;
+  min-width: 800px;
+  padding: 5px 10px 10px 10px;
 }
 
 /* Button */
@@ -47,10 +73,15 @@ button{
 
 /* Logout Icon */
 
-#logoutIcon{
-  position: relative;
-  top: 6px;
-  right: auto;
+.logout-icon{
+  position: relative !important;
+  top: 6px !important;
+  right: -6px !important;
+}
+
+.user-text{
+  max-width: 170px;
+  min-width: 170px;
 }
 
 /* Login */

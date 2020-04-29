@@ -17,11 +17,11 @@ class UserPanel extends Component {
                     {/* <i className='fa fa-user img-circle elevation-4' ></i> */}
                     <img src={DefaultLogo} className="img-circle elevation-2"></img>
                 </div>
-                <div className="info">
+                <div className="info user-text">
                     <a href="#" className="d-block" >{name}</a>
                 </div>
                 <div>
-                    <a className="fas fa-sign-out-alt" id="logoutIcon" href="#" onClick={this.props.logout} ></a>
+                    <a className="fas fa-sign-out-alt logout-icon" id="logoutIcon" href="#" onClick={this.props.logout} ></a>
                 </div>
             </div>
         )

@@ -9,6 +9,7 @@ import ProductReducer from '../product/productReducer';
 import EmployeeReducer from '../employee/employeeReducer';
 import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
+import RequestReducer from '../request/requestReducer';
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   form: formReducer,
   toastr: toastrReducer,
   select: SelectReducer,
-  auth: AuthReducer
+  auth: AuthReducer,
+  request: RequestReducer
 });
 
 export default rootReducer;
