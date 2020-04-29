@@ -1,3 +1,10 @@
+/* Sidebar */
+
+.sidebar-custom{
+  background-color: #f4f6f9 !important;
+}
+
+/* Tables */
 .table-actions{
   width: 150px;
 }
