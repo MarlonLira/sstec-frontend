@@ -23,6 +23,25 @@
   color:#7774b5 !important;
 }
 
+.bg-purple{
+  background-color: #7774b5 !important;
+  border-color: #7774b5 !important;
+}
+
+.cardCustom{
+  max-width: 800px;
+  min-width: 800px;
+  padding: 5px 10px 10px 10px;
+  position: relative;
+  left: 7px;
+}
+
+.valuebox-custom{
+  max-width: 1600px;
+  min-width: 800px;
+  padding: 5px 10px 10px 10px;
+}
+
 /* Button */
 
 button{
