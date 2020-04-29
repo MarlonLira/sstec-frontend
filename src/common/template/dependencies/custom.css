@@ -47,10 +47,15 @@ button{
 
 /* Logout Icon */
 
-#logoutIcon{
-  position: relative;
-  top: 6px;
-  right: auto;
+.logout-icon{
+  position: relative !important;
+  top: 6px !important;
+  right: -6px !important;
+}
+
+.user-text{
+  max-width: 170px;
+  min-width: 170px;
 }
 
 /* Login */
