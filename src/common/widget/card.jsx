@@ -18,7 +18,7 @@ export default props => (
         {props.children}
       </div>
       <div className="card-footer clearfix">
-        <a href="javascript:void(0)" className="btn btn-sm btn-primary float-right bg-purple">{props.btnName}</a>
+        <a href="javascript:void(0)" className="btn btn-sm btn-primary float-right bg-purple card-button">{props.btnName}</a>
       </div>
     </div>
   </div>

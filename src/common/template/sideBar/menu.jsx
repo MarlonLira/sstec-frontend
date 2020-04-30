@@ -8,18 +8,21 @@ export default props => (
     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <MenuItem label='Inicio' icon='home' path='/' />
       <MenuTree label='Gerenciamento' icon='user-tie' >
+        <MenuItem label='Cadastro de Estacionamento' icon='angle-right' path='#' />
+        <MenuItem label='Cadastro de Vagas' icon='angle-right' path='#' />
+        <MenuItem label='Cadastro de Promoções' icon='angle-right' path='#' />
       </MenuTree>
       <MenuTree label='Financeiro' icon='barcode' >
-        <MenuItem label='Acessar' icon='circle' path='products' />
+        <MenuItem label='Acessar' icon='angle-right' path='products' />
       </MenuTree>
       <MenuTree label='Reservas' icon='bookmark' >
-        <MenuItem label='Acessar' icon='circle' path='requests' />
+        <MenuItem label='Acessar' icon='angle-right' path='requests' />
       </MenuTree>
       <MenuTree label='Relátorios' icon='th-list' >
-        <MenuItem label='Acessar' icon='circle' path='billingCycles' />
+        <MenuItem label='Acessar' icon='angle-right' path='billingCycles' />
       </MenuTree>
       <MenuTree label='Funcionários' icon='users-cog' >
-        <MenuItem label='Acessar' icon='circle' path='employee' />
+        <MenuItem label='Acessar' icon='angle-right' path='employee' />
       </MenuTree>
       <MenuTree label='Mensagens' icon='comment-alt' >
       </MenuTree>
@@ -28,7 +31,7 @@ export default props => (
       <MenuTree label='Suporte' icon='comments' >
       </MenuTree>
       <MenuTree label='Configurações' icon='cogs' >
-        <MenuItem label='Acessar' icon='circle' path='company' />
+        <MenuItem label='Acessar' icon='angle-right' path='company' />
       </MenuTree>
       <MenuTree label='Componentes' icon='archive'>
         <MenuItem label='Acessar' icon='angle-right' path='components' />
