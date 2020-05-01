@@ -49,6 +49,7 @@
     "http-server": "0.10.0",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-native-masked-text": "^1.13.0",
+    "react-router-dom": "^5.1.2",
     "react-text-mask": "^5.4.3",
     "webfontloader": "^1.6.28"
   }

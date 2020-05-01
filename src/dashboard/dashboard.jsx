@@ -9,14 +9,18 @@ import ValueBox from '../common/widget/valueBox';
 import InfoBox from '../common/widget/infoBox';
 import Panel from '../common/widget/panel';
 import Card from '../common/widget/card';
-import RequestList from '../request/requestList';
+import SchedulingList from '../scheduling/schedulingList';
 
 import Row from '../common/layout/row';
 import { ReturnIfValid } from '../common/functions/properties';
+import { Refresh, IsNeedRefresh } from '../common/functions/page';
 
 class Dashboard extends Component {
   componentWillMount() {
     //this.props.getSummary();
+  }
+  componentDidMount() {
+    IsNeedRefresh(true);
   }
   render() {
     const { credit, debit, goal } = this.props.summary;
@@ -28,10 +32,10 @@ class Dashboard extends Component {
         <Content>
           <Row>
             <Card title="Reservas" btnName="Ver Tudo">
-              <RequestList />
+              <SchedulingList />
             </Card>
             <Card title="Reservas Prox de Expirar" btnName="Ver Tudo">
-              <RequestList />
+              <SchedulingList />
             </Card>
           </Row>
           <div className="valuebox-custom">
@@ -97,5 +101,5 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({ summary: state.dashboard.summary });
-const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getSummary, IsNeedRefresh }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

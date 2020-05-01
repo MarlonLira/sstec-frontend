@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getList } from './requestActions';
+import { getList } from './schedulingActions';
 
-class RequestList extends Component {
+class SchedulingList extends Component {
 
   componentWillMount() {
-    this.props.getList();
+    //this.props.getList();
   }
 
   renderRows() {
@@ -89,6 +89,6 @@ class RequestList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ list: state.request.list });
+const mapStateToProps = state => ({ list: state.scheduling.list });
 const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(RequestList);
+export default connect(mapStateToProps, mapDispatchToProps)(SchedulingList);

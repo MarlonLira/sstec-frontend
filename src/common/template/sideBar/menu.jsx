@@ -16,7 +16,7 @@ export default props => (
         <MenuItem label='Acessar' icon='angle-right' path='products' />
       </MenuTree>
       <MenuTree label='Reservas' icon='bookmark' >
-        <MenuItem label='Acessar' icon='angle-right' path='requests' />
+        <MenuItem label='Acessar' icon='angle-right' path='schedulings' />
       </MenuTree>
       <MenuTree label='Relátorios' icon='th-list' >
         <MenuItem label='Acessar' icon='angle-right' path='billingCycles' />

@@ -13,7 +13,7 @@ export function getList() {
     axios.get(`${BASE_URL}/schedulings`)
       .then(request => {
         resolve({
-          type: 'EMPLOYEE_FETCHED',
+          type: 'SCHEDULING_FETCHED',
           payload: request.data.result
         });
       });
