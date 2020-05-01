@@ -6,9 +6,9 @@ import Content from '../common/template/content';
 import ContentHeader from '../common/template/contentHeader';
 import Card from '../common/widget/card';
 import Row from '../common/layout/row';
-import RequestList from './requestList';
+import SchedulingList from './schedulingList';
 
-class Request extends Component {
+class Scheduling extends Component {
   render() {
     return (
       <div>
@@ -16,10 +16,10 @@ class Request extends Component {
         <Content>
         <Row>
             <Card title="Novas" btnName="Ver Tudo">
-              <RequestList />
+              <SchedulingList />
             </Card>
             <Card title="Prox. de Expirar" btnName="Ver Tudo">
-              <RequestList />
+              <SchedulingList />
             </Card>
           </Row>
         </Content>
@@ -29,4 +29,4 @@ class Request extends Component {
 }
 
 //const mapDispatchToProps = dispatch => bindActionCreators(null, dispatch);
-export default connect(null, null)(Request);
+export default connect(null, null)(Scheduling);

@@ -1,4 +1,4 @@
-function ReturnIfValid(value){
+function ReturnIfValid(value) {
   let result = null;
   if (value != undefined && value != '' && value != null) {
     result = value;
@@ -6,12 +6,16 @@ function ReturnIfValid(value){
   return result;
 }
 
-function ReturnIfValid(value, defaultValue){
+function ReturnIfValid(value, defaultValue) {
   let result = defaultValue;
   if (value != undefined && value != '' && value != null) {
     result = value;
   }
   return result;
+}
+
+function IsValid(value) {
+  return (value != undefined && value != '' && value != null) ? true : false;
 }
 
 function LeftZero(value) {
@@ -35,4 +39,4 @@ function GetDateNow() {
   return InnerDate;
 }
 
-export { ReturnIfValid, GetDateNow };
+export { ReturnIfValid, GetDateNow, IsValid };
