@@ -1,62 +1,157 @@
 import React, { Component } from 'react';
 import Select from '../common/widget/select/select';
+import DefaultLogo from '../common/images/ProfilePhoto.jpg';
+import Card from '../common/widget/card';
 
 class Components extends Component {
 
   render() {
     return (
-      <div className="cardCustom">
-        <div className="card">
-          <div className="card-header border-transparent">
-            <h3 className="card-title">Pedidos</h3>
-            <div className="card-tools">
-              <button type="button" className="btn btn-tool" data-card-widget="collapse">
-                <i className="fas fa-minus"></i>
-              </button>
-              <button type="button" className="btn btn-tool" data-card-widget="remove">
-                <i className="fas fa-times"></i>
-              </button>
-            </div>
+      <section className="content">
+        <Card title="Novas" btnName="Ver Tudo">
+          <div className="card-body pb-0">
+            <div className="row d-flex align-items-stretch">
+              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                < div className="card bg-light" >
+                  <div className="card-header text-muted border-bottom-0">
+                    Digital Strategist
+                </div>
+                  <div className="card-body pt-0">
+                    <div className="row">
+                      <div className="col-7">
+                        <h2 className="lead"><b>Nicole Pearson</b></h2>
+                        <p className="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                        <ul className="ml-4 mb-0 fa-ul text-muted">
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                        </ul>
+                      </div>
+                      <div className="col-5 text-center">
+                        <img src={DefaultLogo} alt="" className="img-circle img-fluid" />
+
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <div className="text-right">
+                        <a href="#" className="btn btn-sm bg-teal">
+                          <i className="fas fa-comments"></i>
+                        </a>
+                        <a href="#" className="btn btn-sm btn-primary">
+                          <i className="fas fa-user"></i> View Profile
+                    </a>
+                      </div>
+                    </div>
+                  </div>
+                </div >
+              </div >
+
+              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                < div className="card bg-light" >
+                  <div className="card-header text-muted border-bottom-0">
+                    Digital Strategist
+                </div>
+                  <div className="card-body pt-0">
+                    <div className="row">
+                      <div className="col-7">
+                        <h2 className="lead"><b>Nicole Pearson</b></h2>
+                        <p className="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                        <ul className="ml-4 mb-0 fa-ul text-muted">
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                        </ul>
+                      </div>
+                      <div className="col-5 text-center">
+                        <img src={DefaultLogo} alt="" className="img-circle img-fluid" />
+
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <div className="text-right">
+                        <a href="#" className="btn btn-sm bg-teal">
+                          <i className="fas fa-comments"></i>
+                        </a>
+                        <a href="#" className="btn btn-sm btn-primary">
+                          <i className="fas fa-user"></i> View Profile
+                    </a>
+                      </div>
+                    </div>
+                  </div>
+                </div >
+              </div >
+
+              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                < div className="card bg-light" >
+                  <div className="card-header text-muted border-bottom-0">
+                    Digital Strategist
+                </div>
+                  <div className="card-body pt-0">
+                    <div className="row">
+                      <div className="col-7">
+                        <h2 className="lead"><b>Nicole Pearson</b></h2>
+                        <p className="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                        <ul className="ml-4 mb-0 fa-ul text-muted">
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                        </ul>
+                      </div>
+                      <div className="col-5 text-center">
+                        <img src={DefaultLogo} alt="" className="img-circle img-fluid" />
+
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <div className="text-right">
+                        <a href="#" className="btn btn-sm bg-teal">
+                          <i className="fas fa-comments"></i>
+                        </a>
+                        <a href="#" className="btn btn-sm btn-primary">
+                          <i className="fas fa-user"></i> View Profile
+                    </a>
+                      </div>
+                    </div>
+                  </div>
+                </div >
+              </div >
+
+              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                < div className="card bg-light" >
+                  <div className="card-header text-muted border-bottom-0">
+                    Digital Strategist
+                </div>
+                  <div className="card-body pt-0">
+                    <div className="row">
+                      <div className="col-7">
+                        <h2 className="lead"><b>Nicole Pearson</b></h2>
+                        <p className="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                        <ul className="ml-4 mb-0 fa-ul text-muted">
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                          <li className="small"><span className="fa-li"><i className="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                        </ul>
+                      </div>
+                      <div className="col-5 text-center">
+                        <img src={DefaultLogo} alt="" className="img-circle img-fluid" />
+
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <div className="text-right">
+                        <a href="#" className="btn btn-sm bg-teal">
+                          <i className="fas fa-comments"></i>
+                        </a>
+                        <a href="#" className="btn btn-sm btn-primary">
+                          <i className="fas fa-user"></i> View Profile
+                    </a>
+                      </div>
+                    </div>
+                  </div>
+                </div >
+              </div >
+            </div >
+
           </div>
-          <div className="card-body p-0">
-            <div className="table-responsive">
-              <table className="table m-0">
-                <thead>
-                  <tr>
-                    <th>Pedido ID</th>
-                    <th>Usuario</th>
-                    <th>Placa</th>
-                    <th>Entrada</th>
-                    <th>Saida</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a href="#">9842</a></td>
-                    <td>Marlon Lira</td>
-                    <td>DIY6719</td>
-                    <td><div className="sparkbar" data-color="#00a65a" data-height="20">28/04/2020 14:00:00</div></td>
-                    <td><div className="sparkbar" data-color="#00a65a" data-height="20">28/04/2020 16:00:00</div></td>
-                    <td><span className="badge badge-success">Aprovado</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#">9843</a></td>
-                    <td>Gustavo Gusmão</td>
-                    <td>DIY6719</td>
-                    <td><div className="sparkbar" data-color="#00a65a" data-height="20">28/04/2020 15:00:00</div></td>
-                    <td><div className="sparkbar" data-color="#00a65a" data-height="20">28/04/2020 17:00:00</div></td>
-                    <td><span className="badge badge-warning">Pendente</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="card-footer clearfix">
-            <a href="javascript:void(0)" className="btn btn-sm btn-primary float-right bg-purple">Ver Tudo</a>
-          </div>
-        </div>
-      </div>
+        </Card>
+      </section>
+
     );
   }
 }
