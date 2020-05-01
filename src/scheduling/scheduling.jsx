@@ -14,7 +14,7 @@ class Scheduling extends Component {
       <div>
         <ContentHeader title='Reservas' />
         <Content>
-        <Row>
+          <Row>
             <Card title="Novas" btnName="Ver Tudo">
               <SchedulingList />
             </Card>
