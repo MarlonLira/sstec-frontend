@@ -12,12 +12,10 @@ function submit(values, url, type) {
     axios.post(url, values)
       .then(resp => {
         let _type = 'USER_FETCHED';
-        toastr.message('Info', resp.data.message);
-        
-        if (type == 1){
+        toastr.info('Info', resp.data.message);
+        if (type == 1) {
           _type = 'USER_SIGNUP'
         }
-        
         resolve([
           {
             type: _type,
@@ -32,15 +30,27 @@ function submit(values, url, type) {
 }
 
 export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin);
-export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
-export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
+//export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
 
-export const validateToken = token => {
-  return new Promise((resolve, reject) => {
+export function signup(values) {
+  return new Promise((resolve) => {
+    submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup)
+      .then(resp => {
+        resolve(resp);
+      });
+  })
+}
+
+export function logout() {
+  localStorage.clear();
+  return ({ type: 'TOKEN_VALIDATED', payload: false })
+};
+
+export function validateToken(token) {
+  return new Promise((resolve) => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })
         .then(resp => {
-          console.log(resp);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
@@ -49,7 +59,6 @@ export const validateToken = token => {
           ]);
         })
         .catch(e => {
-          console.log(e);
           resolve([
             {
               type: 'TOKEN_VALIDATED',
@@ -67,7 +76,3 @@ export const validateToken = token => {
     }
   })
 };
-
-function replaceCPF(cpf) {
-
-}

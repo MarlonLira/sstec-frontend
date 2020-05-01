@@ -9,7 +9,7 @@ const BASE_URL = Consts.API_URL;
 const INITIAL_VALUES = {};
 
 export function getList() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     axios.get(`${BASE_URL}/billingCycles`)
       .then(request => {
         resolve({
@@ -33,7 +33,7 @@ export function destroy(values) {
 }
 
 function submit(values, method) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/billingCycle/${id}`, values)
       .then(request => {
@@ -50,7 +50,7 @@ function submit(values, method) {
 }
 
 export function showUpdate(billingCycle) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabUpdate'),
       selectTab('tabUpdate'),
@@ -59,7 +59,7 @@ export function showUpdate(billingCycle) {
   })
 }
 export function showDelete(billingCycle) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabDelete'),
       selectTab('tabDelete'),
@@ -69,7 +69,7 @@ export function showDelete(billingCycle) {
 }
 
 export function init() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve([
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),
