@@ -94,6 +94,6 @@ class EmployeeForm extends Component {
     }
 }
 
-EmployeeForm = reduxForm({ form: 'employeeform' })(EmployeeForm);
+EmployeeForm = reduxForm({ form: 'employeeForm' })(EmployeeForm);
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
 export default connect(null, mapDispatchToProps)(EmployeeForm);

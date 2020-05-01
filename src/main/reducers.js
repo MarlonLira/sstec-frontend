@@ -10,6 +10,7 @@ import EmployeeReducer from '../employee/employeeReducer';
 import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
 import SchedulingReducer from '../scheduling/schedulingReducer';
+import ParkingReducer from '../parking/parkingReducer';
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   toastr: toastrReducer,
   select: SelectReducer,
   auth: AuthReducer,
-  scheduling: SchedulingReducer
+  scheduling: SchedulingReducer,
+  parking: ParkingReducer
 });
 
 export default rootReducer;

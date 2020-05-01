@@ -42,9 +42,7 @@ export function signup(values) {
 }
 
 export function logout() {
-  if (localStorage.getItem("isRefresh") != null) {
-    localStorage.removeItem("isRefresh");
-  }
+  localStorage.clear();
   return ({ type: 'TOKEN_VALIDATED', payload: false })
 };
 

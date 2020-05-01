@@ -78,7 +78,7 @@ button{
   color: white !important;
 }
 
-/* Logout Icon */
+/* User Panel Side bar */
 
 .logout-icon{
   position: relative !important;
@@ -89,6 +89,22 @@ button{
 .user-text{
   max-width: 170px;
   min-width: 170px;
+}
+
+.icon-employee{
+  position: relative;
+  top: 4px;
+  left: 7px;
+}
+
+.icon-company{
+  position: relative;
+  top: 27px;
+  right: 5px;
+}
+.company-label{
+  position: relative;
+  top:1px;
 }
 
 /* Login */

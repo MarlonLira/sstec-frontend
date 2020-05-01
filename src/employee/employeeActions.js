@@ -61,7 +61,7 @@ export function showUpdate(employee) {
     resolve([
       showTabs('tabUpdate'),
       selectTab('tabUpdate'),
-      initialize('employeeform', employee)
+      initialize('employeeForm', employee)
     ]);
   })
 }
@@ -71,7 +71,7 @@ export function showDelete(employee) {
     resolve([
       showTabs('tabDelete'),
       selectTab('tabDelete'),
-      initialize('employeeform', employee)
+      initialize('employeeForm', employee)
     ]);
   })
 }
@@ -79,7 +79,7 @@ export function showDelete(employee) {
 export function showCreate() {
   return new Promise((resolve) => {
     resolve([
-      initialize('employeeform', INITIAL_VALUES)
+      initialize('employeeForm', INITIAL_VALUES)
     ]);
   })
 }
@@ -90,7 +90,7 @@ export function init() {
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),
       getList(),
-      initialize('employeeform', INITIAL_VALUES)
+      initialize('employeeForm', INITIAL_VALUES)
     ]);
   })
 }

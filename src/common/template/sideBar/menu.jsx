@@ -8,7 +8,7 @@ export default props => (
     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <MenuItem label='Inicio' icon='home' path='/' />
       <MenuTree label='Gerenciamento' icon='user-tie' >
-        <MenuItem label='Cadastro de Estacionamento' icon='angle-right' path='#' />
+        <MenuItem label='Cadastro de Estacionamento' icon='angle-right' path='parking' />
         <MenuItem label='Cadastro de Vagas' icon='angle-right' path='#' />
         <MenuItem label='Cadastro de Promoções' icon='angle-right' path='#' />
       </MenuTree>
