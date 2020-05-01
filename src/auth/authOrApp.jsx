@@ -13,17 +13,17 @@ import { IsNeedRefresh } from '../common/functions/page';
 class AuthOrApp extends Component {
   componentWillMount() {
     IsNeedRefresh(false);
-    if (this.props.auth.user) {
-      this.props.validateToken(this.props.auth.user.token);
+    if (this.props.auth.employee && this.props.auth.token) {
+      this.props.validateToken(this.props.auth.token);
     }
   }
 
   render() {
-    const { user, validToken } = this.props.auth;
-    if (validToken || user) {
-      axios.defaults.headers.common['authorization'] = user.token;
+    const { token, validToken, employee } = this.props.auth;
+    if (validToken || employee) {
+      axios.defaults.headers.common['authorization'] = token;
     }
-    return (validToken || user ? <App>{this.props.children}</App> : <Auth />);
+    return (validToken || employee ? <App>{this.props.children}</App> : <Auth />);
   }
 }
 

@@ -12,7 +12,7 @@ function submit(values, url, type) {
     axios.post(url, values)
       .then(resp => {
         let _type = 'USER_FETCHED';
-        toastr.message('Info', resp.data.message);
+        toastr.info('Info', resp.data.message);
         if (type == 1) {
           _type = 'USER_SIGNUP'
         }
@@ -42,9 +42,7 @@ export function signup(values) {
 }
 
 export function logout() {
-  if (localStorage.getItem("isRefresh") != null) {
-    localStorage.removeItem("isRefresh");
-  }
+  localStorage.clear();
   return ({ type: 'TOKEN_VALIDATED', payload: false })
 };
 
