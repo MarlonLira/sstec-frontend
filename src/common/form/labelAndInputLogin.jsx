@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '../layout/grid';
 import If from '../operator/if';
-// import '../../common/style/layout/auth.css'
 
 export default props => (
     <If test={!props.hide}>

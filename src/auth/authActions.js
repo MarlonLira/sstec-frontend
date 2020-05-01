@@ -12,7 +12,7 @@ function submit(values, url, type) {
     axios.post(url, values)
       .then(resp => {
         let _type = 'USER_FETCHED';
-        toastr.message('Info', resp.data.message);
+        toastr.info('Info', resp.data.message);
         if (type == 1) {
           _type = 'USER_SIGNUP'
         }
@@ -41,9 +41,12 @@ export function signup(values) {
   })
 }
 
-export const logout = () => ({ type: 'TOKEN_VALIDATED', payload: false });
+export function logout() {
+  localStorage.clear();
+  return ({ type: 'TOKEN_VALIDATED', payload: false })
+};
 
-export const validateToken = token => {
+export function validateToken(token) {
   return new Promise((resolve) => {
     if (token) {
       axios.post(`${consts.OAPI_URL}/tokenValidate`, { token })

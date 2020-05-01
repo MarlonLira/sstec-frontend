@@ -10,12 +10,12 @@ import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
-import { create, update, destroy, init } from './productActions';
+import { create, update, destroy, init } from './parkingActions';
 
-import List from './productList';
-import Form from './productForm';
+import List from './parkingList';
+import Form from './parkingForm';
 
-class Product extends Component {
+class Parking extends Component {
   componentWillMount() {
     this.props.selectTab('tabList');
     this.props.showTabs('tabList', 'tabCreate');
@@ -23,7 +23,7 @@ class Product extends Component {
   render() {
     return (
       <div>
-        <ContentHeader title='Produtos' small='Cadastro' />
+        <ContentHeader title='Estacionamento' />
         <Content>
           <Tabs>
             <TabsHeader>
@@ -38,7 +38,7 @@ class Product extends Component {
               </TabContent>
               <TabContent id='tabCreate'>
                 <Form onSubmit={this.props.create}
-                  submitLabel='Incluir' submitClass='primary p-custom' />
+                  submitLabel='Incluir' submitClass='primary p-custom' cadMode='true' />
               </TabContent>
               <TabContent id='tabUpdate'>
                 <Form onSubmit={this.props.update}
@@ -46,7 +46,7 @@ class Product extends Component {
               </TabContent>
               <TabContent id='tabDelete'>
                 <Form onSubmit={this.props.destroy}
-                  submitLabel='Excluir' submitClass='danger' readOnly='true' />
+                  submitLabel='Excluir' submitClass='danger' readOnly='true' hide='true' />
               </TabContent>
             </TabsContent>
           </Tabs>
@@ -57,4 +57,4 @@ class Product extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create, update, destroy }, dispatch);
-export default connect(null, mapDispatchToProps)(Product);
+export default connect(null, mapDispatchToProps)(Parking);

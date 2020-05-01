@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '../layout/grid';
 import If from '../operator/if';
-// import '../../common/style/layout/auth.css'
 import MaskedInput from 'react-text-mask'
 
 export default props => (

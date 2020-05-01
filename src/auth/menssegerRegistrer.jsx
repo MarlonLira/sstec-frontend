@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '../../src/common/style/layout/grid';
+import Grid from '../../src/common/layout/grid';
 import If from '../../src/common/operator/if';
 
 
