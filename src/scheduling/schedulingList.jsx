@@ -12,50 +12,7 @@ class SchedulingList extends Component {
   }
 
   renderRows() {
-
-    const temporaryList = [{
-      "id": 1223,
-      "userName": "Gustavo Gusmão",
-      "vehiclePlate": "MNS8195",
-      "avaliableTime": "29/04/2020 14:00:00",
-      "unavailableTime": "29/04/2020 17:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1224,
-      "userName": "Marlon Lira",
-      "vehiclePlate": "JPV1257",
-      "avaliableTime": "29/04/2020 17:00:00",
-      "unavailableTime": "29/04/2020 19:00:00",
-      "status": "Aprovado"
-    },
-    {
-      "id": 1225,
-      "userName": "Emerson Gabriel",
-      "vehiclePlate": "PNU8177",
-      "avaliableTime": "30/04/2020 08:00:00",
-      "unavailableTime": "30/04/2020 12:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1226,
-      "userName": "Timoteo Barros",
-      "vehiclePlate": "JKL2997",
-      "avaliableTime": "30/04/2020 13:00:00",
-      "unavailableTime": "30/04/2020 15:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1227,
-      "userName": "Felipe Seabra",
-      "vehiclePlate": "IUO8000",
-      "avaliableTime": "01/05/2020 05:00:00",
-      "unavailableTime": "01/05/2020 10:00:00",
-      "status": "Aprovado",
-    }
-    ]
-
-    const list = this.props.list.length <= 0 ? temporaryList : this.props.list;
+    const list = this.props.list.length <= 0 ? [] : this.props.list;
     return list.map(scheduling => (
       <tr key={scheduling.id}>
         <td><a href="#">{scheduling.id}</a></td>

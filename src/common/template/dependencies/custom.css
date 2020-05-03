@@ -10,7 +10,9 @@
 }
 
 #SideLog{
-  padding-top: 8px;
+  position: relative;
+  top: 6px;
+  right: 4px;
 }
 
 #SideLogBody{
