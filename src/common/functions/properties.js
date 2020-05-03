@@ -39,4 +39,24 @@ function GetDateNow() {
   return InnerDate;
 }
 
-export { ReturnIfValid, GetDateNow, IsValid };
+function GetTime(date) {
+  let _date = new Date(date);
+  let hours = LeftZero(_date.getUTCHours());
+  let minutes = LeftZero(_date.getUTCMinutes());
+  let seconds = LeftZero(_date.getUTCSeconds());
+  console.log();
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+function LeftZero(value) {
+  let result = ' ';
+  if (value !== undefined && value != null) {
+    result = value.toString();
+    if (value.toString().length === 1) {
+      result = `0${value.toString()}`;
+    }
+  }
+  return result;
+}
+
+export { ReturnIfValid, GetDateNow, IsValid, GetTime };
