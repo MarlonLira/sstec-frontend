@@ -11,6 +11,8 @@ function IsNeedRefresh(isRefresh = false) {
   else if (localStorage.getItem("isRefresh") == 0 && isRefresh == true) {
     localStorage.setItem("isRefresh", 1);
     window.location.reload(10);
+  } else if (!IsValid(localStorage.getItem("_sp_token_employee"))) {
+    localStorage.clear();
   }
 }
 

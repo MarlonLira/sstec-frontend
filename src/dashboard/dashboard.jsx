@@ -13,15 +13,18 @@ import SchedulingList from '../scheduling/schedulingList';
 
 import Row from '../common/layout/row';
 import { ReturnIfValid } from '../common/functions/properties';
-import { Refresh, IsNeedRefresh } from '../common/functions/page';
+import { IsNeedRefresh } from '../common/functions/page';
 
 class Dashboard extends Component {
   componentWillMount() {
+    IsNeedRefresh(true);
     //this.props.getSummary();
   }
+
   componentDidMount() {
     IsNeedRefresh(true);
   }
+
   render() {
     const { credit, debit, goal } = this.props.summary;
     const consolidated = (ReturnIfValid(credit, 0) - ReturnIfValid(debit, 0));

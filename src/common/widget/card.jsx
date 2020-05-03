@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default props => (
-  <div className="cardCustom">
+  <div className="valuebox-custom">
     <div className="card">
       <div className="card-header border-transparent">
         <h3 className="card-title">{props.title}</h3>
