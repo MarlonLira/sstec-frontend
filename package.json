@@ -1,6 +1,6 @@
 {
   "name": "sstec-frontend",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "**Empresa:** Simple System Tecnologia SSTEC\\\r **Nome do app:** Simple Parking\\\r **Site:** simpleparking.com\\\r **Tecnologias de desenvolvimento:** Flutter | React Js | Node js | [Typescript](https://alligator.io/react/typescript-with-react/) [Mais](https://www.youtube.com/watch?v=OXxul6AvXNs) [Git](https://github.com/Rocketseat/youtube-typescript-reactjs)",
   "main": "index.js",
   "scripts": {
