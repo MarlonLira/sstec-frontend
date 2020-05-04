@@ -17,7 +17,6 @@ export default props => (
           <NavbarItem label="Inicio" source="#" />
           <NavbarItem label="Contato" source="#contato" />
         </NavbarItems>
-        <NavbarSearch />
       </Navbar>
       <SideBar />
       <div className='content-wrapper'>
