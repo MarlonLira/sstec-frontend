@@ -17,22 +17,18 @@ class ParkingForm extends Component {
             placeholder='Informe o nome do produto' type='text'
           />
           <Field name='registryCode' component={labelAndInput}
-            label='CPNJ' cols='12 4' readOnly={readOnly} maxLength='15'
+            label='CPNJ' cols='12 4' readOnly={readOnly} maxLength='14'
             placeholder='Informe o codigo do produto' type='text' required='true'
           />
           <Field name='phone' component={labelAndInput}
-            label='Telefone' cols='12 4' readOnly={readOnly}
-            placeholder='Informe a quantidade do produto' type='number'
+            label='Telefone' cols='12 4' readOnly={readOnly} maxLength='12'
+            placeholder='Informe a quantidade do produto' type='tel' pattern="[0-9]{2}[9]{1}[0-9]{9}"
           />
           <Field name='email' component={labelAndInput}
-            label='Email' cols='12 4' readOnly={readOnly}
+            label='Email' cols='12 4' readOnly={readOnly}  maxLength='50'
             placeholder='Informe a data de cadastro do produto' type='email'
           />
-          <Field name='amount' component={labelAndInput}
-            label='Vagas' cols='12 4' readOnly={readOnly}
-            placeholder='Informe a quantidade de vagas' type='number'
-          />
-          <Field name='imgUrl' component={labelAndInput}
+          <Field name='imgUrl' component={labelAndInput}  maxLength='100'
             label='Imagem' cols='12 4' readOnly={readOnly} maxLength='100'
             placeholder='Informe o link da imagem' type='text'
           />
