@@ -19,7 +19,7 @@ class ParkingList extends Component {
         <td>{parking.registryCode}</td>
         <td>{parking.phone}</td>
         <td>{parking.email}</td>
-        <td>{parking.amount}</td>
+        <td>{parking.amount || 0}</td>
         <td className='table-actions'>
           <button type="button" className='btn btn-warning' onClick={() => this.props.showUpdate(parking)}>
             <i className='fa fa-paint-brush'></i>

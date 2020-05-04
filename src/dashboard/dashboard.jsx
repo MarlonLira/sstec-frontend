@@ -35,10 +35,10 @@ class Dashboard extends Component {
         <Content>
           <div className="valuebox-custom">
             <Row>
-              <Card title="Reservas" btnName="Ver Tudo" btnEnabled='true'>
+              <Card title="Reservas Recentes | Check-in" btnName="Ver Tudo" btnEnabled='true'>
                 <SchedulingList />
               </Card>
-              <Card title="Reservas Prox de Expirar" btnName="Ver Tudo" btnEnabled='true'>
+              <Card title="Reservas Expirando | Check-out" btnName="Ver Tudo" btnEnabled='true'>
                 <SchedulingList />
               </Card>
             </Row>
