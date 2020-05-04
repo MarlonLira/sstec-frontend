@@ -31,72 +31,78 @@ class Dashboard extends Component {
     const pGoal = ((consolidated < 0 ? 0 : consolidated) * 100) / (goal <= 0 ? 1 : goal);
     return (
       <div>
-        <ContentHeader title='Dashboard' small='Versão 1.1' />
+        <ContentHeader title='Dashboard' small='Versão 1.2' />
         <Content>
-          <Row>
-            <Card title="Reservas" btnName="Ver Tudo">
-              <SchedulingList />
-            </Card>
-            <Card title="Reservas Prox de Expirar" btnName="Ver Tudo">
-              <SchedulingList />
-            </Card>
-          </Row>
           <div className="valuebox-custom">
             <Row>
-              <ValueBox
-                cols='6 4'
-                color='green'
-                icon='dollar-sign'
-                value={`R$ ${credit}`}
-                text='Total de Créditos'
-              />
-              <ValueBox
-                cols='6 4'
-                color='red'
-                icon='credit-card'
-                value={`R$ ${debit}`}
-                text='Total de Débitos'
-              />
-              <ValueBox
-                cols='6 4'
-                color='blue'
-                icon='donate'
-                value={`R$ ${consolidated}`}
-                text='Valor Consolidado'
-              />
+              <Card title="Reservas" btnName="Ver Tudo" btnEnabled='true'>
+                <SchedulingList />
+              </Card>
+              <Card title="Reservas Prox de Expirar" btnName="Ver Tudo" btnEnabled='true'>
+                <SchedulingList />
+              </Card>
             </Row>
-            <Panel name='Metas'>
-              <Row>
-                <InfoBox
-                  cols='6 4'
-                  color='green'
-                  icon='euro-sign'
-                  value={`R$ ${goal}`}
-                  text='Meta'
-                  percentValue={`${pGoal}%`}
-                  percentText={`${pGoal}% da meta foi atingida!`}
-                />
-                <InfoBox
-                  cols='6 4'
-                  color='blue'
-                  icon='briefcase'
-                  value={`R$ ${goal}`}
-                  text='Meta'
-                  percentValue={`${pGoal}%`}
-                  percentText={`${pGoal}% da meta foi atingida!`}
-                />
-                <InfoBox
-                  cols='6 4'
-                  color='red'
-                  icon='calendar'
-                  value={`R$ ${goal}`}
-                  text='Meta'
-                  percentValue={`${pGoal}%`}
-                  percentText={`${pGoal}% da meta foi atingida!`}
-                />
-              </Row>
-            </Panel>
           </div>
+          <Card title='Dados Financeiros'>
+            <div className="valuebox-custom">
+              <Panel name='Ganhos'>
+                <Row>
+                  <ValueBox
+                    cols='6 4'
+                    color='red2'
+                    icon='dollar-sign'
+                    value={`R$ ${credit}`}
+                    text='Total de Créditos'
+                  />
+                  <ValueBox
+                    cols='6 4'
+                    color='purple2'
+                    icon='credit-card'
+                    value={`R$ ${debit}`}
+                    text='Total de Débitos'
+                  />
+                  <ValueBox
+                    cols='6 4'
+                    color='info'
+                    icon='donate'
+                    value={`R$ ${consolidated}`}
+                    text='Valor Consolidado'
+                  />
+                </Row>
+              </Panel>
+              <Panel name='Metas'>
+                <Row>
+                  <InfoBox
+                    cols='6 4'
+                    color='gray'
+                    icon='euro-sign'
+                    value={`R$ ${goal}`}
+                    text='Meta'
+                    percentValue={`${pGoal}%`}
+                    percentText={`${pGoal}% da meta foi atingida!`}
+                  />
+                  <InfoBox
+                    cols='6 4'
+                    color='info'
+                    icon='briefcase'
+                    value={`R$ ${goal}`}
+                    text='Meta'
+                    percentValue={`${pGoal}%`}
+                    percentText={`${pGoal}% da meta foi atingida!`}
+                  />
+                  <InfoBox
+                    cols='6 4'
+                    color='purple2'
+                    icon='calendar'
+                    value={`R$ ${goal}`}
+                    text='Meta'
+                    percentValue={`${pGoal}%`}
+                    percentText={`${pGoal}% da meta foi atingida!`}
+                  />
+                </Row>
+              </Panel>
+            </div>
+          </Card>
         </Content>
       </div>
     );
