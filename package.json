@@ -51,6 +51,7 @@
     "react-native-masked-text": "^1.13.0",
     "react-router-dom": "^5.1.2",
     "react-text-mask": "^5.4.3",
+    "text-mask-addons": "^3.8.0",
     "webfontloader": "^1.6.28"
   }
 }

@@ -21,7 +21,7 @@
 
 .cardCustom{
   max-width: 800px;
-  min-width: 800px;
+  min-width: auto;
   padding: 5px 10px 10px 10px;
   position: relative;
   left: 7px;

@@ -10,6 +10,19 @@ const CURRENT_DATE = GetDateNow().FullDate;
 const INITIAL_VALUES = {};
 const COMPANY_ID = localStorage.getItem('_sp_company') == null ? 0 : JSON.parse(localStorage.getItem('_sp_company')).id;
 
+export function getListSpace(parkingId) {
+  return new Promise((resolve) => {
+    axios.get(`${BASE_URL}/parkingSpace/parkingId/${parkingId}`)
+      .then(request => {
+        showCreate();
+        resolve({
+          type: 'PARKING_SPACE_FETCHED',
+          payload: request.data.result
+        });
+      });
+  });
+}
+
 export function getList() {
   return new Promise((resolve) => {
     axios.get(`${BASE_URL}/parkings/${COMPANY_ID}`)
@@ -24,24 +37,23 @@ export function getList() {
 }
 
 export function create(values) {
-  values.companyId = COMPANY_ID;
-  var _values = { "parking": values };
-  return submit(_values, 'post');
+  return submit(values, 'post');
 }
 
 export function update(values) {
-  var _values = { "parking": values };
-  return submit(_values, 'put');
+  return submit(values, 'put');
 }
 
 export function destroy(values) {
+  console.log(values)
+  console.log(values.parkingSpace.id)
   return submit(values, 'delete');
 }
 
 function submit(values, method) {
   return new Promise((resolve) => {
-    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
-    axios[method](`${BASE_URL}/parking/${id}`, values)
+    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.parkingSpace.id, '') : '';
+    axios[method](`${BASE_URL}/parkingSpace/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
         resolve(init());
@@ -55,22 +67,22 @@ function submit(values, method) {
   });
 }
 
-export function showUpdate(parking) {
+export function showUpdate(parkingSpace) {
   return new Promise((resolve) => {
     resolve([
       showTabs('tabUpdate'),
       selectTab('tabUpdate'),
-      initialize('parkingForm', parking)
+      initialize('parkingSpaceForm', parkingSpace)
     ]);
   });
 }
 
-export function showDelete(parking) {
+export function showDelete(parkingSpace) {
   return new Promise((resolve) => {
     resolve([
       showTabs('tabDelete'),
       selectTab('tabDelete'),
-      initialize('parkingForm', parking)
+      initialize('parkingSpaceForm', parkingSpace)
     ]);
   });
 }
@@ -78,18 +90,18 @@ export function showDelete(parking) {
 export function showCreate() {
   return new Promise((resolve) => {
     resolve([
-      initialize('parkingForm', INITIAL_VALUES)
+      initialize('parkingSpaceForm', INITIAL_VALUES)
     ]);
   })
 }
 
 export function init() {
   return new Promise((resolve) => {
+    console.log("aqui")
     resolve([
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),
-      getList(),
-      initialize('parkingForm', INITIAL_VALUES)
+      initialize('parkingSpaceForm', INITIAL_VALUES)
     ]);
   });
 }

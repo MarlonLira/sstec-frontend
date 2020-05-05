@@ -11,6 +11,8 @@ import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
 import SchedulingReducer from '../scheduling/schedulingReducer';
 import ParkingReducer from '../parking/parkingReducer';
+import ParkingSpaceReducer from '../parkingSpace/parkingSpaceReducer';
+
 
 const rootReducer = combineReducers({
   dashboard: DashboardReducer,
@@ -23,7 +25,8 @@ const rootReducer = combineReducers({
   select: SelectReducer,
   auth: AuthReducer,
   scheduling: SchedulingReducer,
-  parking: ParkingReducer
+  parking: ParkingReducer,
+  parkingSpace: ParkingSpaceReducer
 });
 
 export default rootReducer;
