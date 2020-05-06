@@ -21,8 +21,8 @@ class SchedulingList extends Component {
         <td>{scheduling.date}</td>
         <td><div className="sparkbar" data-color="#00a65a" data-height="20">{GetTime(scheduling.avaliableTime)}</div></td>
         <td><div className="sparkbar" data-color="#00a65a" data-height="20">{GetTime(scheduling.unavailableTime)}</div></td>
-        <td><span className="badge badge-success">{scheduling.status == "AT" ? "Aprovado" : "Pendente"}</span></td>
-      </tr>
+        <td><span className={`badge badge-${scheduling.status == "AT" ? 'success' : 'warning'}`}>{scheduling.status == "AT" ? "Aprovado" : "Pendente"}</span></td>
+      </tr >
     ))
   }
   render() {
