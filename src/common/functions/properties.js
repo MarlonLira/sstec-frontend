@@ -40,12 +40,24 @@ function GetDateNow() {
 }
 
 function GetTime(date) {
-  let _date = new Date(date);
-  let hours = LeftZero(_date.getUTCHours());
-  let minutes = LeftZero(_date.getUTCMinutes());
-  let seconds = LeftZero(_date.getUTCSeconds());
-  console.log();
-  return `${hours}:${minutes}:${seconds}`;
+  if (!IsTime(date)) {
+    let _date = new Date(date);
+    let hours = LeftZero(_date.getUTCHours());
+    let minutes = LeftZero(_date.getUTCMinutes());
+    let seconds = LeftZero(_date.getUTCSeconds());
+    return `${hours}:${minutes}:${seconds}`;
+  } else {
+    return date;
+  }
+}
+
+function IsTime(time) {
+  var isTime = /^([0-2]{1}[0-9]{1}):[0-5]{1}[0-9]:[0-5]{1}[0-9]/;
+  if (isTime.test(time)) {
+    return true;
+  } else {
+    false;
+  }
 }
 
 function LeftZero(value) {

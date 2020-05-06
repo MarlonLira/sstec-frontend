@@ -22,7 +22,7 @@ class ParkingForm extends Component {
           />
           <Field name='phone' component={labelAndInput}
             label='Telefone' cols='12 4' readOnly={readOnly} maxLength='12'
-            placeholder='Informe a quantidade do produto' type='tel' pattern="[0-9]{2}[9]{1}[0-9]{9}"
+            placeholder='Informe a quantidade do produto' type='tel' pattern="[0-9]{2}[9]{1}[0-9]{8,9}"
           />
           <Field name='email' component={labelAndInput}
             label='Email' cols='12 4' readOnly={readOnly}  maxLength='50'
