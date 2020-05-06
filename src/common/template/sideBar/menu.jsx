@@ -8,27 +8,22 @@ export default props => (
     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <MenuItem label='Inicio' icon='home' path='/' />
       <MenuTree label='Gerenciamento' icon='user-tie' >
-        <MenuItem label='Cadastro de Estacionamento' icon='angle-right' path='parking' />
-        <MenuItem label='Cadastro de Vagas' icon='angle-right' path='#' />
-        <MenuItem label='Cadastro de Promoções' icon='angle-right' path='#' />
+        <MenuItem label='Estacionamento' icon='angle-right' path='parking' />
+        <MenuItem label='Funcionários' icon='angle-right' path='employee' />
+        <MenuItem label='Reservas' icon='angle-right' path='schedulings' />
+        <MenuItem label='Vagas' icon='angle-right' path='#' />
+        <MenuItem label='Promoções' icon='angle-right' path='#' />
+        <MenuItem label='Permissões' icon='angle-right' path='#' />
       </MenuTree>
       <MenuTree label='Financeiro' icon='barcode' >
         <MenuItem label='Acessar' icon='angle-right' path='products' />
       </MenuTree>
-      <MenuTree label='Reservas' icon='bookmark' >
-        <MenuItem label='Acessar' icon='angle-right' path='schedulings' />
-      </MenuTree>
       <MenuTree label='Relátorios' icon='th-list' >
         <MenuItem label='Acessar' icon='angle-right' path='billingCycles' />
       </MenuTree>
-      <MenuTree label='Funcionários' icon='users-cog' >
-        <MenuItem label='Acessar' icon='angle-right' path='employee' />
-      </MenuTree>
-      <MenuTree label='Mensagens' icon='comment-alt' >
-      </MenuTree>
-      <MenuTree label='Avaliações' icon='star' >
-      </MenuTree>
       <MenuTree label='Suporte' icon='comments' >
+        <MenuItem label='Mensagens' icon='angle-right' path='#' />
+        <MenuItem label='Avaliações' icon='angle-right' path='#' />
       </MenuTree>
       <MenuTree label='Configurações' icon='cogs' >
         <MenuItem label='Acessar' icon='angle-right' path='company' />
