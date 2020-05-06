@@ -53,6 +53,8 @@ function GetTime(date) {
 
 function IsTime(time) {
   var isTime = /^([0-2]{1}[0-9]{1}):[0-5]{1}[0-9]:[0-5]{1}[0-9]/;
+  console.log(time);
+  console.log(isTime);
   if (isTime.test(time)) {
     return true;
   } else {
