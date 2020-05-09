@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getList, showUpdate, showDelete, showCreate } from './parkingActions';
+import { getList, showUpdate, showDelete, showCreate } from './ruleActions';
 
-class ParkingList extends Component {
+class RuleList extends Component {
 
   componentWillMount() {
     this.props.getList();
@@ -13,18 +13,16 @@ class ParkingList extends Component {
 
   renderRows() {
     const list = this.props.list || [];
-    return list.map(parking => (
-      <tr key={parking.id}>
-        <td>{parking.name}</td>
-        <td>{parking.registryCode}</td>
-        <td>{parking.phone}</td>
-        <td>{parking.email}</td>
-        <td>{parking.amount || 0}</td>
+    return list.map(rule => (
+      <tr key={rule.id}>
+        <td>{rule.name}</td>
+        <td>{rule.status}</td>
+        <td>{rule.level}</td>
         <td className='table-actions'>
-          <button type="button" className='btn btn-warning' onClick={() => this.props.showUpdate(parking)}>
+          <button type="button" className='btn btn-warning' onClick={() => this.props.showUpdate(rule)}>
             <i className='fa fa-paint-brush'></i>
           </button>
-          <button type="button" className='btn btn-danger' onClick={() => this.props.showDelete(parking)}>
+          <button type="button" className='btn btn-danger' onClick={() => this.props.showDelete(rule)}>
             <i className='fa fa-trash'></i>
           </button>
         </td>
@@ -37,11 +35,9 @@ class ParkingList extends Component {
         <table className='table'>
           <thead>
             <tr>
-              <th>Estacionamento</th>
-              <th>CNPJ</th>
-              <th>Telefone</th>
-              <th>Email</th>
-              <th>Vagas</th>
+              <th>Permissão</th>
+              <th>Status</th>
+              <th>Nível</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -50,10 +46,10 @@ class ParkingList extends Component {
           </tbody>
         </table>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => ({ list: state.parking.list });
+const mapStateToProps = state => ({ list: state.rule.list });
 const mapDispatchToProps = dispatch => bindActionCreators({ getList, showDelete, showUpdate, showCreate }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(ParkingList);
+export default connect(mapStateToProps, mapDispatchToProps)(RuleList);

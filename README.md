@@ -26,11 +26,12 @@
 **src/common/** - Arquivos comuns da aplicação. Inclui componentes e utilitários.\
 **src/common/styles/** - Arquivos de estilo da aplicação.\
 **src/views/** - Telas.\
-**src/views/exemploDeView/** - Arquivos de uma tela.\
-**src/views/exemploDeView/components/** - Componentes utilizados na tela.\
-**src/views/exemploDeView/components/ExemploX.jsx** - Componente de apresentação utilizado na tela.\
-**src/views/exemploDeView/index.js** - Exporta o tela como default.\
-**src/views/exemploDeView/types.js** - Contém constantes para serem utilizadas nos types das actions creators e reducers.\
+**src/views/exemplo/** - Arquivos de uma tela.\
+**src/views/exemplo/exemploForm.jsx** - Formulario utilizados na tela.\
+**src/views/exemplo/exemploActions.js** - Ações realizadas pela tela.\
+**src/views/exemplo/exemploReducer.js** - Controle do estado da tela.\
+**src/views/exemplo/exemplo.jsx** - A tela.\
+**src/views/exemplo/types.js** - Contém constantes para serem utilizadas nos types das actions creators e reducers.\
 **src/Navigation.jsx** - Configura a navegação de todas as telas.\
 **.gitignore** - Configura arquivos a serem ignorados pelo git.\
 **App.js** - Arquivo inicial. Arquivo chamado pelo Expo.\

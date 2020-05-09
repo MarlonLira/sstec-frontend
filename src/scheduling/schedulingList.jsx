@@ -3,67 +3,26 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getList } from './schedulingActions';
+import { GetTime } from '../common/functions/properties';
 
 class SchedulingList extends Component {
 
   componentWillMount() {
-    //this.props.getList();
+    this.props.getList();
   }
 
   renderRows() {
-
-    const temporaryList = [{
-      "id": 1223,
-      "user": "Gustavo Gusmão",
-      "licensePlate": "MNS8195",
-      "avaliableTime": "29/04/2020 14:00:00",
-      "unavailableTime": "29/04/2020 17:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1224,
-      "user": "Marlon Lira",
-      "licensePlate": "JPV1257",
-      "avaliableTime": "29/04/2020 17:00:00",
-      "unavailableTime": "29/04/2020 19:00:00",
-      "status": "Aprovado"
-    },
-    {
-      "id": 1225,
-      "user": "Emerson Gabriel",
-      "licensePlate": "PNU8177",
-      "avaliableTime": "30/04/2020 08:00:00",
-      "unavailableTime": "30/04/2020 12:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1226,
-      "user": "Timoteo Barros",
-      "licensePlate": "JKL2997",
-      "avaliableTime": "30/04/2020 13:00:00",
-      "unavailableTime": "30/04/2020 15:00:00",
-      "status": "Aprovado",
-    },
-    {
-      "id": 1227,
-      "user": "Felipe Seabra",
-      "licensePlate": "IUO8000",
-      "avaliableTime": "01/05/2020 05:00:00",
-      "unavailableTime": "01/05/2020 10:00:00",
-      "status": "Aprovado",
-    }
-    ]
-
-    const list = temporaryList;
+    const list = this.props.list.length <= 0 ? [] : this.props.list;
     return list.map(scheduling => (
       <tr key={scheduling.id}>
         <td><a href="#">{scheduling.id}</a></td>
-        <td>{scheduling.user}</td>
-        <td>{scheduling.licensePlate}</td>
-        <td><div className="sparkbar" data-color="#00a65a" data-height="20">{scheduling.avaliableTime}</div></td>
-        <td><div className="sparkbar" data-color="#00a65a" data-height="20">{scheduling.unavailableTime}</div></td>
-        <td><span className="badge badge-success">{scheduling.status}</span></td>
-      </tr>
+        <td>{scheduling.userName}</td>
+        <td>{scheduling.vehiclePlate}</td>
+        <td>{scheduling.date}</td>
+        <td><div className="sparkbar" data-color="#00a65a" data-height="20">{GetTime(scheduling.avaliableTime)}</div></td>
+        <td><div className="sparkbar" data-color="#00a65a" data-height="20">{GetTime(scheduling.unavailableTime)}</div></td>
+        <td><span className={`badge badge-${scheduling.status == "AT" ? 'success' : 'warning'}`}>{scheduling.status == "AT" ? "Aprovado" : "Pendente"}</span></td>
+      </tr >
     ))
   }
   render() {
@@ -75,6 +34,7 @@ class SchedulingList extends Component {
               <th>Pedido ID</th>
               <th>Usuario</th>
               <th>Placa</th>
+              <th>Data</th>
               <th>Entrada</th>
               <th>Saida</th>
               <th>Status</th>
@@ -90,5 +50,5 @@ class SchedulingList extends Component {
 }
 
 const mapStateToProps = state => ({ list: state.scheduling.list });
-const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getList, GetTime }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(SchedulingList);
