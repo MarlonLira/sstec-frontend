@@ -45,9 +45,13 @@ export function update(values) {
 }
 
 export function destroy(values) {
-  console.log(values)
-  console.log(values.parkingSpace.id)
-  return submit(values, 'delete');
+  let _values
+  _values = {
+    "parkingSpace" : {
+      id: values.id
+    }
+  }
+  return submit(_values, 'delete');
 }
 
 function submit(values, method) {
@@ -80,9 +84,7 @@ export function showUpdate(parkingSpace) {
 export function showDelete(parkingSpace) {
   return new Promise((resolve) => {
     resolve([
-      showTabs('tabDelete'),
-      selectTab('tabDelete'),
-      initialize('parkingSpaceForm', parkingSpace)
+      destroy(parkingSpace)
     ]);
   });
 }
@@ -97,7 +99,6 @@ export function showCreate() {
 
 export function init() {
   return new Promise((resolve) => {
-    console.log("aqui")
     resolve([
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),

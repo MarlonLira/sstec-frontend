@@ -96,9 +96,7 @@ class ParkingSpaceForm extends Component {
 
   render() {
     const { handleSubmit, readOnly } = this.props;
-    console.log()
     return (
-     
       <form role='form' onSubmit={handleSubmit(v => this.onSubmit(v))}>
         <div className='row'>
           <Field
@@ -109,7 +107,7 @@ class ParkingSpaceForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             options={this.renderRows()}
-            onChangeTeste={this.handleChange}
+            onChangeField={this.handleChange}
           />
           <Field
             name='type'
@@ -119,7 +117,7 @@ class ParkingSpaceForm extends Component {
             readOnly={readOnly}
             required='true'
             options={this.renderLines()}
-            onChangeTeste={this.handleChangeType}
+            onChangeField={this.handleChangeType}
           />
           <Field
             name='value'

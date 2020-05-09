@@ -8,7 +8,7 @@ export default props => (
             <div className="form-group">
                 <label htmlFor={props.name}>{props.label}</label>
                 <select
-                    onChange={props.onChangeTeste}
+                    onChange={props.onChangeField}
                     name="select"
                     className="form-control"
                     required={props.required}
