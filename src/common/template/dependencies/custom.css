@@ -61,14 +61,7 @@
 
 /* Card */
 
-<<<<<<< HEAD
-.cardCustom{
-  max-width: 800px;
-  min-width: auto;
-  padding: 5px 10px 10px 10px;
-=======
 .card-button {
->>>>>>> 83c4ffc1cf4d4738660c487102cee951cefee033
   position: relative;
   right: calc(5%);
 }
