@@ -13,7 +13,7 @@ export default props => (
         <MenuItem label='Reservas' icon='angle-right' path='schedulings' />
         <MenuItem label='Vagas' icon='angle-right' path='#' />
         <MenuItem label='Promoções' icon='angle-right' path='#' />
-        <MenuItem label='Permissões' icon='angle-right' path='#' />
+        <MenuItem label='Permissões' icon='angle-right' path='rule' />
       </MenuTree>
       <MenuTree label='Financeiro' icon='barcode' >
         <MenuItem label='Acessar' icon='angle-right' path='products' />

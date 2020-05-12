@@ -7,30 +7,29 @@ import Consts from '../consts';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
-const INITIAL_VALUES = {};
-const COMPANY_ID = localStorage.getItem('_sp_company') == null ? 0 : JSON.parse(localStorage.getItem('_sp_company')).id;
+const INITIAL_VALUES = { "date": CURRENT_DATE };
 
 export function getList() {
   return new Promise((resolve) => {
-    axios.get(`${BASE_URL}/parkings/companyId/${COMPANY_ID}`)
+    axios.get(`${BASE_URL}/rules`)
       .then(request => {
         showCreate();
         resolve({
-          type: 'PARKING_FETCHED',
+          type: 'RULE_FETCHED',
           payload: request.data.result
         });
       });
   });
 }
 
+
 export function create(values) {
-  values.companyId = COMPANY_ID;
-  var _values = { "parking": values };
+  var _values = { "rule": values };
   return submit(_values, 'post');
 }
 
 export function update(values) {
-  var _values = { "parking": values };
+  var _values = { "rule": values };
   return submit(_values, 'put');
 }
 
@@ -41,7 +40,7 @@ export function destroy(values) {
 function submit(values, method) {
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
-    axios[method](`${BASE_URL}/parking/${id}`, values)
+    axios[method](`${BASE_URL}/rule/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
         resolve(init());
@@ -50,35 +49,34 @@ function submit(values, method) {
         toastr.warning(error.message);
         resolve({
           type: 'ERROR'
-        });
-      });
-  });
+        })
+      })
+  })
 }
 
-export function showUpdate(parking) {
+export function showUpdate(rule) {
   return new Promise((resolve) => {
     resolve([
       showTabs('tabUpdate'),
       selectTab('tabUpdate'),
-      initialize('parkingForm', parking)
+      initialize('ruleForm', rule)
     ]);
-  });
+  })
 }
-
-export function showDelete(parking) {
+export function showDelete(rule) {
   return new Promise((resolve) => {
     resolve([
       showTabs('tabDelete'),
       selectTab('tabDelete'),
-      initialize('parkingForm', parking)
+      initialize('ruleForm', rule)
     ]);
-  });
+  })
 }
 
 export function showCreate() {
   return new Promise((resolve) => {
     resolve([
-      initialize('parkingForm', INITIAL_VALUES)
+      initialize('ruleForm', INITIAL_VALUES)
     ]);
   })
 }
@@ -89,7 +87,7 @@ export function init() {
       showTabs('tabList', 'tabCreate'),
       selectTab('tabList'),
       getList(),
-      initialize('parkingForm', INITIAL_VALUES)
+      initialize('ruleForm', INITIAL_VALUES)
     ]);
-  });
+  })
 }

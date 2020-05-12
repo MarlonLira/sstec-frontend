@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from '../../../auth/authActions';
+import { ReturnIfValid } from '../../functions/properties';
 
 class UserPanel extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class UserPanel extends Component {
           {/* <img src={DefaultLogo} className="img-circle elevation-2"></img> */}
         </div>
         <div className="info user-text">
-          <a href="#" className="d-block" >{employee.name}</a>
-          <a href="#" className="d-block company-label" >{company.name}</a>
+          <a href="#" className="d-block" >{ReturnIfValid(employee.name, 'Employee Name')}</a>
+          <a href="#" className="d-block company-label" >{ReturnIfValid(company.name, 'Company Name')}</a>
         </div>
         <div>
           <a className="fas fa-sign-out-alt logout-icon" id="logoutIcon" href="#" onClick={this.props.logout} ></a>
@@ -31,5 +32,5 @@ class UserPanel extends Component {
 }
 
 const mapStateToProps = state => ({ auth: state.auth });
-const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ logout, ReturnIfValid }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(UserPanel);
