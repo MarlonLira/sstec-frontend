@@ -9,6 +9,9 @@ const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
 const INITIAL_VALUES = {};
 
+const COMPANY_ID = localStorage.getItem('_sp_company') == null ? 0 : JSON.parse(localStorage.getItem('_sp_company')).id;
+const PARKING_ID = localStorage.getItem('_sp_parking') == null ? 0 : JSON.parse(localStorage.getItem('_sp_parking')).id;
+
 let registryCodeEmployee;
 let phoneEmployee;
 let passwordEmployee;
@@ -16,14 +19,18 @@ let data;
 
 export function getList() {
   return new Promise((resolve) => {
-    axios.get(`${BASE_URL}/employees`)
+    const route = PARKING_ID <= 0 ? `${BASE_URL}/employees/companyid/${COMPANY_ID}` : `${BASE_URL}/employees/parkingid/${PARKING_ID}`;
+    console.log(route)
+    axios.get(route)
       .then(request => {
         showCreate();
         resolve({
           type: 'EMPLOYEE_FETCHED',
           payload: request.data.result
         });
-      });
+      }).catch(error =>{
+        console.log(error)
+      })
   });
 }
 
