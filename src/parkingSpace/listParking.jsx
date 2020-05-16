@@ -8,6 +8,7 @@ export default props => (
             <div className="form-group">
                 <label htmlFor={props.name}>{props.label}</label>
                 <select
+                    value={props.value}
                     onChange={props.onChangeField}
                     name="select"
                     className="form-control"

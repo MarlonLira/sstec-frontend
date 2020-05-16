@@ -12,9 +12,9 @@ class ParkingList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkingId: ''
+      parkingId: '',
+      buttonState: false
     }
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -24,11 +24,21 @@ class ParkingList extends Component {
   }
 
   handleChange(e) {
-    let parkingId = e.target.value
-    this.setState({parkingId})
+    let parkingId = e.target.value;
+    this.setState({ parkingId })
     if (parkingId != null && parkingId != '') {
       this.props.getListSpace(parkingId);
     }
+  }
+
+  newCall() {
+    this.setState({ buttonState: true })
+    setTimeout(() => {
+      if (this.state.parkingId != '') {
+        this.props.getListSpace(this.state.parkingId);
+      }
+      this.setState({ buttonState: false })
+    }, 500)
   }
 
   renderList() {
@@ -39,43 +49,53 @@ class ParkingList extends Component {
   }
 
   renderRows() {
+    const { buttonState } = this.state;
     const list = this.props.listParking || [];
     return list.map(parking => (
       <tr key={parking.id}>
         <td>{parking.type == 'CAR' ? 'Carro' : 'Moto'}</td>
         <td>R$ {parking.value}</td>
+        <td>{parking.amount}</td>
         <td className='table-actions'>
-          <button type="button" className='btn btn-danger' onClick={() => this.props.showDelete(parking).then(() => {this.renderRows()})}>
+          <button type="button"
+            className='btn btn-danger'
+            disabled={buttonState}
+            onClick={() => this.props.showDelete(parking).then(() => { this.newCall() })}>
             <i className='fa fa-trash'></i>
           </button>
         </td>
       </tr>
     ))
   }
-  
+
   render() {
-    if (this.state.parkingId != ''){
-      this.props.getListSpace(this.state.parkingId);
-      console.log(this.state.parkingId)
-    }
     return (
       <div>
-
-        <Field
-          name='parkingId'
-          component={listParking}
-          required='true'
-          label='Estacinamento'
-          cols='12 6'
-          options={this.renderList()}
-          onChangeField={this.handleChange}
-        />
+        <div className="row">
+          <Field
+            name='parkingId'
+            component={listParking}
+            required='true'
+            label='Estacinamento'
+            cols='12 6'
+            options={this.renderList()}
+            onChangeField={this.handleChange}
+          />
+          <div>
+            <button type="button"
+              className='btn btn-primary p-custom ppButton'
+              onClick={() => this.newCall()}>
+              <i className='fa fa-search'></i>
+            </button>
+          </div>
+        </div>
 
         <table className='table'>
           <thead>
             <tr>
               <th>Tipo da vaga</th>
               <th>Valor</th>
+              <th>Quantidade</th>
               <th>Ações</th>
             </tr>
           </thead>

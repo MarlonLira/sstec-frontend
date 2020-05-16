@@ -24,8 +24,6 @@ class ParkingSpaceForm extends Component {
     this.handleChangeType = this.handleChangeType.bind(this);
   }
 
-
-
   componentWillMount() {
     this.props.getListSpace();
     this.props.getList();

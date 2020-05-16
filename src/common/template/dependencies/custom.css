@@ -248,3 +248,7 @@ html, input, button {
 .logo-image {
   text-align: center;
 }
+
+.ppButton {
+  margin-top: 28px;
+}

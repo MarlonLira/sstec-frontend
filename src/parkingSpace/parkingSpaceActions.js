@@ -48,7 +48,8 @@ export function destroy(values) {
   let _values
   _values = {
     "parkingSpace" : {
-      id: values.id
+      id: values.id,
+      idParking: values.parkingId
     }
   }
   return submit(_values, 'delete');
@@ -60,7 +61,7 @@ function submit(values, method) {
     axios[method](`${BASE_URL}/parkingSpace/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
-        resolve(init());
+        resolve(init(), getListSpace(values.parkingSpace.idParking));
       })
       .catch(error => {
         toastr.warning(error.message);
