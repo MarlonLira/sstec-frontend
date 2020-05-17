@@ -44,7 +44,7 @@ class ParkingSpaceForm extends Component {
     const { submitType } = this.props;
 
     if (values.value) {
-      value = this.replaceCode(values.value);
+      value = isString(values.value) ? values.value.replace('R$', '')  : values.value;
     }
 
     _values = {
@@ -82,14 +82,6 @@ class ParkingSpaceForm extends Component {
     return list.map(parking => (
       <option key={parking.id} value={parking.id}>{parking.name}</option>
     ))
-  }
-
-  replaceCode(code) {
-    if (typeof code === 'string') {
-      code = code.replace('R$', '');
-      return code;
-    }
-    return code;
   }
 
   render() {
