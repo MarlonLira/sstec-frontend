@@ -7,6 +7,7 @@ import AuthOrApp from '../auth/authOrApp';
 import Company from '../company/company';
 import Scheduling from '../scheduling/scheduling';
 import Parking from '../parking/parking';
+import ParkingSpace from '../parkingSpace/parkingSpace';
 import Rule from '../rule/rule';
 
 export default props => (
@@ -18,6 +19,7 @@ export default props => (
       <Route path='/company' component={Company} />
       <Route path='/schedulings' component={Scheduling} />
       <Route path='/parking' component={Parking} />
+      <Route path='/parkingSpace' component={ParkingSpace} />
       <Route path='/rule' component={Rule} />
     </Route>
     <Redirect from="*" to="/" />

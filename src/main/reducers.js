@@ -11,7 +11,9 @@ import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
 import SchedulingReducer from '../scheduling/schedulingReducer';
 import ParkingReducer from '../parking/parkingReducer';
+import ParkingSpaceReducer from '../parkingSpace/parkingSpaceReducer';
 import RuleReducer from '../rule/ruleReducer';
+
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -25,6 +27,7 @@ const rootReducer = combineReducers({
   auth: AuthReducer,
   scheduling: SchedulingReducer,
   parking: ParkingReducer,
+  parkingSpace: ParkingSpaceReducer,
   rule:RuleReducer
 });
 
