@@ -25,7 +25,7 @@ export function getListSpace(parkingId) {
 
 export function getList() {
   return new Promise((resolve) => {
-    axios.get(`${BASE_URL}/parkings/${COMPANY_ID}`)
+    axios.get(`${BASE_URL}/parkings/companyId/${COMPANY_ID}`)
       .then(request => {
         showCreate();
         resolve({
