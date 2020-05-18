@@ -114,7 +114,8 @@ class AuthForm extends Component {
 
                                 signup(_values)
                                   .then(resp => {
-                                    if (resp[0].payload.companyId && resp[0].payload.employeeId && resp[0].type == "USER_SIGNUP") {
+                                    console.log(resp)
+                                    if (resp[0].payload.employeeId && resp[0].type == "USER_SIGNUP") {
                                       this.menssegerMode();
                                     }
                                   });

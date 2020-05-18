@@ -50,12 +50,27 @@ class ParkingList extends Component {
 
   renderRows() {
     const { buttonState } = this.state;
+    var amount;
     const list = this.props.listParking || [];
+    var car = []
+    var moto = []
+
+    amount = list.length;
+
+    const valor = list.map(space => {
+      if (space.type == 'CAR') {
+        car.push(space);
+      } else {
+        moto.push(space);
+      }
+      return space
+    })
+
     return list.map(parking => (
       <tr key={parking.id}>
         <td>{parking.type == 'CAR' ? 'Carro' : 'Moto'}</td>
         <td>R$ {parking.value}</td>
-        <td>{parking.amount}</td>
+        <td>{amount}</td>
         <td className='table-actions'>
           <button type="button"
             className='btn btn-danger'

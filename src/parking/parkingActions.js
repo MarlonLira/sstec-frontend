@@ -24,8 +24,19 @@ export function getList() {
 }
 
 export function create(values) {
+  var _values = {};
   values.companyId = COMPANY_ID;
-  var _values = { "parking": values };
+  
+  _values = {
+    "parking": {
+      companyId: values.companyId,
+      email:  values.email,
+      imgUrl: values.imgUrl,
+      name: values.name,
+      phone: replaceCode(values.phone),
+      registryCode :  replaceCode(values.registryCode)
+    }
+  }
   return submit(_values, 'post');
 }
 
@@ -92,4 +103,9 @@ export function init() {
       initialize('parkingForm', INITIAL_VALUES)
     ]);
   });
+}
+
+function replaceCode(code) {
+  code = code.replace(/[^\d]+/g, '');
+  return code;
 }
