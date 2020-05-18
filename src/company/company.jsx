@@ -16,7 +16,7 @@ import Profile from './profile'
 class Company extends Component {
     componentWillMount() {
         this.props.selectTab('tabProfile');
-        this.props.showTabs('tabProfile', 'tabAddress', 'tabCreate', 'tabUpdate', 'tabDelete');
+        this.props.showTabs('tabProfile', 'tabAddress', 'tabPermissions', 'tabCreate', 'tabUpdate', 'tabDelete');
       }
     render() {
         return (
@@ -27,6 +27,7 @@ class Company extends Component {
                         <TabsHeader>
                             <TabHeader label='Perfil' icon='user' target='tabProfile' />
                             <TabHeader label='Endereço' icon='clipboard-list' target='tabAddress' />
+                            <TabHeader label='Permissões' icon='lock' target='tabPermissions' />
                             <TabHeader label='Incluir' icon='plus' target='tabCreate' onClick={() => init()} />
                             <TabHeader label='Alterar' icon='pencil' target='tabUpdate' />
                             <TabHeader label='Excluir' icon='trash-o' target='tabDelete' />
@@ -37,6 +38,9 @@ class Company extends Component {
                             </TabContent>
                             <TabContent id='tabAddress'>
                                 <h1>Endereço</h1>
+                            </TabContent>
+                            <TabContent id='tabPermissions'>
+                                <h1>Permissões</h1>
                             </TabContent>
                             <TabContent id='tabCreate'>
                                 <h1>cREATE</h1>

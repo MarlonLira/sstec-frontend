@@ -1,10 +1,4 @@
-function ReturnIfValid(value) {
-  let result = null;
-  if (value != undefined && value != '' && value != null) {
-    result = value;
-  }
-  return result;
-}
+import { isNumber, isUndefined, isNull, isArray, isString } from "util";
 
 function ReturnIfValid(value, defaultValue) {
   let result = defaultValue;
@@ -15,7 +9,14 @@ function ReturnIfValid(value, defaultValue) {
 }
 
 function IsValid(value) {
-  return (value != undefined && value != '' && value != null) ? true : false;
+  if (isArray(value)) {
+    return value.length > 0 ? true : false;
+  }
+
+  if (isString(value)) {
+    return value !== '' ? true : false;
+  }
+  return (!isUndefined(value) && !isNull(value)) ? true : false;
 }
 
 function LeftZero(value) {

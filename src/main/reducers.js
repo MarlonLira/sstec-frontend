@@ -11,19 +11,24 @@ import SelectReducer from '../common/widget/select/selectReducer';
 import AuthReducer from '../auth/authReducer';
 import SchedulingReducer from '../scheduling/schedulingReducer';
 import ParkingReducer from '../parking/parkingReducer';
+import ParkingSpaceReducer from '../parkingSpace/parkingSpaceReducer';
+import RuleReducer from '../rule/ruleReducer';
+
 
 const rootReducer = combineReducers({
+  form: formReducer,
   dashboard: DashboardReducer,
   tab: TabReducer,
   billingCycle: BillingCycleReducer,
   product: ProductReducer,
   employee: EmployeeReducer,
-  form: formReducer,
   toastr: toastrReducer,
   select: SelectReducer,
   auth: AuthReducer,
   scheduling: SchedulingReducer,
-  parking: ParkingReducer
+  parking: ParkingReducer,
+  parkingSpace: ParkingSpaceReducer,
+  rule:RuleReducer
 });
 
 export default rootReducer;
