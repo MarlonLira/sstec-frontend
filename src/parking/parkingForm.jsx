@@ -32,8 +32,9 @@ class ParkingForm extends Component {
             label='CPNJ'
             placeholder='CNPJ do Estacionamento'
             type='input'
-            mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+            mask={'CNPJ'}
             required='true'
+            readOnly={readOnly}
           />
           <Field
             name='phone'
@@ -43,8 +44,9 @@ class ParkingForm extends Component {
             label="Telefone"
             placeholder=''
             type='tel'
-            mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            mask={'PHONE'}
             required='true'
+            readOnly={readOnly}
           />
           <Field name='email'
             component={labelAndInput}

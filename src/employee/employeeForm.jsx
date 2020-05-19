@@ -34,7 +34,7 @@ class EmployeeForm extends Component {
                         placeholder='Informe o CPF do funcionário'
                         type='text'
                         required='true'
-                        mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,]}
+                        mask={'CPF'}
                     />
                     <Field
                         name='phone'
@@ -45,7 +45,7 @@ class EmployeeForm extends Component {
                         required='true'
                         placeholder='Informe o telefone do funcionário' 
                         type='tel'
-                        mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                        mask={'PHONE'}
                     />
                     <Field
                         name='email'

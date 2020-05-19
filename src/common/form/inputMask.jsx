@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '../layout/grid';
 import If from '../operator/if';
 import MaskedInput from 'react-text-mask'
+import { typeMask } from '../functions/typeMask'
 
 export default props => (
     <If test={!props.hide}>
@@ -14,9 +15,10 @@ export default props => (
                     maxLength={props.maxLength}
                     required={props.required}
                     pattern={props.pattern}
-                    mask={props.mask}
+                    mask={typeMask(props.mask)}
                 />
             </div>
         </Grid>
     </If>
 )
+

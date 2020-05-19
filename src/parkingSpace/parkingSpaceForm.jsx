@@ -8,6 +8,7 @@ import { init } from './parkingSpaceActions';
 import listParking from './listParking'
 import inputMask from '../common/form/inputCurrency';
 import labelAndInput from '../common/form/labelAndInput'
+import { replaceCodeNumber } from '../../src/common/functions/replace'
 
 
 
@@ -44,7 +45,7 @@ class ParkingSpaceForm extends Component {
     const { submitType } = this.props;
 
     if (values.value) {
-      value = this.replaceCode(values.value);
+      value = replaceCodeNumber(values.value);
     }
 
     _values = {
@@ -82,14 +83,6 @@ class ParkingSpaceForm extends Component {
     return list.map(parking => (
       <option key={parking.id} value={parking.id}>{parking.name}</option>
     ))
-  }
-
-  replaceCode(code) {
-    if (typeof code === 'string') {
-      code = code.replace('R$', '');
-      return code;
-    }
-    return code;
   }
 
   render() {

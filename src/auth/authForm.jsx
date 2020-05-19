@@ -9,6 +9,7 @@ import labelAndInput from '../common/form/labelAndInputLogin';
 import inputMask from '../common/form/inputMask';
 import Mensseger from './menssegerRegistrer';
 import logo from '../common/images/logo2.png';
+import { replaceCode } from '../../src/common/functions/replace';
 
 class AuthForm extends Component {
 
@@ -45,11 +46,6 @@ class AuthForm extends Component {
     this.setState({ [value]: check });
   }
 
-  replaceCode(code) {
-    code = code.replace(/[^\d]+/g, '');
-    return code;
-  }
-
   onSubmit(values) {
     let _values;
     let cpfEmployee;
@@ -74,15 +70,15 @@ class AuthForm extends Component {
                         if (values.registryCodeCompany) {
                           if (values.phoneCompany) {
                             // employee 
-                            values.registryCode = this.replaceCode(values.registryCode);
-                            values.phone = this.replaceCode(values.phone);
+                            values.registryCode = replaceCode(values.registryCode);
+                            values.phone = replaceCode(values.phone);
                             cpfEmployee = values.registryCode;
                             phoneEmployee = values.phone;
                             password = values.password;
 
                             // company
-                            values.registryCodeCompany = this.replaceCode(values.registryCodeCompany);
-                            values.phoneCompany = this.replaceCode(values.phoneCompany);
+                            values.registryCodeCompany = replaceCode(values.registryCodeCompany);
+                            values.phoneCompany = replaceCode(values.phoneCompany);
                             cnpjCompany = values.registryCodeCompany;
                             phoneCompany = values.phoneCompany;
 
@@ -224,7 +220,7 @@ class AuthForm extends Component {
                   cols='12 12'
                   placeholder='CPF *'
                   type='input'
-                  mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,]}
+                  mask={'CPF'}
                 />
                 : null
               }
@@ -247,7 +243,7 @@ class AuthForm extends Component {
                   maxLength='30'
                   placeholder='Telefone *'
                   type='tel'
-                  mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                  mask={'PHONE'}
                 />
                 : null
               }
@@ -292,7 +288,7 @@ class AuthForm extends Component {
                   maxLength=''
                   placeholder='CNPJ *'
                   type='input'
-                  mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+                  mask={'CNPJ'}
                 />
                 : null
               }
@@ -304,7 +300,7 @@ class AuthForm extends Component {
                   maxLength='30'
                   placeholder='Telefone *'
                   type='tel'
-                  mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                  mask={'PHONE'}
                 />
                 : null
               }
