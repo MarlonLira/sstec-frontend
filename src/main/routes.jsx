@@ -9,9 +9,16 @@ import Scheduling from '../scheduling/scheduling';
 import Parking from '../parking/parking';
 import ParkingSpace from '../parkingSpace/parkingSpace';
 import Rule from '../rule/rule';
+import SignIn from '../auth/signin';
+import SignUp from '../auth/signup';
+import RetrieveAccount from '../auth/retrieveAccount';
 
 export default props => (
   <Router history={hashHistory}>
+    <Route path="/signin" component={SignIn} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/retrieveAccount" component={RetrieveAccount} />
+
     <Route path="/" component={AuthOrApp}>
       <IndexRoute component={Dashboard} />
       <Route path='/employee' component={Employee} />

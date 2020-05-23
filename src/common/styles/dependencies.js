@@ -9,4 +9,6 @@ import 'modules/admin-lte/dist/js/adminlte.min.js';
 import 'modules/admin-lte/plugins/fontawesome-free/css/fontawesome.min.css';
 import 'modules/admin-lte/plugins/fontawesome-free/css/all.css';
 import 'modules/admin-lte/dist/css/adminlte.min.css';
-import './custom.css';
+import './css/custom.css';
+import './css/main.css';
+import './css/util.css';

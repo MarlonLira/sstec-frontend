@@ -1,4 +1,4 @@
-import DefaultLogo from '../../images/default-150x150.png';
+import DefaultLogo from '../../styles/images/default-150x150.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

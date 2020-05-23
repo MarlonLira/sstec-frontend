@@ -8,7 +8,7 @@ export default props => (
             <div className='form-group'>
                 <label htmlFor={props.name}>{props.label}</label>
                 <input {...props.input}
-                    className='form-control'
+                    className='input-square'
                     placeholder={props.placeholder}
                     readOnly={props.readOnly}
                     type={props.type}
