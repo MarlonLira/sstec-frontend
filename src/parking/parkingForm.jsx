@@ -5,7 +5,6 @@ import { reduxForm, Field } from 'redux-form';
 
 import { init } from './parkingActions';
 import labelAndInput from '../common/form/labelAndInput';
-import inputMask from '../common/form/labelAndInputMask'
 
 class ParkingForm extends Component {
   render() {
@@ -26,7 +25,7 @@ class ParkingForm extends Component {
           />
           <Field
             name='registryCode'
-            component={inputMask}
+            component={labelAndInput}
             cols='12 4'
             maxLength=''
             label='CPNJ'
@@ -37,7 +36,7 @@ class ParkingForm extends Component {
           />
           <Field
             name='phone'
-            component={inputMask}
+            component={labelAndInput}
             cols='12 4'
             maxLength='30'
             label="Telefone"

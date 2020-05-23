@@ -1,8 +1,8 @@
-import { isNumber, isUndefined, isNull, isArray, isString } from "util";
+import { isArray, isString, isNullOrUndefined } from "util";
 
 function ReturnIfValid(value, defaultValue) {
   let result = defaultValue;
-  if (value != undefined && value != '' && value != null) {
+  if (!isNullOrUndefined(value) && value != '') {
     result = value;
   }
   return result;
@@ -16,12 +16,12 @@ function IsValid(value) {
   if (isString(value)) {
     return value !== '' ? true : false;
   }
-  return (!isUndefined(value) && !isNull(value)) ? true : false;
+  return (!isNullOrUndefined(value)) ? true : false;
 }
 
 function LeftZero(value) {
   let result = ' ';
-  if (value != undefined && value != null) {
+  if (!isNullOrUndefined(value)) {
     result = value.toString();
     if (value.toString().length == 1) {
       result = `0${value.toString()}`;
@@ -63,7 +63,7 @@ function IsTime(time) {
 
 function LeftZero(value) {
   let result = ' ';
-  if (value !== undefined && value != null) {
+  if (!isNullOrUndefined(value)) {
     result = value.toString();
     if (value.toString().length === 1) {
       result = `0${value.toString()}`;
