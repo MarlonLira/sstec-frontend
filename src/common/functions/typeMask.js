@@ -6,6 +6,6 @@ export function typeMask(type) {
     } else if (type == 'CNPJ') {
         return [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
     } else {
-        return mask;
+        return '';
     }
 }

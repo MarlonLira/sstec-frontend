@@ -29,7 +29,7 @@ export function getList() {
           type: 'EMPLOYEE_FETCHED',
           payload: request.data.result
         });
-      }).catch(error =>{
+      }).catch(error => {
         console.log(error)
       })
   });
@@ -106,8 +106,8 @@ export function init() {
 
 function validateForm(values, method) {
   return new Promise(resolve => {
-    registryCodeEmployee = replaceCode(values.registryCode);
-    phoneEmployee = replaceCode(values.phone);
+    registryCodeEmployee = values.registryCode.replace(/[^\d]+/g, '');
+    phoneEmployee = values.phone.replace(/[^\d]+/g, '');
 
     if (registryCodeEmployee.length < 11) {
       toastr.error('Erro', 'O CPF deve conter 11 digitos.');
