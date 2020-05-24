@@ -12,7 +12,7 @@ function submit(values, url, type) {
     axios.post(url, values)
       .then(resp => {
         let _type = 'USER_FETCHED';
-        toastr.info('Info', resp.data.message);
+        toastr.message('Info', resp.data.message);
         if (type == 1) {
           _type = 'USER_SIGNUP'
         }

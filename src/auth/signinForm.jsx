@@ -6,12 +6,15 @@ import { signin } from './authActions';
 
 import { Mask } from '../common/functions/mask';
 import TextInput from '../common/widget/customTextInput';
-import { Redirect } from '../common/functions/page';
+import { Redirect, IsNeedRedirect } from '../common/functions/page';
 
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
 
 class SignInForm extends Component {
+  componentWillMount() {
+    IsNeedRedirect();
+  }
 
   onSubmit(values) {
     let _values = {
@@ -74,7 +77,7 @@ class SignInForm extends Component {
           <div className="text-center p-t-136">
             <a className="txt2" href="#signup">
               Crie sua conta{' '}
-							<i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
           </div>
         </form>
