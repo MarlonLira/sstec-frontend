@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signup } from './authActions';
 
+import { signup } from './authActions';
 import { Mask } from '../common/functions/mask';
 import TextInput from '../common/widget/customTextInput';
+import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
-
 import AuthHeader from './authHeader';
-import ImgTitle from './signinImgTitle';
 
 class SignUp extends Component {
 
@@ -19,17 +18,29 @@ class SignUp extends Component {
 
   onSubmit(values) {
     let _values = {
-      "employee": values
+      "employee": {
+        name: values.name,
+        email: values.email,
+        registryCode: values.registryCode.replace(/[^\d]+/g, ''),
+        phone: values.phone.replace(/[^\d]+/g, ''),
+        password: values.password,
+        confirmPassword: values.confirmPassword
+      },
+      "company": {
+        name: values.companyName,
+        registryCode: values.companyRegistryCode.replace(/[^\d]+/g, ''),
+        phone: values.companyPhone.replace(/[^\d]+/g, '')
+      }
     }
+
     this.props.signup(_values)
       .then(resp => {
+        console.log(resp)
         if (resp[0].type == 'USER_SIGNUP') {
-          Redirect('');
+          //Redirect('');
         }
       });
   };
-
-
 
   render() {
     const { handleSubmit } = this.props;
@@ -50,6 +61,7 @@ class SignUp extends Component {
               placeholder='Full Name'
               type='text'
               icon='user'
+              pattern='[a-z]{5,30}'
             />
 
             <Field
@@ -60,6 +72,7 @@ class SignUp extends Component {
               placeholder='Registry Code'
               type='text'
               icon='id-card'
+              mask={Mask.USER_REGISTRY_CODE}
             />
 
             <Field
@@ -78,8 +91,9 @@ class SignUp extends Component {
               cols='16 16'
               maxLenth='30'
               placeholder='Phone'
-              type='email'
+              type='phone'
               icon='phone'
+              mask={Mask.PHONE}
             />
 
             <Field
@@ -117,6 +131,7 @@ class SignUp extends Component {
               placeholder='Company Name'
               type='text'
               icon='building'
+              pattern='[a-z]{5,30}'
             />
 
             <Field
@@ -127,6 +142,7 @@ class SignUp extends Component {
               placeholder='Company Registry Code'
               type='text'
               icon='id-card'
+              mask={Mask.COMPANY_REGISTRY_CODE}
             />
 
             <Field
@@ -137,6 +153,7 @@ class SignUp extends Component {
               placeholder='Company Phone'
               type='text'
               icon='phone'
+              mask={Mask.PHONE}
             />
           </div>
           <div className="container-login100-form-btn">
@@ -152,6 +169,7 @@ class SignUp extends Component {
       		</a>
           </div>
         </form>
+        <Messages />
       </AuthHeader>
     );
   }

@@ -6,6 +6,7 @@ import { signin } from './authActions';
 
 import TextInput from '../common/widget/customTextInput';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
+import Messages from '../common/msg/messages';
 
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
@@ -80,6 +81,7 @@ class SignIn extends Component {
             </a>
           </div>
         </form>
+        <Messages />
       </AuthHeader>
     )
   }

@@ -18,7 +18,7 @@ export default props => (
         <If test={IsValid(props.mask)}>
           <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
             <MaskedInput {...props.input}
-              className='input-square'
+              className='input100'
               placeholder={props.placeholder}
               readOnly={props.readOnly}
               type={props.type}
@@ -27,6 +27,7 @@ export default props => (
               pattern={props.pattern}
               mask={CreateMask(props.mask)}
               guide={ReturnIfValid(props.guide, false)}
+              autoComplete='off'
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -45,6 +46,7 @@ export default props => (
               type={props.type}
               maxLength={props.maxLength}
               required={props.required}
+              autoComplete='off'
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
