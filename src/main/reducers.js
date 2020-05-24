@@ -13,6 +13,7 @@ import SchedulingReducer from '../scheduling/schedulingReducer';
 import ParkingReducer from '../parking/parkingReducer';
 import ParkingSpaceReducer from '../parkingSpace/parkingSpaceReducer';
 import RuleReducer from '../rule/ruleReducer';
+import CompanyReducer from '../company/companyReducer'
 
 
 const rootReducer = combineReducers({
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   scheduling: SchedulingReducer,
   parking: ParkingReducer,
   parkingSpace: ParkingSpaceReducer,
-  rule:RuleReducer
+  rule:RuleReducer,
+  company: CompanyReducer
 });
 
 export default rootReducer;

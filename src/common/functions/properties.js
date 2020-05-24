@@ -1,3 +1,5 @@
+import { isNumber, isUndefined, isNull, isArray, isString } from "util";
+
 function ReturnIfValid(value, defaultValue) {
   let result = defaultValue;
   if (value != undefined && value != '' && value != null) {
