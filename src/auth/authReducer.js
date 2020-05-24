@@ -27,6 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       }
     }
     case 'USER_FETCHED': {
+      console.log('entrou!!')
       localStorage.setItem(_employee, JSON.stringify(action.payload.employee));
       localStorage.setItem(_company, JSON.stringify(action.payload.company));
       localStorage.setItem(_parking, IsValid(action.payload.parking) ? JSON.stringify(action.payload.parking) : JSON.stringify({ id: 0 }));

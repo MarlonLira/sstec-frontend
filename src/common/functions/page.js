@@ -16,4 +16,9 @@ function IsNeedRefresh(isRefresh = false) {
   }
 }
 
-export { Refresh, IsNeedRefresh }
+function Redirect(pathName) {
+  var path = `${window.location.origin}/${pathName}`;
+  window.location.replace(path);
+}
+
+export { Refresh, IsNeedRefresh, Redirect }

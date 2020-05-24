@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from '../common/widget/select/select';
-import DefaultLogo from '../common/images/ProfilePhoto.jpg';
+import DefaultLogo from '../common/styles/images/ProfilePhoto.jpg';
 import Card from '../common/widget/card';
 
 class Components extends Component {

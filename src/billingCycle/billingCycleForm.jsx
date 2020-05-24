@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 
 import { init } from './billingCycleActions';
-import labelAndInput from '../common/form/labelAndInput';
+import TextInput from '../common/widget/textInput';
 import CreditList from './creditList';
 
 class BillingCycleForm extends Component {
@@ -13,19 +13,19 @@ class BillingCycleForm extends Component {
     return (
       <form role='form' onSubmit={handleSubmit}>
         <div className='row'>
-          <Field name='clientId' component={labelAndInput}
+          <Field name='clientId' component={TextInput}
             label='Cliente' cols='12 4' readOnly={readOnly}
             placeholder='Informe o id do Cliente' type='number'
           />
-          <Field name='credit' component={labelAndInput}
+          <Field name='credit' component={TextInput}
             label='Credito' cols='12 4' readOnly={readOnly}
             placeholder='Informe o credito' type='number'
           />
-          <Field name='debit' component={labelAndInput}
+          <Field name='debit' component={TextInput}
             label='Debito' cols='12 4' readOnly={readOnly}
             placeholder='Informe o Debito' type='number'
           />
-          <Field name='date' component={labelAndInput}
+          <Field name='date' component={TextInput}
             label='Data' cols='12 4' readOnly={readOnly}
             placeholder='Informe a Data' type='date'
           />

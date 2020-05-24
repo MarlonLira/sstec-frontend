@@ -7,7 +7,7 @@ export default props => (
   <nav className="mt-2">
     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <MenuItem label='Inicio' icon='home' path='/' />
-      <MenuTree label='Gerenciamento' icon='user-tie' >
+      <MenuTree label='Gerenciamento' icon='tasks' >
         <MenuItem label='Estacionamento' icon='angle-right' path='parking' />
         <MenuItem label='Funcionários' icon='angle-right' path='employee' />
         <MenuItem label='Reservas' icon='angle-right' path='schedulings' />

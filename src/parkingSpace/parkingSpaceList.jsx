@@ -100,7 +100,7 @@ class ParkingList extends Component {
             <button type="button"
               className='btn btn-primary p-custom ppButton'
               onClick={() => this.newCall()}>
-              <i className='fa fa-search'></i>
+              <i className='fa fa-search margin-f-10'></i>
             </button>
           </div>
         </div>
