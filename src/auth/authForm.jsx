@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signin } from './authActions';
 
+import { signin } from './authActions';
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
 import TextInput from '../common/widget/customTextInput';
-
 
 class AuthForm extends Component {
 
@@ -53,7 +52,7 @@ class AuthForm extends Component {
           <div className="container-login100-form-btn">
             <button className="login100-form-btn">
               Entrar
-                </button>
+            </button>
           </div>
 
           <div className="text-center p-t-12">
@@ -62,18 +61,18 @@ class AuthForm extends Component {
             </span>
             <a className="txt2" href="#retrieveAccount">
               Usuario / Senha?
-               </a>
+            </a>
           </div>
 
           <div className="text-center p-t-136">
             <a className="txt2" href="#signup">
               Crie sua conta{' '}
-							<i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
           </div>
         </form>
       </AuthHeader >
-    )
+    );
   }
 }
 

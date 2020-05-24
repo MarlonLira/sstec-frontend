@@ -17,12 +17,12 @@ import { IsNeedRefresh } from '../common/functions/page';
 
 class Dashboard extends Component {
   componentWillMount() {
-    IsNeedRefresh(true);
+    //IsNeedRefresh(true);
     //this.props.getSummary();
   }
 
   componentDidMount() {
-    IsNeedRefresh(true);
+    //IsNeedRefresh(true);
   }
 
   render() {

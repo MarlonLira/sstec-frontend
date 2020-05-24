@@ -4,14 +4,14 @@ import { bindActionCreators } from 'redux';
 import { signup } from './authActions';
 
 import Messages from '../common/msg/messages';
-import AuthForm from './authForm';
+import SignIn from './signin';
 
 class Auth extends Component {
   render() {
     return (
       <div>
         <div>
-          <AuthForm />
+          <SignIn />
         </div>
         <Messages />
       </div>

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Redirect, IsNeedRedirect } from '../common/functions/page';
 
 class RetrieveAccount extends Component {
+  componentWillMount() {
+    IsNeedRedirect();
+  }
+
   render() {
     return (
       <div className="limiter">

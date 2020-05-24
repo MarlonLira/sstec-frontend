@@ -6,12 +6,16 @@ import { signup } from './authActions';
 
 import { Mask } from '../common/functions/mask';
 import TextInput from '../common/widget/customTextInput';
-import { Redirect } from '../common/functions/page';
+import { Redirect, IsNeedRedirect } from '../common/functions/page';
 
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
 
 class SignUp extends Component {
+
+  componentWillMount() {
+    IsNeedRedirect();
+  }
 
   onSubmit(values) {
     let _values = {
@@ -24,6 +28,8 @@ class SignUp extends Component {
         }
       });
   };
+
+
 
   render() {
     const { handleSubmit } = this.props;
