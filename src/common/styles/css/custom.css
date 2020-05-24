@@ -1,3 +1,7 @@
+.margin-f-10 {
+  margin: 10px;
+}
+
 /* Sidebar */
 
 .sidebar-custom {
@@ -145,6 +149,7 @@ button {
 }
 
 .company-label {
+  font-size: x-small;
   position: relative;
   top: 1px;
 }
@@ -250,5 +255,6 @@ html, input, button {
 }
 
 .ppButton {
-  margin-top: 28px;
+  position: relative;
+  top: 29px;
 }

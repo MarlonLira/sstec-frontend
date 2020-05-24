@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 
 import { init } from './employeeActions';
-import labelAndInput from '../common/form/labelAndInput';
+import TextInput from '../common/widget/textInput';
+
+import { Mask } from '../common/functions/mask';
 
 class EmployeeForm extends Component {
 
@@ -15,7 +17,7 @@ class EmployeeForm extends Component {
         <div className='row'>
           <Field
             name='name'
-            component={labelAndInput}
+            component={TextInput}
             required='true'
             label='Nome'
             cols='12 4'
@@ -26,29 +28,29 @@ class EmployeeForm extends Component {
           />
           <Field
             name='registryCode'
-            component={labelAndInput}
+            component={TextInput}
             label='CPF'
             cols='12 4'
             readOnly={readOnly}
             placeholder='Informe o CPF do funcionário'
             type='text'
             required='true'
-            mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,]}
+            mask={Mask.USER_REGISTRY_CODE}
           />
           <Field
             name='phone'
-            component={labelAndInput}
+            component={TextInput}
             label='Telefone'
             cols='12 4'
             readOnly={readOnly}
             required='true'
             placeholder='Informe o telefone do funcionário'
             type='tel'
-            mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            mask={Mask.PHONE}
           />
           <Field
             name='email'
-            component={labelAndInput}
+            component={TextInput}
             maxLength='50'
             label='Email'
             cols='12 4'
@@ -61,7 +63,7 @@ class EmployeeForm extends Component {
           <Field
             label='Senha'
             name='passwordEmployee'
-            component={labelAndInput}
+            component={TextInput}
             cols='12 4'
             readOnly={readOnly}
             placeholder='Informe a senha do funcionário'
@@ -72,7 +74,7 @@ class EmployeeForm extends Component {
           <Field
             label='Confirmar senha'
             name='confirmPassword'
-            component={labelAndInput}
+            component={TextInput}
             cols='12 4'
             readOnly={readOnly}
             placeholder='Confirme a senha do funcionário'

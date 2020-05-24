@@ -4,18 +4,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { signin } from './authActions';
 
+import { Mask } from '../common/functions/mask';
+import TextInput from '../common/widget/customTextInput';
+import { Redirect } from '../common/functions/page';
+
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
-import TextInput from '../common/widget/customTextInput';
 
-
-class AuthForm extends Component {
+class SignInForm extends Component {
 
   onSubmit(values) {
     let _values = {
       "employee": values
     }
-    this.props.signin(_values);
+    this.props.signin(_values)
+      .then(resp => {
+        if (resp[0].type == 'USER_FETCHED') {
+          Redirect('');
+        }
+      });
   };
 
   render() {
@@ -25,10 +32,9 @@ class AuthForm extends Component {
       <AuthHeader >
         <ImgTitle />
         <form role='form' className="login100-form validate-form" onSubmit={handleSubmit(v => this.onSubmit(v))}>
-
           <span className="login100-form-title">
             Login
-				  </span>
+				      </span>
 
           <Field
             name='email'
@@ -72,11 +78,11 @@ class AuthForm extends Component {
             </a>
           </div>
         </form>
-      </AuthHeader >
+      </AuthHeader>
     )
   }
 }
 
-AuthForm = reduxForm({ form: 'authForm' })(AuthForm);
+SignInForm = reduxForm({ form: 'authForm' })(SignInForm);
 const mapDispatchToProps = dispatch => bindActionCreators({ signin }, dispatch);
-export default connect(null, mapDispatchToProps)(AuthForm);
+export default connect(null, mapDispatchToProps)(SignInForm);

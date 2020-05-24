@@ -15,7 +15,7 @@ import RetrieveAccount from '../auth/retrieveAccount';
 
 export default props => (
   <Router history={hashHistory}>
-    <Route path="/signin" component={SignIn} />
+    <Route path="/signin" component={SignIn}  />
     <Route path="/signup" component={SignUp} />
     <Route path="/retrieveAccount" component={RetrieveAccount} />
 

@@ -6,10 +6,9 @@ import { create, update, destroy, getListSpace, getList } from './parkingSpaceAc
 
 import { init } from './parkingSpaceActions';
 import listParking from './listParking'
-import inputMask from '../common/form/inputCurrency';
-import labelAndInput from '../common/form/labelAndInput'
+import TextInput from '../common/widget/textInput';
 
-
+import { Mask } from '../common/functions/mask';
 
 class ParkingSpaceForm extends Component {
 
@@ -44,7 +43,7 @@ class ParkingSpaceForm extends Component {
     const { submitType } = this.props;
 
     if (values.value) {
-      value = isString(values.value) ? values.value.replace('R$', '')  : values.value;
+      value = isString(values.value) ? values.value.replace('R$', '') : values.value;
     }
 
     _values = {
@@ -59,13 +58,13 @@ class ParkingSpaceForm extends Component {
 
     switch (submitType) {
       case 'create':
-        create(_values).then(() => {this.props.init()});
+        create(_values).then(() => { this.props.init() });
         break;
       case 'update':
-        update(_values).then(() => {this.props.init()});
+        update(_values).then(() => { this.props.init() });
         break;
       case 'delete':
-        destroy(_values).then(() => {this.props.init()});
+        destroy(_values).then(() => { this.props.init() });
         break;
     }
   }
@@ -111,16 +110,17 @@ class ParkingSpaceForm extends Component {
           />
           <Field
             name='value'
-            component={inputMask}
+            component={TextInput}
             label='Valor'
             cols='12 4'
             readOnly={readOnly}
             required='true'
             type='text'
+            mask={Mask.CURRENCY}
           />
           <Field
             name='amount'
-            component={labelAndInput}
+            component={TextInput}
             label='Quantidade'
             cols='12 4'
             readOnly={readOnly}

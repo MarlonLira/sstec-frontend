@@ -42,7 +42,7 @@ class RetrieveAccount extends Component {
             <div className="text-center p-t-136">
               <a className="txt2" href="#signin">
                 <i className="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
-						Voltar
+                {' '}Voltar
 					</a>
             </div>
           </div>

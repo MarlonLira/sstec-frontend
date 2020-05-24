@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 
 import { init } from './ruleActions';
-import labelAndInput from '../common/form/labelAndInput';
+import TextInput from '../common/widget/textInput';
 
 class RuleForm extends Component {
   render() {
@@ -12,11 +12,11 @@ class RuleForm extends Component {
     return (
       <form role='form' onSubmit={handleSubmit}>
         <div className='row'>
-          <Field name='name' component={labelAndInput} required='true'
+          <Field name='name' component={TextInput} required='true'
             label='Permissão' cols='12 4' readOnly={readOnly} maxLength='30'
             placeholder='Informe o nome da permissão' type='text'
           />
-          <Field name='level' component={labelAndInput}
+          <Field name='level' component={TextInput}
             label='Nível' cols='12 4' readOnly={readOnly} required='true'
             placeholder='Informe o nível' type='number'
           />

@@ -1,116 +1,156 @@
 import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { signup } from './authActions';
+
+import { Mask } from '../common/functions/mask';
+import TextInput from '../common/widget/customTextInput';
+import { Redirect } from '../common/functions/page';
+
+import AuthHeader from './authHeader';
+import ImgTitle from './signinImgTitle';
 
 class SignUp extends Component {
+
+  onSubmit(values) {
+    let _values = {
+      "employee": values
+    }
+    this.props.signup(_values)
+      .then(resp => {
+        if (resp[0].type == 'USER_SIGNUP') {
+          Redirect('');
+        }
+      });
+  };
+
   render() {
+    const { handleSubmit } = this.props;
     return (
+      <AuthHeader >
+        <form role='form' className='display-c' onSubmit={handleSubmit(v => this.onSubmit(v))}>
+          {/* <!--================================= Employee =================================================--> */}
+          <div className='width-45'>
+            <span className="login100-form-title">
+              Employee
+					 </span>
 
-      <div className="limiter">
-        <div className="container-login100">
-          <div className="wrap-login100">
-            {/* <!--================================= Employee =================================================--> */}
-            <div>
-              <span className="login100-form-title">
-                Employee
-					</span>
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="name" placeholder="Full Name" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-user" aria-hidden="true"></i>
-                </span>
-              </div>
+            <Field
+              name='name'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Full Name'
+              type='text'
+              icon='user'
+            />
 
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="registryCode" placeholder="Registry Code" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-id-card" aria-hidden="true"></i>
-                </span>
-              </div>
+            <Field
+              name='registryCode'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Registry Code'
+              type='text'
+              icon='id-card'
+            />
 
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="email" placeholder="Email" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-envelope" aria-hidden="true"></i>
-                </span>
-              </div>
+            <Field
+              name='email'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='E-mail'
+              type='email'
+              icon='envelope'
+            />
 
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="phone" placeholder="Phone" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-phone" aria-hidden="true"></i>
-                </span>
-              </div>
+            <Field
+              name='phone'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Phone'
+              type='email'
+              icon='phone'
+            />
 
-              <div className="wrap-input100 validate-input" data-validate="Password is required">
-                <input className="input100" type="password" name="pass" placeholder="Password" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-lock" aria-hidden="true"></i>
-                </span>
-              </div>
+            <Field
+              name='password'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Password'
+              type='password'
+              icon='lock'
+            />
 
-              <div className="wrap-input100 validate-input" data-validate="Password is required">
-                <input className="input100" type="password" name="confirmPass" placeholder="Confirm Password" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-lock" aria-hidden="true"></i>
-                </span>
-              </div>
-            </div>
-
-            {/* <!--================================= Company =================================================--> */}
-            <div>
-              <span className="login100-form-title">
-                Company
-					</span>
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="CompanyName" placeholder="Company Name" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-building" aria-hidden="true"></i>
-                </span>
-              </div>
-
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="registryCode" placeholder="Registry Code" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-id-card" aria-hidden="true"></i>
-                </span>
-              </div>
-
-              <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                <input className="input100" type="text" name="phone" placeholder="Phone" />
-                <span className="focus-input100"></span>
-                <span className="symbol-input100">
-                  <i className="fa fa-phone" aria-hidden="true"></i>
-                </span>
-              </div>
-            </div>
-
-            <div className="container-login100-form-btn">
-              <button className="login100-form-btn">
-                Cadastrar
-					</button>
-            </div>
-
-            <div className="text-center p-t-136">
-              <a className="txt2" href="#signin">
-                <i className="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
-						Voltar
-					</a>
-            </div>
+            <Field
+              name='new-password'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Password'
+              type='password'
+              icon='lock'
+            />
           </div>
-        </div>
-      </div >
-    )
+
+          {/* <!--================================= Company =================================================--> */}
+
+          <div className='width-45'>
+            <span className="login100-form-title">
+              Company
+      		  </span>
+            <Field
+              name='companyName'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Company Name'
+              type='text'
+              icon='building'
+            />
+
+            <Field
+              name='companyRegistryCode'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Company Registry Code'
+              type='text'
+              icon='id-card'
+            />
+
+            <Field
+              name='companyPhone'
+              component={TextInput}
+              cols='16 16'
+              maxLenth='30'
+              placeholder='Company Phone'
+              type='text'
+              icon='phone'
+            />
+          </div>
+          <div className="container-login100-form-btn">
+            <button className="login100-form-btn">
+              Cadastrar
+       		</button>
+          </div>
+
+          <div className="text-center p-t-136">
+            <a className="txt2" href="#signin">
+              <i className="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+              {' '}Voltar
+      		</a>
+          </div>
+        </form>
+      </AuthHeader>
+    );
   }
 }
 
-//const mapDispatchToProps = dispatch => bindActionCreators({ login, signup }, dispatch);
-export default connect(null, null)(SignUp);
+SignUp = reduxForm({ form: 'authForm' })(SignUp);
+const mapDispatchToProps = dispatch => bindActionCreators({ signup }, dispatch);
+export default connect(null, mapDispatchToProps)(SignUp);
