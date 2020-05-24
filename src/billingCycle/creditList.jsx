@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Grid from '../common/layout/grid';
 import { Field } from 'redux-form';
-import Input from '../common/form/input';
+import TextInput from '../common/widget/textInput';
 
 class CreditList extends Component {
   renderRows() {
     return (
       <tr>
-        <td><Field name='innerDate.Month' component={Input}
+        <td><Field name='innerDate.Month' component={TextInput}
           placeholder='informe o nome'
           readOnly={this.props.readOnly} /></td>
-        <td><Field name='innerDate.Year' component={Input}
+        <td><Field name='innerDate.Year' component={TextInput}
           placeholder='informe o valor'
           readOnly={this.props.readOnly} /></td>
         <td></td>
