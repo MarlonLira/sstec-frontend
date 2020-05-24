@@ -16,9 +16,15 @@ function IsNeedRefresh(isRefresh = false) {
   }
 }
 
+function IsNeedRedirect() {
+  if (IsValid(localStorage.getItem("_sp_token_employee"))) {
+    Redirect('');
+  }
+}
+
 function Redirect(pathName) {
   var path = `${window.location.origin}/${pathName}`;
   window.location.replace(path);
 }
 
-export { Refresh, IsNeedRefresh, Redirect }
+export { Refresh, IsNeedRefresh, Redirect, IsNeedRedirect }

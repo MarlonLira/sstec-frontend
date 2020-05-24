@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Redirect, IsNeedRedirect } from '../common/functions/page';
+import Messages from '../common/msg/messages';
 
 class RetrieveAccount extends Component {
+  componentWillMount() {
+    IsNeedRedirect();
+  }
+
   render() {
     return (
       <div className="limiter">
@@ -13,7 +19,7 @@ class RetrieveAccount extends Component {
             <div className="title-recovery">
               <h3>
                 Recuperar Conta
-					</h3>
+					    </h3>
               <h6> Por favor informe os dados abaixo!</h6>
             </div>
 
@@ -47,6 +53,7 @@ class RetrieveAccount extends Component {
             </div>
           </div>
         </div>
+        <Messages />
       </div>
     )
   }
