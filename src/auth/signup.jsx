@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { signup } from './authActions';
-import { Mask } from '../common/functions/mask';
+import { Mask, CleanMask } from '../common/functions/mask';
 import TextInput from '../common/widget/customTextInput';
 import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
@@ -21,15 +21,15 @@ class SignUp extends Component {
       "employee": {
         name: values.name,
         email: values.email,
-        registryCode: values.registryCode.replace(/[^\d]+/g, ''),
-        phone: values.phone.replace(/[^\d]+/g, ''),
+        registryCode: CleanMask(values.registryCode, Mask.USER_REGISTRY_CODE),
+        phone: CleanMask(values.phone, Mask.PHONE),
         password: values.password,
         confirmPassword: values.confirmPassword
       },
       "company": {
         name: values.companyName,
-        registryCode: values.companyRegistryCode.replace(/[^\d]+/g, ''),
-        phone: values.companyPhone.replace(/[^\d]+/g, '')
+        registryCode: CleanMask(values.companyRegistryCode, Mask.COMPANY_REGISTRY_CODE),
+        phone: CleanMask(values.companyPhone, Mask.PHONE)
       }
     }
 

@@ -35,6 +35,7 @@ class ParkingForm extends Component {
             type='input'
             mask={Mask.COMPANY_REGISTRY_CODE}
             required='true'
+            readOnly={readOnly}
           />
           <Field
             name='phone'
@@ -46,6 +47,7 @@ class ParkingForm extends Component {
             type='tel'
             mask={Mask.PHONE}
             required='true'
+            readOnly={readOnly}
           />
           <Field name='email'
             component={TextInput}

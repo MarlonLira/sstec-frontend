@@ -1,4 +1,5 @@
 import { IsValid } from './properties';
+import { toastr } from 'react-redux-toastr';
 
 function Refresh(seconds) {
   window.location.reload(seconds);
