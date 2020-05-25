@@ -38,6 +38,22 @@ function CreateMask(maskName) {
   }
 }
 
+
+function CleanMask(value, Mask) {
+  switch (Mask) {
+    case Mask.COMPANY_REGISTRY_CODE:
+      return value.replace(/[^\d]+/g, '');
+    case Mask.CURRENCY:
+      return value.replace('R$', '');
+    case Mask.PHONE:
+      return value.replace(/[^\d]+/g, '');
+    case Mask.USER_REGISTRY_CODE:
+      return value.replace(/[^\d]+/g, '');
+    default:
+      return value.replace(/[^\d]+/g, '');
+  }
+}
+
 function CreateMaskText(text, maskName) {
   switch (maskName) {
     case Mask.COMPANY_REGISTRY_CODE:
@@ -69,8 +85,8 @@ function MaskPhoneText(text) {
     text.substring(2, 3) + ' ' +
     text.substring(3, 7) + ' - ' +
     text.substring(7, 11);
-  
+
   return value;
 }
 
-export { CreateMask, CreateMaskText, MaskPhoneText, Mask };
+export { CreateMask, CreateMaskText, MaskPhoneText, Mask, CleanMask };

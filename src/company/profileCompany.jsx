@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getList, showUpdate, showDelete, showCreate } from './companyActions';
 import DefaultLogo from '../common/styles/images/ProfilePhoto.jpg';
 import { CreateMaskText, MaskPhoneText, Mask } from '../common/functions/mask';
-import './style.css'
+import './style.css';
 
 class ProfileCompany extends Component {
 
