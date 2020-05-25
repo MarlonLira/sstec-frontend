@@ -38,4 +38,39 @@ function CreateMask(maskName) {
   }
 }
 
-export { CreateMask, Mask };
+function CreateMaskText(text, maskName) {
+  switch (maskName) {
+    case Mask.COMPANY_REGISTRY_CODE:
+      return MaskCompanyText(text);
+    case Mask.PHONE:
+      return MaskPhoneText(text);
+    default:
+      break;
+  }
+}
+
+function MaskCompanyText(text) {
+  let value;
+
+  value = text.substring(0, 2) + '.' +
+    text.substring(2, 5) + '.' +
+    text.substring(5, 8) + '/' +
+    text.substring(8, 12) + '-' +
+    text.substring(12, 14);
+
+  return (value);
+}
+
+function MaskPhoneText(text) {
+  let value;
+
+  value = '(' +
+    text.substring(0, 2) + ')' + ' ' +
+    text.substring(2, 3) + ' ' +
+    text.substring(3, 7) + ' - ' +
+    text.substring(7, 11);
+  
+  return value;
+}
+
+export { CreateMask, CreateMaskText, MaskPhoneText, Mask };

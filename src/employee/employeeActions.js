@@ -4,6 +4,7 @@ import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
+import { replaceCode } from '../../src/common/functions/replace'
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -47,6 +48,7 @@ export function destroy(values) {
 }
 
 function submit(values, method) {
+  console.log(values)
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/employee/${id}`, values)
@@ -191,7 +193,8 @@ function validateForm(values, method) {
             registryCode: registryCodeEmployee,
             phone: phoneEmployee,
             password: passwordEmployee,
-            confirmPassword: values.confirmPassword
+            confirmPassword: values.confirmPassword,
+            companyId: COMPANY_ID
           }
         }
         resolve([
