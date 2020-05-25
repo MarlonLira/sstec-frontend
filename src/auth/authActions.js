@@ -12,10 +12,16 @@ function submit(values, url, type) {
     axios.post(url, values)
       .then(resp => {
         let _type = 'USER_FETCHED';
-        toastr.info('Info', resp.data.message);
+        toastr.message('Info', resp.data.message);
         if (type == 1) {
           _type = 'USER_SIGNUP'
         }
+        console.log([
+          {
+            type: _type,
+            payload: resp.data.result
+          }
+        ]);
         resolve([
           {
             type: _type,
@@ -25,12 +31,18 @@ function submit(values, url, type) {
       })
       .catch(error => {
         toastr.error('Error', error.response.data.message);
-      })
-  })
+      });
+  });
 }
 
-export const signin = values => submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin);
-//export const signup = values => submit(values, `${consts.OAPI_URL}/employee/signup`, type.signup);
+export function signin(values) {
+  return new Promise((resolve) => {
+    submit(values, `${consts.OAPI_URL}/employee/signin`, type.signin)
+      .then(resp => {
+        resolve(resp);
+      });
+  })
+}
 
 export function signup(values) {
   return new Promise((resolve) => {

@@ -1,4 +1,4 @@
-import '../common/template/dependencies/dependencies';
+import '../common/styles/dependencies';
 import React from 'react';
 
 import Navbar from '../common/template/navbar/navbar';

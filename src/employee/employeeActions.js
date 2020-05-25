@@ -4,6 +4,7 @@ import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
+import { Mask, CleanMask } from '../common/functions/mask';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -47,6 +48,7 @@ export function destroy(values) {
 }
 
 function submit(values, method) {
+  console.log(values)
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/employee/${id}`, values)
@@ -99,13 +101,13 @@ export function init() {
       getList(),
       initialize('employeeForm', INITIAL_VALUES)
     ]);
-  })
+  });
 }
 
 function validateForm(values, method) {
   return new Promise(resolve => {
-    registryCodeEmployee = values.registryCode.replace(/[^\d]+/g, '');
-    phoneEmployee = values.phone.replace(/[^\d]+/g, '');
+    registryCodeEmployee = CleanMask(values.registryCode, Mask.COMPANY_REGISTRY_CODE);
+    phoneEmployee = CleanMask(values.phone, Mask.PHONE);
 
     if (registryCodeEmployee.length < 11) {
       toastr.error('Erro', 'O CPF deve conter 11 digitos.');
@@ -191,7 +193,8 @@ function validateForm(values, method) {
             registryCode: registryCodeEmployee,
             phone: phoneEmployee,
             password: passwordEmployee,
-            confirmPassword: values.confirmPassword
+            confirmPassword: values.confirmPassword,
+            companyId: COMPANY_ID
           }
         }
         resolve([
@@ -200,7 +203,5 @@ function validateForm(values, method) {
         );
       }
     }
-  })
-
-  
+  });
 }
