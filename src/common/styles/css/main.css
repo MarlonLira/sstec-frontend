@@ -542,3 +542,7 @@ iframe {
 .width-45 {
   width: 45%;
 }
+
+.btn-default {
+  border-color: #ddd !important;
+}

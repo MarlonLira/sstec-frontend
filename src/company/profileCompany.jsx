@@ -18,7 +18,7 @@ class ProfileCompany extends Component {
     return list.map(company => (
       <div className="profile-card" key={company.id}>
         <div className="top-section">
-          <i className="notif fa fa-pencil" onClick={() => this.props.showUpdate(company)}></i>
+          <i className="notif fa fa-pen" onClick={() => this.props.showUpdate(company)}></i>
           <i className="message fas fa-envelope"></i>
           <div className="pic">
             <img src={DefaultLogo} alt=""></img>
