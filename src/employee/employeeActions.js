@@ -101,7 +101,7 @@ export function init() {
       getList(),
       initialize('employeeForm', INITIAL_VALUES)
     ]);
-  })
+  });
 }
 
 function validateForm(values, method) {
@@ -203,7 +203,5 @@ function validateForm(values, method) {
         );
       }
     }
-  })
-
-  
+  });
 }

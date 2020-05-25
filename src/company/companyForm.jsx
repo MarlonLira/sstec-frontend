@@ -2,71 +2,49 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
+import { Mask } from '../common/functions/mask';
+import TextInput from '../common/widget/textInput';
 
 import { init } from './companyActions';
-import labelAndInput from '../common/form/labelAndInput';
-import inputMask from '../common/form/labelAndInputMask'
 
 class CompanyForm extends Component {
   render() {
     const { handleSubmit, readOnly } = this.props;
     return (
       <form role='form' onSubmit={handleSubmit}>
-        <div className='row'>
+       <div className='row'>
           <Field
             name='name'
-            component={labelAndInput}
+            component={TextInput}
             required='true'
             label='Nome'
             cols='12 4'
             readOnly={readOnly}
-            maxLength='30'
-            placeholder='Informe o nome do Estacionamento'
+            maxLength='50'
+            placeholder='Nome da Empresa'
             type='text'
           />
           <Field
             name='registryCode'
-            component={inputMask}
+            component={TextInput}
+            label='CNPJ'
             cols='12 4'
-            maxLength=''
-            label='CPNJ'
-            placeholder='CNPJ do Estacionamento'
-            type='input'
-            mask={'CNPJ'}
-            required='true'
             readOnly={readOnly}
+            placeholder='CNPJ'
+            type='text'
+            required='true'
+            mask={Mask.COMPANY_REGISTRY_CODE}
           />
           <Field
             name='phone'
-            component={inputMask}
+            component={TextInput}
+            label='Telefone'
             cols='12 4'
-            maxLength='30'
-            label="Telefone"
-            placeholder=''
-            type='tel'
-            mask={'PHONE'}
+            readOnly={readOnly}
             required='true'
-            readOnly={readOnly}
-          />
-          <Field name='email'
-            component={labelAndInput}
-            label='Email'
-            cols='12 4'
-            readOnly={readOnly}
-            maxLength='50'
-            placeholder='Informe o E-mail do Estacionamento'
-            type='email'
-          />
-          <Field
-            name='imgUrl'
-            component={labelAndInput}
-            maxLength='100'
-            label='Imagem'
-            cols='12 4'
-            readOnly={readOnly}
-            maxLength='100'
-            placeholder='Informe o link da imagem'
-            type='text'
+            placeholder='Informe o telefone da Empresa'
+            type='tel'
+            mask={Mask.PHONE}
           />
         </div>
         <div className='box-footer'>
@@ -82,5 +60,5 @@ class CompanyForm extends Component {
 }
 
 CompanyForm = reduxForm({ form: 'companyForm' })(CompanyForm);
-const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ init}, dispatch);
 export default connect(null, mapDispatchToProps)(CompanyForm);

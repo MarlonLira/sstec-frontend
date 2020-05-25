@@ -10,14 +10,16 @@ import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
+import { create, update, destroy, init } from './companyActions';
 
 import Profile from './profileCompany'
+import Form from './companyForm';
 
 class Company extends Component {
     componentWillMount() {
         this.props.selectTab('tabProfile');
-        this.props.showTabs('tabProfile', 'tabAddress', 'tabPermissions', 'tabCreate', 'tabUpdate', 'tabDelete');
-      }
+        this.props.showTabs('tabProfile', 'tabAddress');
+    }
     render() {
         return (
             <div>
@@ -26,10 +28,9 @@ class Company extends Component {
                     <Tabs>
                         <TabsHeader>
                             <TabHeader label='Perfil' icon='user' target='tabProfile' />
-                            <TabHeader label='Endereço' icon='clipboard-list' target='tabAddress' />
+                            <TabHeader label='Endereço' icon='list' target='tabAddress' />
                             <TabHeader label='Incluir' icon='plus' target='tabCreate' onClick={() => init()} />
                             <TabHeader label='Alterar' icon='pencil' target='tabUpdate' />
-                            <TabHeader label='Excluir' icon='trash-o' target='tabDelete' />
                         </TabsHeader>
                         <TabsContent>
                             <TabContent id='tabProfile'>
@@ -42,10 +43,8 @@ class Company extends Component {
                                 <h1>CREATE</h1>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <h1>UPDATE</h1>
-                            </TabContent>
-                            <TabContent id='tabDelete'>
-                                <h1>DELETE</h1>
+                                <Form onSubmit={this.props.update}
+                                    submitLabel='Atualizar' submitClass='warning' />
                             </TabContent>
                         </TabsContent>
                     </Tabs>
@@ -56,5 +55,5 @@ class Company extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, update }, dispatch);
 export default connect(null, mapDispatchToProps)(Company);

@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 
 import { init } from './parkingActions';
-import labelAndInput from '../common/form/labelAndInput';
-import inputMask from '../common/form/labelAndInputMask'
+import TextInput from '../common/widget/textInput';
+
+import { Mask } from '../common/functions/mask';
 
 class ParkingForm extends Component {
   render() {
@@ -15,7 +16,7 @@ class ParkingForm extends Component {
         <div className='row'>
           <Field
             name='name'
-            component={labelAndInput}
+            component={TextInput}
             required='true'
             label='Nome'
             cols='12 4'
@@ -26,30 +27,30 @@ class ParkingForm extends Component {
           />
           <Field
             name='registryCode'
-            component={inputMask}
+            component={TextInput}
             cols='12 4'
             maxLength=''
             label='CPNJ'
             placeholder='CNPJ do Estacionamento'
             type='input'
-            mask={'CNPJ'}
+            mask={Mask.COMPANY_REGISTRY_CODE}
             required='true'
             readOnly={readOnly}
           />
           <Field
             name='phone'
-            component={inputMask}
+            component={TextInput}
             cols='12 4'
             maxLength='30'
             label="Telefone"
             placeholder=''
             type='tel'
-            mask={'PHONE'}
+            mask={Mask.PHONE}
             required='true'
             readOnly={readOnly}
           />
           <Field name='email'
-            component={labelAndInput}
+            component={TextInput}
             label='Email'
             cols='12 4'
             readOnly={readOnly}
@@ -59,7 +60,7 @@ class ParkingForm extends Component {
           />
           <Field
             name='imgUrl'
-            component={labelAndInput}
+            component={TextInput}
             maxLength='100'
             label='Imagem'
             cols='12 4'

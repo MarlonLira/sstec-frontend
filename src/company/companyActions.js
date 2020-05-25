@@ -30,7 +30,16 @@ export function create(values) {
 }
 
 export function update(values) {
-  return submit(values, 'put');
+  let _values;
+  _values = {
+    'company': {
+      id: values.id,
+      name: values.name,
+      registryCode: replaceCode(values.registryCode),
+      phone: replaceCode(values.phone)
+    }
+  }
+  return submit(_values, 'put');
 }
 
 export function destroy(values) {
@@ -39,7 +48,8 @@ export function destroy(values) {
 
 function submit(values, method) {
   return new Promise((resolve) => {
-    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
+    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.company.id, '') : '';
+    console.log(id, method, values)
     axios[method](`${BASE_URL}/company/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
@@ -57,7 +67,7 @@ function submit(values, method) {
 export function showUpdate(company) {
   return new Promise((resolve) => {
     resolve([
-      showTabs('tabUpdate'),
+      showTabs('tabProfile', 'tabAddress','tabUpdate'),
       selectTab('tabUpdate'),
       initialize('companyForm', company)
     ]);
@@ -85,8 +95,8 @@ export function showCreate() {
 export function init() {
   return new Promise((resolve) => {
     resolve([
-      showTabs('tabList', 'tabCreate'),
-      selectTab('tabList'),
+      showTabs('tabProfile', 'tabAddress'),
+      selectTab('tabProfile'),
       getList(),
       initialize('companyForm', INITIAL_VALUES)
     ]);

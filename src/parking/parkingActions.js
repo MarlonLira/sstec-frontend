@@ -27,15 +27,15 @@ export function getList() {
 export function create(values) {
   var _values = {};
   values.companyId = COMPANY_ID;
-  
+
   _values = {
     "parking": {
       companyId: values.companyId,
-      email:  values.email,
+      email: values.email,
       imgUrl: values.imgUrl,
       name: values.name,
-      phone: replaceCode(values.phone),
-      registryCode :  replaceCode(values.registryCode)
+      phone: values.phone.replace(/[^\d]+/g, ''),
+      registryCode: values.registryCode.replace(/[^\d]+/g, '')
     }
   }
 
@@ -43,7 +43,17 @@ export function create(values) {
 }
 
 export function update(values) {
-  var _values = { "parking": values };
+  var _values = {
+    "parking": {
+      id: values.id,
+      companyId: values.companyId,
+      email: values.email,
+      imgUrl: values.imgUrl,
+      name: values.name,
+      phone: values.phone.replace(/[^\d]+/g, ''),
+      registryCode: values.registryCode.replace(/[^\d]+/g, '')
+    }
+  }
   return submit(_values, 'put');
 }
 
