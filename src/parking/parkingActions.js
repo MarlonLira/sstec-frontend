@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
-import { replaceCode } from '../../src/common/functions/replace'
+import { CleanMask, Mask } from '../common/functions/mask';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -34,8 +34,8 @@ export function create(values) {
       email: values.email,
       imgUrl: values.imgUrl,
       name: values.name,
-      phone: values.phone.replace(/[^\d]+/g, ''),
-      registryCode: values.registryCode.replace(/[^\d]+/g, '')
+      phone: CleanMask(values.phone, Mask.PHONE),
+      registryCode: CleanMask(values.registryCode, Mask.USER_REGISTRY_CODE)
     }
   }
 
@@ -50,8 +50,8 @@ export function update(values) {
       email: values.email,
       imgUrl: values.imgUrl,
       name: values.name,
-      phone: values.phone.replace(/[^\d]+/g, ''),
-      registryCode: values.registryCode.replace(/[^\d]+/g, '')
+      phone: CleanMask(values.phone, Mask.PHONE),
+      registryCode: CleanMask(values.registryCode, Mask.COMPANY_REGISTRY_CODE)
     }
   }
   return submit(_values, 'put');

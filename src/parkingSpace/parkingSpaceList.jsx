@@ -68,7 +68,7 @@ class ParkingList extends Component {
 
     return list.map(parking => (
       <tr key={parking.id}>
-        <td>{parking.type == 'CAR' ? 'Carro' : 'Moto'}</td>
+        <td>{parking.type == 'CAR' ? 'Carro' : (parking.type == 'MOTORCYCLE' ? 'Moto' : 'Mista')}</td>
         <td>R$ {parking.value}</td>
         <td>{amount}</td>
         <td className='table-actions'>
