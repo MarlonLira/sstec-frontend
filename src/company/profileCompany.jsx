@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getList, showUpdate, showDelete, showCreate } from './companyActions';
 import DefaultLogo from '../common/styles/images/ProfilePhoto.jpg';
-import { CreateMaskText, MaskPhoneText, Mask } from '../common/functions/mask';
-import './style.css'
+import { CreateMaskText, MaskPhoneText, Mask } from '../common/functions/util';
+import './style.css';
 
 class ProfileCompany extends Component {
 
@@ -18,7 +18,7 @@ class ProfileCompany extends Component {
     return list.map(company => (
       <div className="profile-card" key={company.id}>
         <div className="top-section">
-          <i className="notif fa fa-pencil" onClick={() => this.props.showUpdate(company)}></i>
+          <i className="notif fa fa-pen" onClick={() => this.props.showUpdate(company)}></i>
           <i className="message fas fa-envelope"></i>
           <div className="pic">
             <img src={DefaultLogo} alt=""></img>

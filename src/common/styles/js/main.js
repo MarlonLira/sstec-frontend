@@ -45,6 +45,7 @@
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
+        console.log('A')
 
         $(thisAlert).addClass('alert-validate');
     }

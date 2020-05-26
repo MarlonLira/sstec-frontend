@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
-import { replaceCode } from '../common/functions/replace'
+import { CleanMask, Mask } from '../common/functions/util';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -35,8 +35,8 @@ export function update(values) {
     'company': {
       id: values.id,
       name: values.name,
-      registryCode: replaceCode(values.registryCode),
-      phone: replaceCode(values.phone)
+      registryCode: CleanMask(values.registryCode, Mask.COMPANY_REGISTRY_CODE),
+      phone: CleanMask(values.phone, Mask.PHONE)
     }
   }
   return submit(_values, 'put');
@@ -67,7 +67,7 @@ function submit(values, method) {
 export function showUpdate(company) {
   return new Promise((resolve) => {
     resolve([
-      showTabs('tabProfile', 'tabAddress','tabUpdate'),
+      showTabs('tabProfile', 'tabAddress', 'tabUpdate'),
       selectTab('tabUpdate'),
       initialize('companyForm', company)
     ]);
