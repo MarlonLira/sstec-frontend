@@ -11,6 +11,11 @@ const Pattern = {
   PASSWORD: (/^.{6,}/).toString().replace(/\//gm, '')
 }
 
+const Error = {
+  USER_REGISTRY_CODE: 'The registration code is invalid',
+  PHONE: 'The phone is invalid'
+}
+
 const defaultMaskOptions = {
   prefix: 'R$',
   suffix: '',

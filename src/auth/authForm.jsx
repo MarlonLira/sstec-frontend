@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { signin } from './authActions';
 import AuthHeader from './authHeader';
 import ImgTitle from './signinImgTitle';
-import TextInput from '../common/widget/customTextInput';
+import TextInput from '../common/widget/roundedTextInput';
 
 class AuthForm extends Component {
 

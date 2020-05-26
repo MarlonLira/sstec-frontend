@@ -5,11 +5,14 @@ import Grid from '../layout/grid';
 import If from '../operator/if';
 import { ReturnIfValid, IsValid } from '../functions/properties';
 
-function onChange(e) {
-
-  //e.target.setCustomValidity("Please select a date in the past.");
+function OnInvalid(e) {
+  e.target.setCustomValidity(e.target.getAttribute('data-pattern-error'));
   return e;
+}
 
+function OnInput(e) {
+  e.target.setCustomValidity('');
+  return e;
 }
 
 export default props => (
@@ -34,6 +37,9 @@ export default props => (
               mask={props.mask}
               guide={ReturnIfValid(props.guide, false)}
               autoComplete='off'
+              onInvalid={OnInvalid}
+              onInput={OnInput}
+              data-pattern-error={ReturnIfValid(props.patternError, '')}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -44,7 +50,7 @@ export default props => (
 
         {/*  Simple Input */}
         <If test={!IsValid(props.mask)}>
-          <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+          <div className="wrap-input100">
             <input {...props.input}
               className='input100'
               placeholder={props.placeholder}
@@ -54,7 +60,9 @@ export default props => (
               maxLength={props.maxLength}
               required={props.required}
               autoComplete='off'
-              data-pattern-error="Please use only letters for your city."
+              onInvalid={OnInvalid}
+              onInput={OnInput}
+              data-pattern-error={ReturnIfValid(props.patternError, '')}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -66,4 +74,4 @@ export default props => (
       </div>
     </Grid>
   </If>
-)
+);

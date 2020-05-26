@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { SubmissionError } from 'redux-form'
 
 import { signup } from './authActions';
 import { Mask, Pattern, CleanMask } from '../common/functions/util';
-import TextInput from '../common/widget/customTextInput';
+import TextInput from '../common/widget/roundedTextInput';
 import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
 import AuthHeader from './authHeader';
-
-const required = value => value ? undefined : new SubmissionError({ name: 'User does not exist', _error: 'Login failed!' });
-const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength15 = maxLength(15);
 
 class SignUp extends Component {
 
@@ -68,6 +62,7 @@ class SignUp extends Component {
               type='text'
               icon='user'
               pattern={Pattern.TEXT}
+              patternError={'O nome digitado é invalido!'}
               required={true}
             />
 
@@ -80,7 +75,8 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.USER_REGISTRY_CODE}
-              pattern={Pattern.USER_REGISTRY_CODE.toString().replace('/', '').replace('/', '')}
+              pattern={Pattern.USER_REGISTRY_CODE}
+              patternError={'O CPF digitado é invalido!'}
               required={true}
             />
 
@@ -106,6 +102,7 @@ class SignUp extends Component {
               icon='phone'
               mask={Mask.PHONE}
               pattern={Pattern.PHONE}
+              patternError={'O Telefone digitado é invalido!'}
               required={true}
             />
 
@@ -118,6 +115,7 @@ class SignUp extends Component {
               type='password'
               icon='lock'
               pattern={Pattern.PASSWORD}
+              patternError={'A Senha digitada é invalida!'}
               required={true}
             />
 
@@ -130,6 +128,7 @@ class SignUp extends Component {
               type='password'
               icon='lock'
               pattern={Pattern.PASSWORD}
+              patternError={'A Senha digitada é invalida!'}
               required={true}
             />
           </div>
@@ -149,6 +148,7 @@ class SignUp extends Component {
               type='text'
               icon='building'
               pattern={Pattern.TEXT}
+              patternError={'O nome da empresa digitada é invalida!'}
               required={true}
             />
 
@@ -162,6 +162,7 @@ class SignUp extends Component {
               icon='id-card'
               mask={Mask.COMPANY_REGISTRY_CODE}
               pattern={Pattern.COMPANY_REGISTRY_CODE}
+              patternError={'O CNPJ da empresa digitado é invalido!'}
               required={true}
             />
 
@@ -175,6 +176,7 @@ class SignUp extends Component {
               icon='phone'
               mask={Mask.PHONE}
               pattern={Pattern.PHONE}
+              patternError={'O Telefone da empresa digitado é invalido!'}
               required={true}
             />
           </div>
