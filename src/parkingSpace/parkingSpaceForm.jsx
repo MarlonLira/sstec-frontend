@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 import { create, update, destroy, getListSpace, getList } from './parkingSpaceActions';
+import { isString } from '../common/functions/properties'
 
 import { init } from './parkingSpaceActions';
 import listParking from './listParking'

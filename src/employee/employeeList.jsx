@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import {CreateMaskText, Mask} from '../common/functions/util';
 import { getList, showUpdate, showDelete, showCreate } from './employeeActions';
 
 class EmployeeList extends Component {
@@ -16,8 +16,8 @@ class EmployeeList extends Component {
     return list.map(employee => (
       <tr key={employee.id}>
         <td>{employee.name}</td>
-        <td>{employee.registryCode}</td>
-        <td>{employee.phone}</td>
+        <td>{CreateMaskText(employee.registryCode, Mask.USER_REGISTRY_CODE)}</td>
+        <td>{CreateMaskText(employee.phone, Mask.PHONE)}</td>
         <td>{employee.email}</td>
         <td className='table-actions'>
           <button type="button" className='btn btn-warning' onClick={() => this.props.showUpdate(employee)}>
