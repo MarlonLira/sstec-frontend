@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { SubmissionError } from 'redux-form'
 
 import { signup } from './authActions';
-import { Mask, CleanMask } from '../common/functions/mask';
+import { Mask, Pattern, CleanMask } from '../common/functions/util';
 import TextInput from '../common/widget/customTextInput';
 import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
@@ -50,7 +50,6 @@ class SignUp extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
     return (
       <AuthHeader >
         <form role='form' className='display-c' onSubmit={handleSubmit(v => this.onSubmit(v))}>
@@ -68,7 +67,7 @@ class SignUp extends Component {
               placeholder='Full Name'
               type='text'
               icon='user'
-              pattern='.{6,}'
+              pattern={Pattern.TEXT}
               required={true}
             />
 
@@ -81,6 +80,7 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.USER_REGISTRY_CODE}
+              pattern={Pattern.USER_REGISTRY_CODE.toString().replace('/', '').replace('/', '')}
               required={true}
             />
 
@@ -92,6 +92,7 @@ class SignUp extends Component {
               placeholder='E-mail'
               type='email'
               icon='envelope'
+              pattern={Pattern.EMAIL}
               required={true}
             />
 
@@ -104,6 +105,7 @@ class SignUp extends Component {
               type='phone'
               icon='phone'
               mask={Mask.PHONE}
+              pattern={Pattern.PHONE}
               required={true}
             />
 
@@ -115,6 +117,7 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              pattern={Pattern.PASSWORD}
               required={true}
             />
 
@@ -126,6 +129,7 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              pattern={Pattern.PASSWORD}
               required={true}
             />
           </div>
@@ -144,7 +148,7 @@ class SignUp extends Component {
               placeholder='Company Name'
               type='text'
               icon='building'
-              pattern='[a-z]{5,30}'
+              pattern={Pattern.TEXT}
               required={true}
             />
 
@@ -157,6 +161,7 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.COMPANY_REGISTRY_CODE}
+              pattern={Pattern.COMPANY_REGISTRY_CODE}
               required={true}
             />
 
@@ -169,6 +174,7 @@ class SignUp extends Component {
               type='text'
               icon='phone'
               mask={Mask.PHONE}
+              pattern={Pattern.PHONE}
               required={true}
             />
           </div>

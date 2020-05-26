@@ -4,7 +4,6 @@ import MaskedInput from 'react-text-mask';
 import Grid from '../layout/grid';
 import If from '../operator/if';
 import { ReturnIfValid, IsValid } from '../functions/properties';
-import { CreateMask } from '../functions/mask';
 
 export default props => (
     <If test={!props.hide}>
@@ -24,7 +23,7 @@ export default props => (
                         maxLength={props.maxLength}
                         required={props.required}
                         pattern={props.pattern}
-                        mask={CreateMask(props.mask)}
+                        mask={props.mask}
                         guide={ReturnIfValid(props.guide, false)}
                         autoComplete='off'
                     />
@@ -37,6 +36,7 @@ export default props => (
                         placeholder={props.placeholder}
                         readOnly={props.readOnly}
                         type={props.type}
+                        pattern={props.pattern}
                         maxLength={props.maxLength}
                         required={props.required}
                         autoComplete='off'
