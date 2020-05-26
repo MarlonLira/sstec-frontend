@@ -6,6 +6,13 @@ import If from '../operator/if';
 import { ReturnIfValid, IsValid } from '../functions/properties';
 import { CreateMask } from '../functions/mask';
 
+function onChange(e) {
+
+  //e.target.setCustomValidity("Please select a date in the past.");
+  return e;
+
+}
+
 export default props => (
   <If test={!props.hide}>
     <Grid cols={props.cols}>
@@ -16,7 +23,7 @@ export default props => (
 
         {/* Masked Input */}
         <If test={IsValid(props.mask)}>
-          <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+          <div className="wrap-input100 validate-input">
             <MaskedInput {...props.input}
               className='input100'
               placeholder={props.placeholder}
@@ -44,9 +51,11 @@ export default props => (
               placeholder={props.placeholder}
               readOnly={props.readOnly}
               type={props.type}
+              pattern={props.pattern}
               maxLength={props.maxLength}
               required={props.required}
               autoComplete='off'
+              data-pattern-error="Please use only letters for your city."
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">

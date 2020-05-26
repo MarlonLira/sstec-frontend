@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { SubmissionError } from 'redux-form'
 
 import { signup } from './authActions';
 import { Mask, CleanMask } from '../common/functions/mask';
@@ -9,6 +10,11 @@ import TextInput from '../common/widget/customTextInput';
 import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
 import AuthHeader from './authHeader';
+
+const required = value => value ? undefined : new SubmissionError({ name: 'User does not exist', _error: 'Login failed!' });
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined;
+const maxLength15 = maxLength(15);
 
 class SignUp extends Component {
 
@@ -44,6 +50,7 @@ class SignUp extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
       <AuthHeader >
         <form role='form' className='display-c' onSubmit={handleSubmit(v => this.onSubmit(v))}>
@@ -61,7 +68,8 @@ class SignUp extends Component {
               placeholder='Full Name'
               type='text'
               icon='user'
-              pattern='[a-z]{5,30}'
+              pattern='.{6,}'
+              required={true}
             />
 
             <Field
@@ -73,6 +81,7 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.USER_REGISTRY_CODE}
+              required={true}
             />
 
             <Field
@@ -83,6 +92,7 @@ class SignUp extends Component {
               placeholder='E-mail'
               type='email'
               icon='envelope'
+              required={true}
             />
 
             <Field
@@ -94,6 +104,7 @@ class SignUp extends Component {
               type='phone'
               icon='phone'
               mask={Mask.PHONE}
+              required={true}
             />
 
             <Field
@@ -104,6 +115,7 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              required={true}
             />
 
             <Field
@@ -114,6 +126,7 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              required={true}
             />
           </div>
 
@@ -132,6 +145,7 @@ class SignUp extends Component {
               type='text'
               icon='building'
               pattern='[a-z]{5,30}'
+              required={true}
             />
 
             <Field
@@ -143,6 +157,7 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.COMPANY_REGISTRY_CODE}
+              required={true}
             />
 
             <Field
@@ -154,6 +169,7 @@ class SignUp extends Component {
               type='text'
               icon='phone'
               mask={Mask.PHONE}
+              required={true}
             />
           </div>
           <div className="container-login100-form-btn">
