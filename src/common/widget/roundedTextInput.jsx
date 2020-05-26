@@ -4,7 +4,16 @@ import MaskedInput from 'react-text-mask';
 import Grid from '../layout/grid';
 import If from '../operator/if';
 import { ReturnIfValid, IsValid } from '../functions/properties';
-import { CreateMask } from '../functions/mask';
+
+function OnInvalid(e) {
+  e.target.setCustomValidity(e.target.getAttribute('data-pattern-error'));
+  return e;
+}
+
+function OnInput(e) {
+  e.target.setCustomValidity('');
+  return e;
+}
 
 export default props => (
   <If test={!props.hide}>
@@ -16,7 +25,7 @@ export default props => (
 
         {/* Masked Input */}
         <If test={IsValid(props.mask)}>
-          <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+          <div className="wrap-input100 validate-input">
             <MaskedInput {...props.input}
               className='input100'
               placeholder={props.placeholder}
@@ -25,9 +34,12 @@ export default props => (
               maxLength={props.maxLength}
               required={props.required}
               pattern={props.pattern}
-              mask={CreateMask(props.mask)}
+              mask={props.mask}
               guide={ReturnIfValid(props.guide, false)}
               autoComplete='off'
+              onInvalid={OnInvalid}
+              onInput={OnInput}
+              data-pattern-error={ReturnIfValid(props.patternError, '')}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -38,15 +50,19 @@ export default props => (
 
         {/*  Simple Input */}
         <If test={!IsValid(props.mask)}>
-          <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+          <div className="wrap-input100">
             <input {...props.input}
               className='input100'
               placeholder={props.placeholder}
               readOnly={props.readOnly}
               type={props.type}
+              pattern={props.pattern}
               maxLength={props.maxLength}
               required={props.required}
               autoComplete='off'
+              onInvalid={OnInvalid}
+              onInput={OnInput}
+              data-pattern-error={ReturnIfValid(props.patternError, '')}
             />
             <span className="focus-input100"></span>
             <span className="symbol-input100">
@@ -58,4 +74,4 @@ export default props => (
       </div>
     </Grid>
   </If>
-)
+);

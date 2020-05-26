@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import { init } from './parkingActions';
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/mask';
+import { Mask } from '../common/functions/util';
 
 class ParkingForm extends Component {
   render() {
