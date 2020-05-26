@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { signin } from './authActions';
 
-import { Mask } from '../common/functions/mask';
-import TextInput from '../common/widget/customTextInput';
+import { Mask } from '../common/functions/util';
+import TextInput from '../common/widget/roundedTextInput';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
 
 import AuthHeader from './authHeader';

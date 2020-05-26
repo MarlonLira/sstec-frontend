@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
-import { Mask } from '../common/functions/mask';
+import { Mask } from '../common/functions/util';
 import TextInput from '../common/widget/textInput';
 
 import { init } from './companyActions';

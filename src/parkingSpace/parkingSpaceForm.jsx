@@ -8,7 +8,7 @@ import { init } from './parkingSpaceActions';
 import listParking from './listParking'
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/mask';
+import { Mask } from '../common/functions/util';
 
 class ParkingSpaceForm extends Component {
 
