@@ -72,4 +72,4 @@ function LeftZero(value) {
   return result;
 }
 
-export { ReturnIfValid, GetDateNow, IsValid, GetTime };
+export { ReturnIfValid, GetDateNow, IsValid, GetTime, isString };
