@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import {CreateMaskText, Mask} from '../common/functions/util'
+
 import { getList, showUpdate, showDelete, showCreate } from './parkingActions';
 
 class ParkingList extends Component {
@@ -16,8 +18,8 @@ class ParkingList extends Component {
     return list.map(parking => (
       <tr key={parking.id}>
         <td>{parking.name}</td>
-        <td>{parking.registryCode}</td>
-        <td>{parking.phone}</td>
+        <td>{CreateMaskText(parking.registryCode, Mask.COMPANY_REGISTRY_CODE)}</td>
+        <td>{CreateMaskText(parking.phone, Mask.PHONE)}</td>
         <td>{parking.email}</td>
         <td>{parking.amount || 0}</td>
         <td className='table-actions'>

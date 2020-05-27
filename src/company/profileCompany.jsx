@@ -25,7 +25,7 @@ class ProfileCompany extends Component {
           </div>
           <div className="name">{company.name}</div>
           <div className="tag">{CreateMaskText(company.registryCode, Mask.COMPANY_REGISTRY_CODE)}</div>
-          <div className="tag">{MaskPhoneText(company.phone, Mask.PHONE)}</div>
+          <div className="tag">{CreateMaskText(company.phone, Mask.PHONE)}</div>
 
         </div>
 

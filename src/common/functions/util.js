@@ -59,6 +59,8 @@ function CreateMaskText(text, maskName) {
       return MaskCompanyText(text);
     case Mask.PHONE:
       return MaskPhoneText(text);
+    case Mask.USER_REGISTRY_CODE:
+      return MaskUserText(text);
     default:
       break;
   }
@@ -88,4 +90,15 @@ function MaskPhoneText(text) {
   return value;
 }
 
-export { CreateMaskText, MaskPhoneText, CleanMask, Mask, Pattern };
+function MaskUserText(text) {
+  let value;
+
+  value = text.substring(0, 3) + '.' +
+    text.substring(3, 6) + '.' +
+    text.substring(6, 9) + '-' +
+    text.substring(9, 11);
+  
+  return value;
+}
+
+export { CreateMaskText, CleanMask, Mask, Pattern };
