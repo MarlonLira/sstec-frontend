@@ -14,6 +14,7 @@ import { create, update, destroy, init } from './companyActions';
 
 import Profile from './profileCompany'
 import Form from './companyForm';
+import Address from './addressCompany'
 
 class Company extends Component {
     componentWillMount() {
@@ -37,7 +38,7 @@ class Company extends Component {
                                 <Profile />
                             </TabContent>
                             <TabContent id='tabAddress'>
-                                <h1>Endereço</h1>
+                                <Address />
                             </TabContent>
                             <TabContent id='tabCreate'>
                                 <h1>CREATE</h1>
