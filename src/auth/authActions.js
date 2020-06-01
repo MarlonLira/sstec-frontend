@@ -16,18 +16,12 @@ function submit(values, url, type) {
         if (type == 1) {
           _type = 'USER_SIGNUP'
         }
-        console.log([
-          {
-            type: _type,
-            payload: resp.data.result
-          }
-        ]);
         resolve([
           {
             type: _type,
             payload: resp.data.result
           }
-        ])
+        ]);
       })
       .catch(error => {
         toastr.error('Error', error.response.data.message);
@@ -41,7 +35,7 @@ export function signin(values) {
       .then(resp => {
         resolve(resp);
       });
-  })
+  });
 }
 
 export function signup(values) {
@@ -50,7 +44,7 @@ export function signup(values) {
       .then(resp => {
         resolve(resp);
       });
-  })
+  });
 }
 
 export function logout() {
@@ -76,8 +70,8 @@ export function validateToken(token) {
               type: 'TOKEN_VALIDATED',
               payload
             }
-          ])
-        })
+          ]);
+        });
     } else {
       resolve([
         {
@@ -86,5 +80,5 @@ export function validateToken(token) {
         }
       ]);
     }
-  })
+  });
 };
