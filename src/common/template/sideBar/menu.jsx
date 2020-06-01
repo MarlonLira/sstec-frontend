@@ -22,7 +22,7 @@ class Menu extends Component {
           <MenuTree label='Financeiro' icon='barcode' authenticationLevel={authenticationLevel} accessLevel={1}>
             <MenuItem label='Acessar' icon='angle-right' path='products' />
           </MenuTree>
-          <MenuTree label='Relátorios' icon='th-list' authenticationLevel={authenticationLevel} accessLevel={2}>
+          <MenuTree label='Relátorios' icon='th-list' authenticationLevel={authenticationLevel} accessLevel={1}>
             <MenuItem label='Acessar' icon='angle-right' path='billingCycles' />
           </MenuTree>
           <MenuTree label='Suporte' icon='comments' authenticationLevel={authenticationLevel} accessLevel={3}>

@@ -71,7 +71,7 @@ class ParkingSpaceForm extends Component {
   }
 
   renderLines() {
-    const list = [{ value: 'CAR', description: 'Carro' }, { value: 'MOTOCYCLE', description: 'Moto' }]
+    const list = [{ value: 'CAR', description: 'Carro' }, { value: 'MOTORCYCLE', description: 'Moto' }, { value: 'BOTH', description: 'Mista' }]
     return list.map(type => (
       <option key={type.value} value={type.value}>{type.description}</option>
     ))

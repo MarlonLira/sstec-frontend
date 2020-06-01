@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import { init } from './parkingActions';
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/util';
+import { Mask, Pattern } from '../common/functions/util';
 
 class ParkingForm extends Component {
   render() {
@@ -22,6 +22,7 @@ class ParkingForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             maxLength='30'
+            pattern={Pattern.TEXT}
             placeholder='Informe o nome do Estacionamento'
             type='text'
           />
@@ -33,8 +34,9 @@ class ParkingForm extends Component {
             label='CPNJ'
             placeholder='CNPJ do Estacionamento'
             type='input'
+            pattern={Pattern.COMPANY_REGISTRY_CODE}
             mask={Mask.COMPANY_REGISTRY_CODE}
-            required='true'
+            required={true}
             readOnly={readOnly}
           />
           <Field
@@ -45,6 +47,7 @@ class ParkingForm extends Component {
             label="Telefone"
             placeholder=''
             type='tel'
+            pattern={Pattern.PHONE}
             mask={Mask.PHONE}
             required='true'
             readOnly={readOnly}
@@ -55,6 +58,7 @@ class ParkingForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             maxLength='50'
+            pattern={Pattern.TEXT}
             placeholder='Informe o E-mail do Estacionamento'
             type='email'
           />
