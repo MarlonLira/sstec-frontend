@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import { init } from './employeeActions';
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/util';
+import { Mask, Pattern} from '../common/functions/util';
 
 class EmployeeForm extends Component {
 
