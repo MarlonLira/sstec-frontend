@@ -1,5 +1,4 @@
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { IsValid } from './properties';
 
 const Pattern = {
   CURRENCY: (/^.[\D]{1,2}\s\d{1,}/).toString().replace(/\//gm, ''),
@@ -9,11 +8,6 @@ const Pattern = {
   TEXT: (/^.{6,}/).toString().replace(/\//gm, ''),
   EMAIL: (/^.{6,}/).toString().replace(/\//gm, ''),
   PASSWORD: (/^.{6,}/).toString().replace(/\//gm, '')
-}
-
-const Error = {
-  USER_REGISTRY_CODE: 'The registration code is invalid',
-  PHONE: 'The phone is invalid'
 }
 
 const defaultMaskOptions = {

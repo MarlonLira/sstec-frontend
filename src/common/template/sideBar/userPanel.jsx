@@ -1,4 +1,3 @@
-import DefaultLogo from '../../styles/images/default-150x150.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,7 +16,6 @@ class UserPanel extends Component {
         <div className="image">
           <i className='fa fa-user img-circle icon-employee' ></i>
           <i className='fab fa-black-tie img-circle icon-company' ></i>
-          {/* <img src={DefaultLogo} className="img-circle elevation-2"></img> */}
         </div>
         <div className="info user-text">
           <a href="#" className="d-block" >{ReturnIfValid(employee.name, 'Employee Name')}</a>
