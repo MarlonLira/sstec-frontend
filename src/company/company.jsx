@@ -17,42 +17,42 @@ import Form from './companyForm';
 import Address from './addressCompany'
 
 class Company extends Component {
-    componentWillMount() {
-        this.props.selectTab('tabProfile');
-        this.props.showTabs('tabProfile', 'tabAddress');
-    }
-    render() {
-        return (
-            <div>
-                <ContentHeader title="Configurações" />
-                <Content>
-                    <Tabs>
-                        <TabsHeader>
-                            <TabHeader label='Perfil' icon='user' target='tabProfile' />
-                            <TabHeader label='Endereço' icon='list' target='tabAddress' />
-                            <TabHeader label='Incluir' icon='plus' target='tabCreate' onClick={() => init()} />
-                            <TabHeader label='Alterar' icon='pencil' target='tabUpdate' />
-                        </TabsHeader>
-                        <TabsContent>
-                            <TabContent id='tabProfile'>
-                                <Profile />
-                            </TabContent>
-                            <TabContent id='tabAddress'>
-                                <Address />
-                            </TabContent>
-                            <TabContent id='tabCreate'>
-                                <h1>CREATE</h1>
-                            </TabContent>
-                            <TabContent id='tabUpdate'>
-                                <Form onSubmit={this.props.update}
-                                    submitLabel='Atualizar' submitClass='warning' />
-                            </TabContent>
-                        </TabsContent>
-                    </Tabs>
-                </Content>
-            </div>
-        )
-    }
+  componentWillMount() {
+    this.props.selectTab('tabProfile');
+    this.props.showTabs('tabProfile', 'tabAddress');
+  }
+  render() {
+    return (
+      <div>
+        <ContentHeader title="Configurações" />
+        <Content>
+          <Tabs>
+            <TabsHeader>
+              <TabHeader label='Perfil' icon='user' target='tabProfile' />
+              <TabHeader label='Endereço' icon='list' target='tabAddress' />
+              <TabHeader label='Incluir' icon='plus' target='tabCreate' onClick={() => init()} />
+              <TabHeader label='Alterar' icon='pencil' target='tabUpdate' />
+            </TabsHeader>
+            <TabsContent>
+              <TabContent id='tabProfile'>
+                <Profile />
+              </TabContent>
+              <TabContent id='tabAddress'>
+                {/* <Address /> */}
+              </TabContent>
+              <TabContent id='tabCreate'>
+                <h1>CREATE</h1>
+              </TabContent>
+              <TabContent id='tabUpdate'>
+                <Form onSubmit={this.props.update}
+                  submitLabel='Atualizar' submitClass='warning' />
+              </TabContent>
+            </TabsContent>
+          </Tabs>
+        </Content>
+      </div>
+    )
+  }
 }
 
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
+import {Pattern} from '../common/functions/util'
 
 import { init } from './employeeActions';
 import TextInput from '../common/widget/textInput';
@@ -56,7 +57,7 @@ class EmployeeForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             required='true'
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            pattern={Pattern.EMAIL}
             placeholder='Informe o email do funcionário'
             type='text'
           />

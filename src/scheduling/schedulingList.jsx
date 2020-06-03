@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { getList } from './schedulingActions';
 import { GetTime } from '../common/functions/properties';
+import Consts from '../consts';
+import io from 'socket.io-client'
+
+const BASE_URL = Consts.API_URL;
+const socket = io(BASE_URL);
+socket.on('connect', () => console.log('[IO] Connect => A new connection as has ben established'));
 
 class SchedulingList extends Component {
 
   componentWillMount() {
     this.props.getList();
+    this.callScheduling();
+  }
+
+  callScheduling() {
+    socket.on('get.schedulings', () => {
+      this.props.getList();
+    })
   }
 
   renderRows() {
