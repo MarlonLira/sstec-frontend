@@ -9,6 +9,7 @@ const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
 const INITIAL_VALUES = {};
 const COMPANY_ID = localStorage.getItem('_sp_company') == null ? 0 : JSON.parse(localStorage.getItem('_sp_company')).id;
+//const PARKING_ID = localStorage.getItem('_sp_parking') == null ? 0 : JSON.parse(localStorage.getItem('_sp_parking')).id;
 
 export function getListSpace(parkingId) {
   return new Promise((resolve) => {
@@ -45,14 +46,20 @@ export function update(values) {
 }
 
 export function destroy(values) {
-  let _values
-  _values = {
-    "parkingSpace" : {
-      id: values.id,
-      idParking: values.parkingId
-    }
-  }
-  return submit(_values, 'delete');
+  console.log(values);
+  return new Promise((resolve) => {
+    axios.delete(`${BASE_URL}/parkingSpace/parkingId/${values.parkingId}/type/${values.type}/amount/${values.amount}`)
+      .then(request => {
+        toastr.success('Sucesso', 'Operação realizada com sucesso.');
+        resolve(init(), getListSpace(values.parkingId));
+      })
+      .catch(error => {
+        toastr.warning(error.message);
+        resolve({
+          type: 'ERROR'
+        });
+      });
+  });
 }
 
 function submit(values, method) {

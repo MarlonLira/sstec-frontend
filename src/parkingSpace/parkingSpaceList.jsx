@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-
 import { getListSpace, getList, showUpdate, showDelete, showCreate, init } from './parkingSpaceActions';
-
 import listParking from './listParking'
 
 class ParkingList extends Component {
@@ -70,7 +68,7 @@ class ParkingList extends Component {
       <tr key={parking.id}>
         <td>{parking.type == 'CAR' ? 'Carro' : (parking.type == 'MOTORCYCLE' ? 'Moto' : 'Mista')}</td>
         <td>R$ {parking.value}</td>
-        <td>{amount}</td>
+        <td>{parking.amount}</td>
         <td className='table-actions'>
           <button type="button"
             className='btn btn-danger'

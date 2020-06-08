@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
-import { CleanMask, Mask } from '../common/functions/mask';
+import { CleanMask, Mask } from '../common/functions/util';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;

@@ -546,3 +546,8 @@ iframe {
 .btn-default {
   border-color: #ddd !important;
 }
+
+.ppButton {
+  position: relative;
+  top: 29px;
+}

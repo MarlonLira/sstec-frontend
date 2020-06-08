@@ -4,7 +4,7 @@ import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
-import { Mask, CleanMask } from '../common/functions/mask';
+import { Mask, CleanMask } from '../common/functions/util';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -21,7 +21,6 @@ let data;
 export function getList() {
   return new Promise((resolve) => {
     const route = PARKING_ID <= 0 ? `${BASE_URL}/employees/companyid/${COMPANY_ID}` : `${BASE_URL}/employees/parkingid/${PARKING_ID}`;
-    console.log(route)
     axios.get(route)
       .then(request => {
         showCreate();
@@ -48,7 +47,6 @@ export function destroy(values) {
 }
 
 function submit(values, method) {
-  console.log(values)
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/employee/${id}`, values)

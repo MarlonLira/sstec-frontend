@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
 import { create, update, destroy, getListSpace, getList } from './parkingSpaceActions';
+import { isString } from '../common/functions/properties'
 
 import { init } from './parkingSpaceActions';
 import listParking from './listParking'
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/mask';
+import { Mask } from '../common/functions/util';
 
 class ParkingSpaceForm extends Component {
 
@@ -70,7 +71,7 @@ class ParkingSpaceForm extends Component {
   }
 
   renderLines() {
-    const list = [{ value: 'CAR', description: 'Carro' }, { value: 'MOTOCYCLE', description: 'Moto' }]
+    const list = [{ value: 'CAR', description: 'Carro' }, { value: 'MOTORCYCLE', description: 'Moto' }, { value: 'BOTH', description: 'Mista' }]
     return list.map(type => (
       <option key={type.value} value={type.value}>{type.description}</option>
     ))

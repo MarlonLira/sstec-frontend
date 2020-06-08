@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { signup } from './authActions';
-import { Mask, CleanMask } from '../common/functions/mask';
-import TextInput from '../common/widget/customTextInput';
+import { Mask, Pattern, CleanMask } from '../common/functions/util';
+import TextInput from '../common/widget/roundedTextInput';
 import Messages from '../common/msg/messages';
 import { Redirect, IsNeedRedirect } from '../common/functions/page';
 import AuthHeader from './authHeader';
@@ -35,7 +35,6 @@ class SignUp extends Component {
 
     this.props.signup(_values)
       .then(resp => {
-        console.log(resp)
         if (resp[0].type == 'USER_SIGNUP') {
           //Redirect('');
         }
@@ -61,7 +60,9 @@ class SignUp extends Component {
               placeholder='Full Name'
               type='text'
               icon='user'
-              pattern='[a-z]{5,30}'
+              pattern={Pattern.TEXT}
+              patternError={'O nome digitado é invalido!'}
+              required={true}
             />
 
             <Field
@@ -73,6 +74,9 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.USER_REGISTRY_CODE}
+              pattern={Pattern.USER_REGISTRY_CODE}
+              patternError={'O CPF digitado é invalido!'}
+              required={true}
             />
 
             <Field
@@ -83,6 +87,8 @@ class SignUp extends Component {
               placeholder='E-mail'
               type='email'
               icon='envelope'
+              pattern={Pattern.EMAIL}
+              required={true}
             />
 
             <Field
@@ -94,6 +100,9 @@ class SignUp extends Component {
               type='phone'
               icon='phone'
               mask={Mask.PHONE}
+              pattern={Pattern.PHONE}
+              patternError={'O Telefone digitado é invalido!'}
+              required={true}
             />
 
             <Field
@@ -104,6 +113,9 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              pattern={Pattern.PASSWORD}
+              patternError={'A Senha digitada é invalida!'}
+              required={true}
             />
 
             <Field
@@ -114,6 +126,9 @@ class SignUp extends Component {
               placeholder='Password'
               type='password'
               icon='lock'
+              pattern={Pattern.PASSWORD}
+              patternError={'A Senha digitada é invalida!'}
+              required={true}
             />
           </div>
 
@@ -131,7 +146,9 @@ class SignUp extends Component {
               placeholder='Company Name'
               type='text'
               icon='building'
-              pattern='[a-z]{5,30}'
+              pattern={Pattern.TEXT}
+              patternError={'O nome da empresa digitada é invalida!'}
+              required={true}
             />
 
             <Field
@@ -143,6 +160,9 @@ class SignUp extends Component {
               type='text'
               icon='id-card'
               mask={Mask.COMPANY_REGISTRY_CODE}
+              pattern={Pattern.COMPANY_REGISTRY_CODE}
+              patternError={'O CNPJ da empresa digitado é invalido!'}
+              required={true}
             />
 
             <Field
@@ -154,6 +174,9 @@ class SignUp extends Component {
               type='text'
               icon='phone'
               mask={Mask.PHONE}
+              pattern={Pattern.PHONE}
+              patternError={'O Telefone da empresa digitado é invalido!'}
+              required={true}
             />
           </div>
           <div className="container-login100-form-btn">

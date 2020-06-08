@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form';
-import { Mask } from '../common/functions/mask';
+import { Mask, Pattern } from '../common/functions/util';
 import TextInput from '../common/widget/textInput';
 
 import { init } from './companyActions';
@@ -12,7 +12,7 @@ class CompanyForm extends Component {
     const { handleSubmit, readOnly } = this.props;
     return (
       <form role='form' onSubmit={handleSubmit}>
-       <div className='row'>
+        <div className='row'>
           <Field
             name='name'
             component={TextInput}
@@ -23,6 +23,7 @@ class CompanyForm extends Component {
             maxLength='50'
             placeholder='Nome da Empresa'
             type='text'
+            pattern={Pattern.TEXT}
           />
           <Field
             name='registryCode'
@@ -33,6 +34,7 @@ class CompanyForm extends Component {
             placeholder='CNPJ'
             type='text'
             required='true'
+            pattern={Pattern.COMPANY_REGISTRY_CODE}
             mask={Mask.COMPANY_REGISTRY_CODE}
           />
           <Field
@@ -44,6 +46,7 @@ class CompanyForm extends Component {
             required='true'
             placeholder='Informe o telefone da Empresa'
             type='tel'
+            pattern={Pattern.PHONE}
             mask={Mask.PHONE}
           />
         </div>
@@ -60,5 +63,5 @@ class CompanyForm extends Component {
 }
 
 CompanyForm = reduxForm({ form: 'companyForm' })(CompanyForm);
-const mapDispatchToProps = dispatch => bindActionCreators({ init}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch);
 export default connect(null, mapDispatchToProps)(CompanyForm);
