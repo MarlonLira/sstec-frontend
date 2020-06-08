@@ -25,6 +25,19 @@ export function getList() {
   });
 }
 
+export function getInfoAddress() {
+  return new Promise((resolve) => {
+    axios.get(`${BASE_URL}/companyAdress/companyId/${COMPANY_ID}`)
+      .then(request => {
+        showCreate();
+        resolve({
+          type: 'COMPANY_ADDRESS_FETCHED',
+          payload: request.data.result
+        });
+      });
+  });
+}
+
 export function create(values) {
   return submit(values, 'post');
 }
@@ -42,6 +55,28 @@ export function update(values) {
   return submit(_values, 'put');
 }
 
+export function addressUpdate(values, method) {
+    let _values;
+    _values = {
+      'companyAdress': {
+        companyId: COMPANY_ID,
+        zipCode: values.zipCode,
+        street: values.street,
+        number: values.number,
+        neighborhood: values.neighborhood,
+        country: values.country,
+        state: values.state,
+        city: values.city,
+        complement: values.complement
+      }
+    }
+    if (method == 'post') {
+      return submitAddress(_values, method);
+    } else if (method == 'put') {
+      return submitAddress(_values, method);
+    }
+}
+
 export function destroy(values) {
   return submit(values, 'delete');
 }
@@ -49,7 +84,6 @@ export function destroy(values) {
 function submit(values, method) {
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.company.id, '') : '';
-    console.log(id, method, values)
     axios[method](`${BASE_URL}/company/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
@@ -64,12 +98,41 @@ function submit(values, method) {
   });
 }
 
+function submitAddress(values, method) {
+  return new Promise((resolve) => {
+    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.company.id, '') : '';
+    axios[method](`${BASE_URL}/companyAdress/${id}`, values)
+      .then(request => {
+        toastr.success('Sucesso', 'Operação realizada com sucesso.');
+        resolve({
+          type: 'SUCCESS'
+        });
+      })
+      .catch(error => {
+        toastr.warning(error.message);
+        resolve({
+          type: 'ERROR'
+        });
+      });
+  });
+}
+
+
 export function showUpdate(company) {
   return new Promise((resolve) => {
     resolve([
       showTabs('tabProfile', 'tabAddress', 'tabUpdate'),
       selectTab('tabUpdate'),
       initialize('companyForm', company)
+    ]);
+  });
+}
+
+export function showUpdateAddress(address) {
+  return new Promise((resolve) => {
+    resolve([
+      showTabs('tabProfile', 'tabAddress'),
+      initialize('addressForm', address)
     ]);
   });
 }
@@ -98,7 +161,7 @@ export function init() {
       showTabs('tabProfile', 'tabAddress'),
       selectTab('tabProfile'),
       getList(),
-      initialize('companyForm', INITIAL_VALUES)
+      initialize('companyForm', 'addressForm', INITIAL_VALUES)
     ]);
   });
 }
