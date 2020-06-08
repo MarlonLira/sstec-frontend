@@ -10,7 +10,7 @@ import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
-import { create, update, destroy, init } from './companyActions';
+import { create, update, destroy, init, addressUpdate } from './companyActions';
 
 import Profile from './profileCompany'
 import Form from './companyForm';
@@ -38,9 +38,9 @@ class Company extends Component {
                 <Profile />
               </TabContent>
               <TabContent id='tabAddress'>
-                {/* <Address /> */}
+                <Address submitClass='primary p-custom' />
               </TabContent>
-              <TabContent id='tabCreate'>
+              <TabContent id='tabCreate' >
                 <h1>CREATE</h1>
               </TabContent>
               <TabContent id='tabUpdate'>
@@ -56,5 +56,5 @@ class Company extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, update }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, update, addressUpdate }, dispatch);
 export default connect(null, mapDispatchToProps)(Company);

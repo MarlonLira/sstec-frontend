@@ -35,7 +35,6 @@ class SignUp extends Component {
 
     this.props.signup(_values)
       .then(resp => {
-        console.log(resp)
         if (resp[0].type == 'USER_SIGNUP') {
           //Redirect('');
         }
