@@ -4,6 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 import { ReturnIfValid, GetDateNow } from '../common/functions/properties';
 import Consts from '../consts';
+import { compose } from 'redux';
 
 const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
@@ -44,12 +45,15 @@ export function update(values) {
   return submit(values, 'put');
 }
 
-export function destroy(values) {
+export function destroy(values, amountDelete) {
   let _values
   _values = {
-    "parkingSpace" : {
+    "parkingSpace": {
       id: values.id,
-      idParking: values.parkingId
+      idParking: values.parkingId,
+      amount: amountDelete.amount,
+      type: values.type,
+      value: values.value
     }
   }
   return submit(_values, 'delete');
@@ -57,8 +61,8 @@ export function destroy(values) {
 
 function submit(values, method) {
   return new Promise((resolve) => {
-    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.parkingSpace.id, '') : '';
-    axios[method](`${BASE_URL}/parkingSpace/${id}`, values)
+    const data = (method == 'delete' || method == 'get') ? ReturnIfValid(values.parkingSpace, '') : '';
+    axios[method](getRoute(method, data), values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
         resolve(init(), getListSpace(values.parkingSpace.idParking));
@@ -72,6 +76,14 @@ function submit(values, method) {
   });
 }
 
+function getRoute(method, data) {
+  if (method == 'post') {
+    return `${BASE_URL}/parkingSpace/`
+  } else if (method == 'delete') {
+    return `${BASE_URL}/parkingSpace/parkingId/${data.idParking}/type/${data.type}/amount/${data.amount}/`
+  }
+}
+
 export function showUpdate(parkingSpace) {
   return new Promise((resolve) => {
     resolve([
@@ -82,10 +94,10 @@ export function showUpdate(parkingSpace) {
   });
 }
 
-export function showDelete(parkingSpace) {
+export function showDelete(parkingSpace, amountDelete) {
   return new Promise((resolve) => {
     resolve([
-      destroy(parkingSpace)
+      destroy(parkingSpace, amountDelete)
     ]);
   });
 }

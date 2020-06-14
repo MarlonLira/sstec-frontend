@@ -14,15 +14,82 @@ import SchedulingList from '../scheduling/schedulingList';
 import Row from '../common/layout/row';
 import { ReturnIfValid } from '../common/functions/properties';
 import { IsNeedRefresh } from '../common/functions/page';
+import Modal from '../common/modal/modal'
 
 class Dashboard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalIsOpen: false
+    };
+  }
+
   componentWillMount() {
     //IsNeedRefresh(true);
     //this.props.getSummary();
+    this.notification();
   }
 
   componentDidMount() {
     //IsNeedRefresh(true);
+  }
+
+  notification() {
+    if (typeof Notification === 'function') {
+      if (Notification.permission !== 'granted') {
+        this.openModal();
+      } else {
+        this.closeModal();
+      }
+    }
+  }
+
+  acceptPermission() {
+    
+    this.closeModal();
+
+    Notification.requestPermission(permission =>{
+      if(permission === 'granted'){
+        console.log('aceitou');
+      }
+    })
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
+  openModal(){
+    this.setState({ modalIsOpen: true });
+  }
+
+  renderMordal() {
+    return (
+      <Modal
+        open={this.state.modalIsOpen}
+        modalTitle={'Permissões'}
+        description={'O Simple Parking precisa de permissão para notificar as novas reservas!'}
+        span={'Deseja ativar as notificações?'}
+        form={
+          <div className="row">
+            <div className='box-footer'>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={() => this.acceptPermission()}>
+                Ativar
+              </button>
+              <button
+                type="button" 
+                className='btn btn-default'
+                onClick={() => this.closeModal()}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        }
+      />)
   }
 
   render() {
@@ -104,6 +171,7 @@ class Dashboard extends Component {
             </div>
           </Card>
         </Content>
+        {this.renderMordal()}
       </div>
     );
   }

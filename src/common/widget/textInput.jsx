@@ -24,7 +24,7 @@ export default props => (
         </If>
 
         {/* Masked Input */}
-        <If test={IsValid(props.mask)}>
+        <If test={IsValid(props.mask) && !IsValid(props.onChangeField)}>
           <MaskedInput {...props.input}
             className='input-square'
             placeholder={props.placeholder}
@@ -43,7 +43,7 @@ export default props => (
         </If>
 
         {/*  Simple Input */}
-        <If test={!IsValid(props.mask)}>
+        <If test={!IsValid(props.mask) && !IsValid(props.onChangeField)}>
           <input {...props.input}
             className='input-square'
             placeholder={props.placeholder}
@@ -55,6 +55,25 @@ export default props => (
             autoComplete='off'
             onInvalid={OnInvalid}
             onInput={OnInput}
+            data-pattern-error={ReturnIfValid(props.patternError, '')}
+          />
+        </If>
+
+        {/*  Simple Input Change */}
+        <If test={!IsValid(props.mask) && IsValid(props.onChangeField)}>
+          <input {...props.input}
+            className='input-square'
+            value={props.valueField}
+            placeholder={props.placeholder}
+            readOnly={props.readOnly}
+            type={props.type}
+            pattern={props.pattern}
+            maxLength={props.maxLength}
+            required={props.required}
+            autoComplete='off'
+            onInvalid={OnInvalid}
+            onInput={OnInput}
+            onChange={props.onChangeField}
             data-pattern-error={ReturnIfValid(props.patternError, '')}
           />
         </If>

@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { getListSpace, getList, showUpdate, showDelete, showCreate, init } from './parkingSpaceActions';
+import { getListSpace, getList, showUpdate, showDelete, showCreate, init, destroy } from './parkingSpaceActions';
 import listParking from './listParking'
+import Modal from 'react-modal';
+import TextInput from '../common/widget/textInput';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 class ParkingList extends Component {
 
@@ -11,14 +24,26 @@ class ParkingList extends Component {
     super(props);
     this.state = {
       parkingId: '',
-      buttonState: false
+      buttonState: false,
+      modalIsOpen: false,
+      valuesDelete: '',
+      amountDelete: 0
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeText = this.handleChangeText.bind(this);
   }
 
   componentWillMount() {
     this.props.getList();
     this.props.showCreate();
+  }
+
+  openModal(values) {
+    this.setState({ modalIsOpen: true, valuesDelete: values  });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false, valuesDelete: '', amountDelete: 0 });
   }
 
   handleChange(e) {
@@ -29,6 +54,15 @@ class ParkingList extends Component {
     }
   }
 
+  handleChangeText(e){
+    let amountDelete = e.target.value;
+    this.setState({ amountDelete });
+  } 
+
+  subtract(){
+    return (this.state.valuesDelete.amount - this.state.amountDelete);
+  }
+
   newCall() {
     this.setState({ buttonState: true })
     setTimeout(() => {
@@ -37,6 +71,61 @@ class ParkingList extends Component {
       }
       this.setState({ buttonState: false })
     }, 500)
+  }
+
+  onSubmit(values){
+    this.props.showDelete(this.state.valuesDelete, values)
+    .then(() => { 
+      this.newCall();
+      this.closeModal();
+    });
+  }
+
+  renderMordal() {
+    const values = this.state.valuesDelete || '';
+    if (values) {
+      const { handleSubmit } = this.props;
+      return (
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <h2>Atenção</h2>
+          <hr />
+          <div>Informe a quantidade de vagas para exclusão</div>
+          <div><span>
+            Tipo: {this.state.valuesDelete.type == 'CAR' ? 'Carro' : (values.type == 'MOTORCYCLE' ? 'Moto' : 'Mista')} |
+            Quantidade: {this.subtract() < 0 ? 0 : this.subtract()} |
+            Valor R$: {this.state.valuesDelete.value}
+          </span></div>
+          <form onSubmit={handleSubmit(v => this.onSubmit(v))}> 
+            <div className='row'>
+              <Field
+                name='amount'
+                component={TextInput}
+                label='Quantidade:'
+                cols='12 12'
+                readOnly={false}
+                required='true'
+                type='number'
+                valueField={this.state.amountDelete}
+                onChangeField={this.handleChangeText}
+              />
+            </div>
+            <div className='box-footer'>
+              <button type="submit" className="btn btn-danger">
+                Excluir
+              </button>
+              <button type='button' className='btn btn-default'
+                onClick={() => this.closeModal()}>
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </Modal>
+      )
+    }
   }
 
   renderList() {
@@ -53,8 +142,6 @@ class ParkingList extends Component {
     var car = []
     var moto = []
 
-    amount = list.length;
-
     const valor = list.map(space => {
       if (space.type == 'CAR') {
         car.push(space);
@@ -69,11 +156,11 @@ class ParkingList extends Component {
         <td>{parking.type == 'CAR' ? 'Carro' : (parking.type == 'MOTORCYCLE' ? 'Moto' : 'Mista')}</td>
         <td>R$ {parking.value}</td>
         <td>{parking.amount}</td>
-        <td className='table-actions'>
+        <td className='table-actions'>  
           <button type="button"
             className='btn btn-danger'
             disabled={buttonState}
-            onClick={() => this.props.showDelete(parking).then(() => { this.newCall() })}>
+            onClick={() => this.openModal(parking)}>
             <i className='fa fa-trash'></i>
           </button>
         </td>
@@ -82,6 +169,7 @@ class ParkingList extends Component {
   }
 
   render() {
+    
     return (
       <div>
         <div className="row">
@@ -114,6 +202,7 @@ class ParkingList extends Component {
           </thead>
           <tbody>
             {this.renderRows()}
+            {this.renderMordal()}
           </tbody>
         </table>
       </div>
@@ -121,7 +210,8 @@ class ParkingList extends Component {
   }
 }
 
+Modal.setAppElement('#app')
 const mapStateToProps = state => ({ listParking: state.parkingSpace.listParking, list: state.parkingSpace.list });
 ParkingList = reduxForm({ form: 'ParkingList' })(ParkingList)
-const mapDispatchToProps = dispatch => bindActionCreators({ getListSpace, getList, showDelete, showUpdate, showCreate, init }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getListSpace, getList, showDelete, showUpdate, showCreate, init, destroy }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingList);

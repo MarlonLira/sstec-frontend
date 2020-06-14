@@ -20,7 +20,7 @@ let data;
 
 export function getList() {
   return new Promise((resolve) => {
-    const route = PARKING_ID <= 0 ? `${BASE_URL}/employees/companyid/${COMPANY_ID}` : `${BASE_URL}/employees/parkingid/${PARKING_ID}`;
+    const route = typeof PARKING_ID == 'undefined' || PARKING_ID <= 0 ? `${BASE_URL}/employees/companyid/${COMPANY_ID}` : `${BASE_URL}/employees/parkingid/${PARKING_ID}`;
     axios.get(route)
       .then(request => {
         showCreate();

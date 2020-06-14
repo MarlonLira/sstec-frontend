@@ -9,6 +9,7 @@ import io from 'socket.io-client'
 const BASE_URL = Consts.API_URL;
 const socket = io(BASE_URL);
 socket.on('connect', () => console.log('[IO] Connect => A new connection as has ben established'));
+let schedulingsReceived = [];
 
 class SchedulingList extends Component {
 
@@ -18,9 +19,25 @@ class SchedulingList extends Component {
   }
 
   callScheduling() {
-    socket.on('get.schedulings', () => {
+    socket.on('get.schedulings', (data) => {
       this.props.getList();
+      this.notification(data);
+      // if (schedulingsReceived.filter(id => { return (id == data.id) }).length == 0){      
+      //   schedulingsReceived.push(data.id);
+      // }
     })
+  }
+
+  notification(data){
+    if(Notification.permission === 'granted') {
+      let notification = new Notification('Novo Agendamento', {
+        body: 'Ususário: Teste'
+      });
+
+      setTimeout(() => {
+        if (notification) notification.close();
+      }, 5000);
+    }
   }
 
   renderRows() {
