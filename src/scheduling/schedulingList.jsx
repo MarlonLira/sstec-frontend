@@ -5,6 +5,7 @@ import { getList } from './schedulingActions';
 import { GetTime } from '../common/functions/properties';
 import Consts from '../consts';
 import io from 'socket.io-client'
+import icon from '../common/styles/images/logo.png'
 
 const BASE_URL = Consts.API_URL;
 const socket = io(BASE_URL);
@@ -18,9 +19,23 @@ class SchedulingList extends Component {
   }
 
   callScheduling() {
-    socket.on('get.schedulings', () => {
+    socket.on('get.schedulings', (data) => {
       this.props.getList();
+      this.notification(data);
     })
+  }
+
+  notification(data){
+    if(Notification.permission === 'granted') {
+      let notification = new Notification('Novo Agendamento', {
+        icon: icon,
+        body: 'Ususário: Teste'
+      });
+
+      setTimeout(() => {
+        if (notification) notification.close();
+      }, 5000);
+    }
   }
 
   renderRows() {

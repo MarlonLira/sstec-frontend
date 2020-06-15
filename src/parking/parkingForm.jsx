@@ -74,6 +74,106 @@ class ParkingForm extends Component {
             type='text'
           />
         </div>
+        <div className='row'>
+          <div className="col-md-12 alternateTitle">
+            <h3>Endereço</h3>
+          </div>
+
+          <Field
+            name='zipCode'
+            component={TextInput}
+            required='true'
+            label='Código postal'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+            pattern={Pattern.TEXT}
+          />
+          <Field
+            name='street'
+            component={TextInput}
+            required='true'
+            label='Rua'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+            pattern={Pattern.TEXT}
+          />
+          <Field
+            name='number'
+            component={TextInput}
+            required='true'
+            label='Número'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+          />
+          <Field
+            name='district'
+            component={TextInput}
+            required='true'
+            label='Bairro'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+            pattern={Pattern.TEXT}
+          />
+          <Field
+            name='country'
+            component={TextInput}
+            required='true'
+            label='País'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+            pattern={Pattern.TEXT}
+          />
+          <Field
+            name='state'
+            component={TextInput}
+            required='true'
+            label='Estado'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+          />
+          <Field
+            name='city'
+            component={TextInput}
+            required='true'
+            label='Cidade'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+            pattern={Pattern.TEXT}
+          />
+          <Field
+            name='complement'
+            component={TextInput}
+            required='true'
+            label='Complemento'
+            cols='12 4'
+            readOnly={readOnly}
+            maxLength='100'
+            placeholder=''
+            type='text'
+          />
+
+        </div>
         <div className='box-footer'>
           <button type='submit' className={`btn btn-${this.props.submitClass}`}>
             {this.props.submitLabel}

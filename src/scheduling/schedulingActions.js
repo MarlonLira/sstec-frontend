@@ -12,7 +12,7 @@ const PARKING_ID = localStorage.getItem('_sp_parking') == null ? 0 : JSON.parse(
 
 export function getList() {
   return new Promise((resolve) => {
-    const route = PARKING_ID <= 0 ? `${BASE_URL}/schedulings/companyid/${COMPANY_ID}` : `${BASE_URL}/schedulings/parkingid/${PARKING_ID}`;
+    const route = typeof PARKING_ID == 'undefined' || PARKING_ID <= 0 ? `${BASE_URL}/schedulings/companyid/${COMPANY_ID}` : `${BASE_URL}/schedulings/parkingid/${PARKING_ID}`;
     axios.get(route)
       .then(request => {
         resolve({

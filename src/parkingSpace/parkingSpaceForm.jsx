@@ -134,7 +134,7 @@ class ParkingSpaceForm extends Component {
             {this.props.submitLabel}
           </button>
           <button type='button' className='btn btn-default'
-          
+
             onClick={this.props.init}>Cancelar</button>
         </div>
       </form>

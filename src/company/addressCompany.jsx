@@ -155,25 +155,31 @@ class AddressCompany extends Component {
             maxLength='100'
             placeholder=''
             type='text'
-            pattern={Pattern.TEXT}
           />
         </div>
         <div className='box-footer'>
           {this.state.read == false ?
             <button
               type='submit'
-              className={`btn btn-success`}>
+              className='btn btn-success'>
               Salvar
             </button>
-            :
+            : null
+          }
+          {this.state.read == true ?
             <button
+              type='button'
               className={`btn btn-${this.props.submitClass}`}
               onClick={() => { this.onEdit() }}>
               Editar
             </button>
-          }
-          <button type='button' className='btn btn-default'
-            onClick={() => { this.initalState() }}>Cancelar</button>
+          : null}
+          <button
+            type='button'
+            className='btn btn-default'
+            onClick={() => { this.initalState() }}>
+            Cancelar
+          </button>
         </div>
       </form>
     )

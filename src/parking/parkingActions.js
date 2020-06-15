@@ -15,7 +15,6 @@ export function getList() {
   return new Promise((resolve) => {
     axios.get(`${BASE_URL}/parkings/companyId/${COMPANY_ID}`)
       .then(request => {
-        showCreate();
         resolve({
           type: 'PARKING_FETCHED',
           payload: request.data.result
@@ -24,11 +23,21 @@ export function getList() {
   });
 }
 
-export function create(values) {
-  var _values = {};
-  values.companyId = COMPANY_ID;
+export function getAddress(values) {
+  return new Promise((resolve) => {
+    axios.get(`${BASE_URL}/ParkingAdress/${values}`)
+      .then(requestAddress => {
+        resolve({
+          type: 'PARKING_ADDRESS_FETCHED',
+          payload: requestAddress.data.result
+        });
+      })
+  })
+}
 
-  _values = {
+export function create(values) {
+  values.companyId = COMPANY_ID;
+  var _values = {
     "parking": {
       companyId: values.companyId,
       email: values.email,
@@ -39,7 +48,22 @@ export function create(values) {
     }
   }
 
-  return submit(_values, 'post');
+  var _valueAddress = {
+    "parkingAdress": {
+      zipCode: values.zipCode,
+      street: values.street,
+      number: values.number,
+      district: values.district,
+      country: values.country,
+      state: values.state,
+      city: values.city,
+      complement: values.complement,
+      latitude: '000',
+      longitude: '000'
+    }
+  }
+
+  return submit(_values, 'post', _valueAddress);
 }
 
 export function update(values) {
@@ -54,17 +78,54 @@ export function update(values) {
       registryCode: CleanMask(values.registryCode, Mask.COMPANY_REGISTRY_CODE)
     }
   }
-  return submit(_values, 'put');
+
+  var _valueAddress = {
+    "parkingAdress": {
+      id: values.idAddress,
+      zipCode: values.zipCode,
+      street: values.street,
+      number: values.number,
+      district: values.district,
+      country: values.country,
+      state: values.state,
+      city: values.city,
+      complement: values.complement,
+      latitude: '000',
+      longitude: '000'
+    }
+  }
+  return submit(_values, 'put', _valueAddress);
 }
 
 export function destroy(values) {
   return submit(values, 'delete');
 }
 
-function submit(values, method) {
+function submit(values, method, valuesAddress) {
   return new Promise((resolve) => {
     const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.id, '') : '';
     axios[method](`${BASE_URL}/parking/${id}`, values)
+      .then(request => {
+        if (valuesAddress) {
+          valuesAddress.parkingAdress.parkingId = request.data.result.parkingId;
+          resolve(submitAddress(valuesAddress, method));
+        } else {
+          resolve(submitAddress(values, method));
+        }
+      })
+      .catch(error => {
+        toastr.warning(error.message);
+        resolve({
+          type: 'ERROR'
+        });
+      });
+  });
+}
+
+function submitAddress(values, method) {
+  return new Promise((resolve) => {
+    const id = (method == 'delete' || method == 'get') ? ReturnIfValid(values.idAddress, '') : '';
+    axios[method](`${BASE_URL}/parkingAdress/${id}`, values)
       .then(request => {
         toastr.success('Sucesso', 'Operação realizada com sucesso.');
         resolve(init());
