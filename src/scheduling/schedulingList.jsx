@@ -5,11 +5,11 @@ import { getList } from './schedulingActions';
 import { GetTime } from '../common/functions/properties';
 import Consts from '../consts';
 import io from 'socket.io-client'
+import icon from '../common/styles/images/logo.png'
 
 const BASE_URL = Consts.API_URL;
 const socket = io(BASE_URL);
 socket.on('connect', () => console.log('[IO] Connect => A new connection as has ben established'));
-let schedulingsReceived = [];
 
 class SchedulingList extends Component {
 
@@ -22,15 +22,13 @@ class SchedulingList extends Component {
     socket.on('get.schedulings', (data) => {
       this.props.getList();
       this.notification(data);
-      // if (schedulingsReceived.filter(id => { return (id == data.id) }).length == 0){      
-      //   schedulingsReceived.push(data.id);
-      // }
     })
   }
 
   notification(data){
     if(Notification.permission === 'granted') {
       let notification = new Notification('Novo Agendamento', {
+        icon: icon,
         body: 'Ususário: Teste'
       });
 
