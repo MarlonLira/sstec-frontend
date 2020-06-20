@@ -29,7 +29,8 @@ const Mask = {
   CURRENCY: currencyMask,
   PHONE: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
   USER_REGISTRY_CODE: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/],
-  COMPANY_REGISTRY_CODE: [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  COMPANY_REGISTRY_CODE: [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/],
+  ZIP_CODE: [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
 }
 
 function CleanMask(value, Mask) {
@@ -41,6 +42,8 @@ function CleanMask(value, Mask) {
     case Mask.PHONE:
       return value.replace(/[^\d]+/g, '');
     case Mask.USER_REGISTRY_CODE:
+      return value.replace(/[^\d]+/g, '');
+    case Mask.ZIP_CODE:
       return value.replace(/[^\d]+/g, '');
     default:
       return value.replace(/[^\d]+/g, '');
@@ -91,7 +94,7 @@ function MaskUserText(text) {
     text.substring(3, 6) + '.' +
     text.substring(6, 9) + '-' +
     text.substring(9, 11);
-  
+
   return value;
 }
 

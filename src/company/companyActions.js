@@ -60,10 +60,10 @@ export function addressUpdate(values, method) {
     _values = {
       'companyAdress': {
         companyId: COMPANY_ID,
-        zipCode: values.zipCode,
+        zipCode: CleanMask(values.zipCode, Mask.ZIP_CODE),
         street: values.street,
         number: values.number,
-        neighborhood: values.neighborhood,
+        district: values.district,
         country: values.country,
         state: values.state,
         city: values.city,

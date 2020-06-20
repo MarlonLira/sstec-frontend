@@ -82,7 +82,7 @@ export function update(values) {
   var _valueAddress = {
     "parkingAdress": {
       id: values.idAddress,
-      zipCode: values.zipCode,
+      zipCode: CleanMask(values.zipCode, Mask.ZIP_CODE),
       street: values.street,
       number: values.number,
       district: values.district,
