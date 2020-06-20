@@ -10,6 +10,7 @@ const BASE_URL = Consts.API_URL;
 const CURRENT_DATE = GetDateNow().FullDate;
 const INITIAL_VALUES = {};
 const COMPANY_ID = localStorage.getItem('_sp_company') == null ? 0 : JSON.parse(localStorage.getItem('_sp_company')).id;
+//const PARKING_ID = localStorage.getItem('_sp_parking') == null ? 0 : JSON.parse(localStorage.getItem('_sp_parking')).id;
 
 export function getListSpace(parkingId) {
   return new Promise((resolve) => {

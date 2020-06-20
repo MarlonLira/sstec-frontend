@@ -7,7 +7,7 @@ import {Pattern} from '../common/functions/util'
 import { init } from './employeeActions';
 import TextInput from '../common/widget/textInput';
 
-import { Mask } from '../common/functions/util';
+import { Mask, Pattern} from '../common/functions/util';
 
 class EmployeeForm extends Component {
 
@@ -24,6 +24,7 @@ class EmployeeForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             maxLength='50'
+            pattern={Pattern.TEXT}
             placeholder='Informe o nome do funcionário'
             type='text'
           />
@@ -34,6 +35,7 @@ class EmployeeForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             placeholder='Informe o CPF do funcionário'
+            pattern={Pattern.USER_REGISTRY_CODE}
             type='text'
             required='true'
             mask={Mask.USER_REGISTRY_CODE}
@@ -45,6 +47,7 @@ class EmployeeForm extends Component {
             cols='12 4'
             readOnly={readOnly}
             required='true'
+            pattern={Pattern.PHONE}
             placeholder='Informe o telefone do funcionário'
             type='tel'
             mask={Mask.PHONE}
