@@ -85,6 +85,7 @@ class ParkingForm extends Component {
             maxLength='100'
             placeholder=''
             type='text'
+            mask={Mask.ZIP_CODE}
             pattern={Pattern.TEXT}
           />
           <Field
